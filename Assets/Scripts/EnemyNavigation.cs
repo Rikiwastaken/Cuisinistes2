@@ -17,11 +17,21 @@ public class EnemyNavigation : MonoBehaviour
 
     public bool debug;
 
+
+    public AnimationClip Idle;
+    public AnimationClip Run;
+    public AnimationClip Attack;
+    public AnimationClip Die;
+
+    private Animation Animation; // ordre des animations : idle, run, attack, die
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         delaybetweendistancerecalculation = Random.Range(0, 60);
         player = MovementController.instance.transform;
+        Animation = GetComponentInChildren<Animation>();
     }
 
     // Update is called once per frame
@@ -42,12 +52,10 @@ public class EnemyNavigation : MonoBehaviour
             {
                 if (Vector3.Distance(player.transform.position, transform.position) <= AgroRange)
                 {
-                    Debug.Log("inrange");
                     Vector3 directionToPlayer = (player.transform.position - transform.position - new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f)).normalized;
 
                     if (Physics.Raycast(transform.position + new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f), directionToPlayer, out RaycastHit hit))
                     {
-                        Debug.Log("hitsomthing : " + hit.transform.gameObject.name);
                         if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
                         {
                             engagedPlayer = true;
@@ -57,7 +65,43 @@ public class EnemyNavigation : MonoBehaviour
                 }
             }
         }
+        ManageAnimation();
 
+    }
+
+
+    private void ManageAnimation()
+    {
+        if (Animation.clip == Die)
+        {
+            return;
+        }
+        else if (Animation.clip == Attack && Animation.isPlaying)
+        {
+            return;
+        }
+        else if (Mathf.Abs(GetComponent<NavMeshAgent>().velocity.magnitude) >= 0.05f)
+        {
+            if (Animation.clip != Run)
+            {
+                Animation.clip = Run;
+            }
+            if (!Animation.isPlaying)
+            {
+                Animation.Play();
+            }
+        }
+        else
+        {
+            if (Animation.clip != Idle)
+            {
+                Animation.clip = Idle;
+            }
+            if (!Animation.isPlaying)
+            {
+                Animation.Play();
+            }
+        }
     }
 
     void OnDrawGizmosSelected()

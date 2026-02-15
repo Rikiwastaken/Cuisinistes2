@@ -16,12 +16,13 @@ public class ShootScript : MonoBehaviour
         public Vector3 GunRotation;
         public GameObject Bulletprefab;
         public float damage;
+        public float recoil;
         public float bulletspeed;
         public float GunCD;
+        public Vector3 wheretospawnbullet;
     }
 
     public Transform MainCamera;
-
 
     [Header("GunVariables")]
     public List<GunClass> GunList;
@@ -64,10 +65,44 @@ public class ShootScript : MonoBehaviour
         {
             if (GunCoolDown == 0)
             {
-                GunCoolDown = (int)(GunList[currentgun].GunCD / Time.deltaTime);
-                currentGunGO.GetComponentInChildren<Animation>().Play();
+
+                Shoot();
+
+
             }
         }
+
+    }
+
+    private void Shoot()
+    {
+        GunCoolDown = (int)(GunList[currentgun].GunCD / Time.deltaTime);
+        currentGunGO.GetComponentInChildren<Animation>().Play();
+        Vector3 ScreenCentreCoordinates = new Vector3(0.5f, 0.5f, 0f);
+        Vector3 projectileDestination = new Vector3();
+        Ray ray = MainCamera.GetComponent<Camera>().ViewportPointToRay(ScreenCentreCoordinates);
+        RaycastHit hit;
+
+        // if the raycast collides with an object, then make that our projectile target
+        if (Physics.Raycast(ray, out hit))
+        {
+            projectileDestination = hit.point;
+        }
+        // if it doesn't hit anything, make our projectile target 1000 away from us (adjust this accordingly)
+        else
+        {
+            projectileDestination = ray.GetPoint(100);
+        }
+
+        Vector3 Worldspawn = currentGunGO.transform.position + GunList[currentgun].wheretospawnbullet;
+
+        Vector3 direction = projectileDestination - Worldspawn;
+
+        GameObject newbullet = Instantiate(GunList[currentgun].Bulletprefab, Worldspawn, Quaternion.identity);
+        newbullet.transform.forward = currentGunGO.transform.forward;
+        BulletScript bulletscript = newbullet.GetComponentInChildren<BulletScript>();
+
+        bulletscript.InitializeBullet(direction, GunList[currentgun].bulletspeed, gameObject, GunList[currentgun].damage, GunList[currentgun].recoil);
     }
 
     void SetLayerAllChildren(Transform root, int layer)
