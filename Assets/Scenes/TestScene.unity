@@ -1196,7 +1196,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4805973496346742904, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
+    - {fileID: 240753766377184983, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1252,10 +1254,6 @@ PrefabInstance:
     - target: {fileID: 5494120214791191734, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7588349807223317872, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: delaybetweenfootsteps
-      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
