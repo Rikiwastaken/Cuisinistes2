@@ -8,11 +8,12 @@ public class EnemyNavigation : MonoBehaviour
 
     public float AgroRange;
 
-
     private int delaybetweendistancerecalculation;
     public float delaybetweendestinatinationchecks;
 
     private Transform player;
+
+    public float mindistbeforefiring;
 
     public bool debug;
 
