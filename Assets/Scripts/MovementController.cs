@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,21 +17,29 @@ public class MovementController : MonoBehaviour
     public float speed;
 
     public Vector3 StartPos;
+    private int delaybetweenfootstepscnt;
+    public float delaybetweenfootsteps;
 
     [Header("Jump")]
     private InputAction JumpAction;
     public float JumpVerticalSpeed;
     public float DoubleJumpSpeedRatio;
-    private bool touchingground;
+    public bool touchingground;
 
-    private bool jumpavailable;
-    private bool doublejumpavailable;
-    private int justjumpedcounter;
+    public bool jumpavailable;
+    public bool doublejumpavailable;
+    public int justjumpedcounter;
     public float jumpduration;
     public float downacceleration;
 
-    private bool pressedjump;
+    public bool pressedjump;
 
+    public List<AudioClip> JumpSFX;
+    public List<AudioClip> AirStepSFX;
+    public List<AudioClip> TouchGroundSFX;
+    public List<AudioClip> FootStep;
+
+    private bool previoustouchingground;
 
     private void OnTriggerStay(Collider other)
     {
@@ -90,6 +99,21 @@ public class MovementController : MonoBehaviour
 
             rb.linearVelocity = movement;
 
+            if (delaybetweenfootstepscnt <= 0)
+            {
+                delaybetweenfootstepscnt = 15;
+                if (touchingground)
+                {
+                    SoundManager.instance.PlaySFXFromList(FootStep, 0.2f, transform);
+                }
+
+
+            }
+            else
+            {
+                delaybetweenfootstepscnt--;
+            }
+
         }
         else
         {
@@ -123,7 +147,7 @@ public class MovementController : MonoBehaviour
                 jumpavailable = false;
                 pressedjump = true;
                 justjumpedcounter = (int)(jumpduration / Time.deltaTime);
-
+                SoundManager.instance.PlaySFXFromList(JumpSFX, 0.05f, transform);
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, JumpVerticalSpeed, rb.linearVelocity.z);
 
             }
@@ -133,6 +157,7 @@ public class MovementController : MonoBehaviour
                 doublejumpavailable = false;
                 pressedjump = true;
                 justjumpedcounter = (int)(jumpduration / Time.deltaTime);
+                SoundManager.instance.PlaySFXFromList(AirStepSFX, 0.05f, transform);
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, JumpVerticalSpeed * DoubleJumpSpeedRatio, rb.linearVelocity.z);
             }
         }
@@ -158,5 +183,23 @@ public class MovementController : MonoBehaviour
 
         }
 
+
+
+        if (previoustouchingground != touchingground)
+        {
+            if (touchingground)
+            {
+                SoundManager.instance.PlaySFXFromList(TouchGroundSFX, 0.05f, transform);
+            }
+            previoustouchingground = touchingground;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (justjumpedcounter > 0)
+        {
+            touchingground = false;
+        }
     }
 }

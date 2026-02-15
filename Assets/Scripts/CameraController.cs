@@ -20,6 +20,19 @@ public class CameraController : MonoBehaviour
     public float maxVerticalAngle = 80f;
 
 
+    public Texture2D crossHair;
+    public float crossHairWidth;
+    public float crossHairHeight;
+
+
+    private void OnGUI()
+    {
+
+        GUI.DrawTexture(new Rect((Screen.width * 0.5f) - (crossHairWidth * 0.5f), (Screen.height * 0.5f) - (crossHairHeight * 0.5f), crossHairWidth, crossHairHeight), crossHair);
+
+    }
+
+
     void Start()
     {
         LookAction = InputSystem.actions.FindAction("Look");

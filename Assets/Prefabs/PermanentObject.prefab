@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2280847995486174341}
   - component: {fileID: 1779997470912132999}
+  - component: {fileID: 2769397545348539372}
   m_Layer: 0
   m_Name: PermanentObject
   m_TagString: Untagged
@@ -49,4 +50,18 @@ MonoBehaviour:
     MusicVol: 0
     SFXVol: 0
     sensibility: 0
-  remainingHP: 0
+--- !u!114 &2769397545348539372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448538589779374093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f15b4784b75a5043b501a776352c3d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  AudioMixer: {fileID: 24100000, guid: 0ec88ffbdafc77e4995d08e605f01b94, type: 2}
+  SFXVol: 1
+  maxdistancetonullify: 15
