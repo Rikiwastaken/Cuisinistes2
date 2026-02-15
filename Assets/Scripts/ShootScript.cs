@@ -20,6 +20,8 @@ public class ShootScript : MonoBehaviour
         public float bulletspeed;
         public float GunCD;
         public Vector3 wheretospawnbullet;
+        public List<AudioClip> ShootSFX;
+        public List<AudioClip> ReloadSFX;
     }
 
     public Transform MainCamera;
@@ -103,6 +105,11 @@ public class ShootScript : MonoBehaviour
         BulletScript bulletscript = newbullet.GetComponentInChildren<BulletScript>();
 
         bulletscript.InitializeBullet(direction, GunList[currentgun].bulletspeed, gameObject, GunList[currentgun].damage, GunList[currentgun].recoil);
+
+
+
+        SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
+
     }
 
     void SetLayerAllChildren(Transform root, int layer)

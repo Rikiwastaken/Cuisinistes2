@@ -20,12 +20,11 @@ public class DataScript : MonoBehaviour
 
     public static DataScript instance;
 
-    public int remainingHP;
-
 
     private void Awake()
     {
         instance = this;
+        Application.targetFrameRate = 60;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -85,7 +84,7 @@ public class DataScript : MonoBehaviour
             Options.Mastervol = 1.000001f;
             Options.sensibility = 1.000001f;
         }
-        //SoundManager.instance.ChangeVolume();
+        SoundManager.instance.ChangeVolume();
     }
 
     public void SaveOptions()
@@ -113,32 +112,16 @@ public class DataScript : MonoBehaviour
             Debug.LogError($"Error when saving options : {e.Message}");
         }
 
-        //if (SoundManager.instance != null)
-        //{
-        //    SoundManager.instance.ChangeVolume();
-
-        //}
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.ChangeVolume();
+        }
 
     }
 
 
     void SceneChange(Scene arg0, Scene arg1)
     {
-
-    }
-
-    public void TakeDamage(int damageamount)
-    {
-        if (remainingHP > 0)
-        {
-
-            remainingHP -= damageamount;
-
-        }
-        else
-        {
-            // GameOverLogic
-        }
 
     }
 }

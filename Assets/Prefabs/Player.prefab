@@ -315,6 +315,29 @@ MonoBehaviour:
   DoubleJumpSpeedRatio: 1
   jumpduration: 0.1
   downacceleration: 1
+  JumpSFX:
+  - {fileID: 8300000, guid: e3381e8ce9bc39a43b8cdfba58cc911b, type: 3}
+  - {fileID: 8300000, guid: 5ce062a1027f7714c8a232f142f2ecaa, type: 3}
+  - {fileID: 8300000, guid: 000dabe905ec1ab459f7c30c9c09ca10, type: 3}
+  - {fileID: 8300000, guid: 7d445a41a1a2d0f47b11a889981839e1, type: 3}
+  AirStepSFX:
+  - {fileID: 8300000, guid: 936e8e125d1c1824695e4c10169666df, type: 3}
+  - {fileID: 8300000, guid: d94d76dabf8a53047a65ad85475e4762, type: 3}
+  - {fileID: 8300000, guid: 07eaac2151db3434da1ed938c5344e38, type: 3}
+  TouchGroundSFX:
+  - {fileID: 8300000, guid: 4733c4773eccce344a8c20d25d2b2ca4, type: 3}
+  - {fileID: 8300000, guid: eeea5e1cacb2c47408370763991906ee, type: 3}
+  - {fileID: 8300000, guid: b5b5e69af9e338d44a963c12953b22e2, type: 3}
+  FootStep:
+  - {fileID: 8300000, guid: ff4a2f414fdc2314aa0514aaadaf0e7a, type: 3}
+  - {fileID: 8300000, guid: 30ec70644695af14d9fed181250544b2, type: 3}
+  - {fileID: 8300000, guid: 9be15f0d18a09ac4d82d09aac8351523, type: 3}
+  - {fileID: 8300000, guid: b95b4bf973fa1b74ca6fabfde69cf945, type: 3}
+  - {fileID: 8300000, guid: c43ec266860de2d469fcf66d728357a8, type: 3}
+  - {fileID: 8300000, guid: 7c9ae2d1ad5a89e4bbb3c781e836c412, type: 3}
+  - {fileID: 8300000, guid: c70b34abf9d544e4a8915d0fc010b3c1, type: 3}
+  - {fileID: 8300000, guid: 80f2d984dc5bdf144a0f5484b3196c09, type: 3}
+  - {fileID: 8300000, guid: 0953a8563454607459ad5688c12d32ea, type: 3}
 --- !u!65 &6582072028611678216
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -368,6 +391,11 @@ MonoBehaviour:
     bulletspeed: 4
     GunCD: 0.5
     wheretospawnbullet: {x: 0, y: 0.625, z: -0.475}
+    ShootSFX:
+    - {fileID: 8300000, guid: 988d4d23b57ecaf45943b78724dd275b, type: 3}
+    - {fileID: 8300000, guid: 3a899fa14384d28428606db409f6de5a, type: 3}
+    - {fileID: 8300000, guid: 03e022d93b678a141906678d81d305fd, type: 3}
+    ReloadSFX: []
   - GunModel: {fileID: 2962789918115722720, guid: 46ed370b18d9cdb42a216c5eac4e86e3, type: 3}
     GunPosition: {x: 1.57, y: -1.21, z: 2.18}
     GunRotation: {x: 50, y: 162.419, z: 0}
@@ -377,6 +405,8 @@ MonoBehaviour:
     bulletspeed: 0
     GunCD: 1
     wheretospawnbullet: {x: 0, y: 0, z: 0}
+    ShootSFX: []
+    ReloadSFX: []
 --- !u!114 &484629754530822652
 MonoBehaviour:
   m_ObjectHideFlags: 0
