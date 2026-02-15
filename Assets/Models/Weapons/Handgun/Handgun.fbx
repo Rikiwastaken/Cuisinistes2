@@ -13,9 +13,9 @@ FBXHeaderExtension:  {
 		Month: 2
 		Day: 15
 		Hour: 15
-		Minute: 13
-		Second: 20
-		Millisecond: 76
+		Minute: 14
+		Second: 47
+		Millisecond: 648
 	}
 	Creator: "Blockbench 5.0.5"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -49,7 +49,7 @@ FBXHeaderExtension:  {
 	}
 }
 FileId: "iVFoobar"
-CreationTime: "2026-02-15 14:13:20:076"
+CreationTime: "2026-02-15 14:14:47:648"
 Creator: "Made with Blockbench"
 GlobalSettings:  {
 	Version: 1000
@@ -78,7 +78,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 1523382369 {
+	Document: 811877046 {
 		Scene: "Scene"
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
@@ -307,7 +307,7 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Model: 77822768, "Model::gun", "Null" {
+	Model: 76307229, "Model::gun", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -321,7 +321,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 79785063, "Model::main_structure", "Null" {
+	Model: 77053365, "Model::main_structure", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -335,7 +335,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 77796621, "Model::trigger", "Null" {
+	Model: 72394743, "Model::trigger", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -349,7 +349,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 79205736, "Model::cannon", "Null" {
+	Model: 72635734, "Model::cannon", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -363,7 +363,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 75805395, "Model::barrel", "Null" {
+	Model: 72338046, "Model::barrel", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -377,7 +377,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 79675345, "Model::cube", "Mesh" {
+	Model: 72446064, "Model::cube", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -392,7 +392,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 79580196, "Geometry::cube", "Mesh" {
+	Geometry: 79048949, "Geometry::cube", "Mesh" {
 		Vertices: *24 {
 			a: 12.5,31.25,12.5,12.5,31.25,-12.5,12.5,0,12.5,12.5,0,-12.5,-12.5,31.25,-12.5,-12.5,31.25,12.5,-12.5,0,-12.5,-12.5,0,12.5
 		}
@@ -443,7 +443,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 74569796, "Model::cube_1", "Mesh" {
+	Model: 78418328, "Model::cube_1", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -458,7 +458,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 79415595, "Geometry::cube_1", "Mesh" {
+	Geometry: 74364468, "Geometry::cube_1", "Mesh" {
 		Vertices: *24 {
 			a: 12.5,25,18.75,12.5,25,-12.5,12.5,0,18.75,12.5,0,-12.5,-12.5,25,-12.5,-12.5,25,18.75,-12.5,0,-12.5,-12.5,0,18.75
 		}
@@ -509,7 +509,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 73249355, "Model::cube_2", "Mesh" {
+	Model: 71111046, "Model::cube_2", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -524,7 +524,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 77902042, "Geometry::cube_2", "Mesh" {
+	Geometry: 72468464, "Geometry::cube_2", "Mesh" {
 		Vertices: *24 {
 			a: 12.5,6.25,31.25,12.5,6.25,-6.25,12.5,-6.25,31.25,12.5,-6.25,-6.25,-12.5,6.25,-6.25,-12.5,6.25,31.25,-12.5,-6.25,-6.25,-12.5,-6.25,31.25
 		}
@@ -575,7 +575,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 79436913, "Model::cube_3", "Mesh" {
+	Model: 73216170, "Model::cube_3", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -590,7 +590,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 70411561, "Geometry::cube_3", "Mesh" {
+	Geometry: 75923802, "Geometry::cube_3", "Mesh" {
 		Vertices: *24 {
 			a: 12.5,12.5,0,12.5,12.5,-6.25,12.5,0,0,12.5,0,-6.25,-12.5,12.5,-6.25,-12.5,12.5,0,-12.5,0,-6.25,-12.5,0,0
 		}
@@ -641,7 +641,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 77432421, "Model::cube_4", "Mesh" {
+	Model: 72993322, "Model::cube_4", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -656,7 +656,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 71362239, "Geometry::cube_4", "Mesh" {
+	Geometry: 71952623, "Geometry::cube_4", "Mesh" {
 		Vertices: *24 {
 			a: 12.5,6.25,25,12.5,6.25,-6.25,12.5,0,25,12.5,0,-6.25,-12.5,6.25,-6.25,-12.5,6.25,25,-12.5,0,-6.25,-12.5,0,25
 		}
@@ -707,7 +707,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 74635166, "Model::cube_5", "Mesh" {
+	Model: 73802097, "Model::cube_5", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -722,7 +722,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 74887350, "Geometry::cube_5", "Mesh" {
+	Geometry: 76528338, "Geometry::cube_5", "Mesh" {
 		Vertices: *24 {
 			a: 6.25,12.5,0,6.25,12.5,-6.25,6.25,0,0,6.25,0,-6.25,-6.25,12.5,-6.25,-6.25,12.5,0,-6.25,0,-6.25,-6.25,0,0
 		}
@@ -773,7 +773,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 71564180, "Model::cube_6", "Mesh" {
+	Model: 76416186, "Model::cube_6", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -788,9 +788,9 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 78135261, "Geometry::cube_6", "Mesh" {
+	Geometry: 77527455, "Geometry::cube_6", "Mesh" {
 		Vertices: *24 {
-			a: 12.5,18.75,50,12.5,18.75,-56.25,12.5,0,50,12.5,0,-56.25,-12.5,18.75,-56.25,-12.5,18.75,50,-12.5,0,-56.25,-12.5,0,50
+			a: 12.5,18.75,50,12.5,18.75,-50,12.5,0,50,12.5,0,-50,-12.5,18.75,-50,-12.5,18.75,50,-12.5,0,-50,-12.5,0,50
 		}
 		PolygonVertexIndex: *24 {
 			a: 3,6,4,-2,2,3,1,-1,7,2,0,-6,6,7,5,-5,5,0,1,-5,6,3,2,-8
@@ -839,7 +839,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 77446594, "Model::cube_7", "Mesh" {
+	Model: 77680696, "Model::cube_7", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -854,9 +854,9 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 76152433, "Geometry::cube_7", "Mesh" {
+	Geometry: 76535957, "Geometry::cube_7", "Mesh" {
 		Vertices: *24 {
-			a: 6.25,12.5,50,6.25,12.5,31.25,6.25,6.25,50,6.25,6.25,31.25,-6.25,12.5,31.25,-6.25,12.5,50,-6.25,6.25,31.25,-6.25,6.25,50
+			a: 6.25,12.5,50,6.25,12.5,37.5,6.25,6.25,50,6.25,6.25,37.5,-6.25,12.5,37.5,-6.25,12.5,50,-6.25,6.25,37.5,-6.25,6.25,50
 		}
 		PolygonVertexIndex: *24 {
 			a: 3,6,4,-2,2,3,1,-1,7,2,0,-6,6,7,5,-5,5,0,1,-5,6,3,2,-8
@@ -905,7 +905,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 70166097, "Model::cube_8", "Mesh" {
+	Model: 77060435, "Model::cube_8", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -920,7 +920,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 70798903, "Geometry::cube_8", "Mesh" {
+	Geometry: 74002244, "Geometry::cube_8", "Mesh" {
 		Vertices: *24 {
 			a: 12.5,6.25,31.25,12.5,6.25,12.5,12.5,0,31.25,12.5,0,12.5,-12.5,6.25,12.5,-12.5,6.25,31.25,-12.5,0,12.5,-12.5,0,31.25
 		}
@@ -971,7 +971,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 78652680, "Model::cube_9", "Mesh" {
+	Model: 71910312, "Model::cube_9", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -986,7 +986,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 71031887, "Geometry::cube_9", "Mesh" {
+	Geometry: 77787866, "Geometry::cube_9", "Mesh" {
 		Vertices: *24 {
 			a: 6.25,6.25,6.25,6.25,6.25,-6.25,6.25,0,6.25,6.25,0,-6.25,-6.25,6.25,-6.25,-6.25,6.25,6.25,-6.25,0,-6.25,-6.25,0,6.25
 		}
@@ -1037,7 +1037,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 76727166, "Model::cube_10", "Mesh" {
+	Model: 71291462, "Model::cube_10", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -1052,7 +1052,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 71417362, "Geometry::cube_10", "Mesh" {
+	Geometry: 76030835, "Geometry::cube_10", "Mesh" {
 		Vertices: *24 {
 			a: 6.25,6.25,6.25,6.25,6.25,-6.25,6.25,0,6.25,6.25,0,-6.25,-6.25,6.25,-6.25,-6.25,6.25,6.25,-6.25,0,-6.25,-6.25,0,6.25
 		}
@@ -1103,7 +1103,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 76743293, "Model::cube_11", "Mesh" {
+	Model: 74070315, "Model::cube_11", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -1118,7 +1118,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Geometry: 76441137, "Geometry::cube_11", "Mesh" {
+	Geometry: 76517304, "Geometry::cube_11", "Mesh" {
 		Vertices: *24 {
 			a: 6.25,12.5,87.5,6.25,12.5,-6.25,6.25,0,87.5,6.25,0,-6.25,-6.25,12.5,-6.25,-6.25,12.5,87.5,-6.25,0,-6.25,-6.25,0,87.5
 		}
@@ -1169,7 +1169,7 @@ Objects:  {
 			}
 		}
 	}
-	Material: 70493114, "Material::texture.png", "" {
+	Material: 76524563, "Material::texture.png", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -1180,7 +1180,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	Texture: 77217465, "Texture::texture.png", "" {
+	Texture: 77348970, "Texture::texture.png", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::texture.png"
@@ -1192,7 +1192,7 @@ Objects:  {
 		Texture_Alpha_Source: "None"
 		Cropping: 0,0,0,0
 	}
-	Video: 72694714, "Video::texture.png", "Clip" {
+	Video: 78080605, "Video::texture.png", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "/home/boufty/Bureau/GitHub/Cuisinistes2/Assets/Models/Weapons/Handgun/texture.png"
@@ -1202,22 +1202,22 @@ Objects:  {
 		RelativeFilename: "texture.png"
 		Content: "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADRElEQVR4AeyWy2sTURTGz0zTvExjXhV8VAWRLly5dCO4lS5cKBZXIrj0f3KnSMGFpYguREGDD9CNQhBFqEFrXkLSvJNxftfcMIyZzCRtd4Z8c8695zHnfufem5j591+sefDKjtt4/Na69yiv4p+/KVgPtl5bT19+VOOHT95Zm88+KH11ddWaBLE/po25vp8+b8vhpbicPnFEWp2u/CzVJJdOyqFYVL5u70h4cVGyqSXf3HMXcO7siiTiUfWCWCQsK8eWJRYNi2GInDyak0wqoWyTHnfvbwnAFqiAyu+6WiEBjWZbtn+UpdvrM5Rv339JcaeqdP0IhRa06isDFQCVUAq1UAzVUA71tIBW0BLft40cbq5fFsAwUAE4QinUQjFUK8pt6rHRClqCPit8C7i6dlE01q9cGuvXHPPa7pasEkwryreAacH7YftfwMwMJBIJCYJkMqn8MpmMOvOcew1n62YuwBnspUciEcnlchKPx2VhYfqdoAoYDIYCvBLOOs+Lh8OhlEolhWnxqgBuNjDNcRZbrVaTer0ulmWpMI6iE2py9FAFGIZh3+HGaGpvgp6zR3q9XqBEqoBTx5cFBIrwcaLntIA9wF6Y5F4oFAyATRWAsl/QfWcPUIhfXvPO7ety68aaArqzV+iTEhiG8U/LoD0UCil3es8eYC+oCdeDPyd6ymw0GkLgov0HQusk0w5uGYvF1PnGB13bW62WpFIpPZROpzPW8QXjCVvRRZj2R+1WKEMnCclsn4nffr8vzWZTAV07RaNRKZfLejiWLG53d1cAur6MkDiZrHwwGNj3wEDQSUIyjJMQDoclnU4roGsfislms3o4lizKMP62DJ22Xjh/xgA4me12W1HHytFJQjKMk8BKKBKgax8or1QqejiW3W5XaBVAHxtGijoF1WpVAHMkIRn6foCFwShscUTJqfuPrgpAOShAOwviYqIQ93sOvACY5XSxsWGBFsOKLsS3gI3NF+KEDpxVsnpYgA1Y0fG+BWhHL8lxcsLLjw0LEyCfzxvab88F6ETzSnUTUpWGOxHn1gm33T0OwoYzZm4G9K8ZF4oXeBF+bjCvYRaLRcMJt7PXmATYkF7wsxM3NwMEB4Gfzx8AAAD//8B2+bcAAAAGSURBVAMAOW7hUFUGqTYAAAAASUVORK5CYII="
 	}
-	AnimationStack: 78056252, "AnimStack::handgun.fire", "" {
+	AnimationStack: 79740592, "AnimStack::handgun.fire", "" {
 		Properties70:  {
 			P: "LocalStop", "KTime", "Time", "",5773269750
 			P: "ReferenceStop", "KTime", "Time", "",5773269750
 		}
 	}
-	AnimationLayer: 79747660, "AnimLayer::handgun.fire", "" {
+	AnimationLayer: 76855705, "AnimLayer::handgun.fire", "" {
 	}
-	AnimationCurveNode: 79585224, "AnimCurveNode::handgun.fire.R", "" {
+	AnimationCurveNode: 79542900, "AnimCurveNode::handgun.fire.R", "" {
 		Properties70:  {
 			P: "d|X", "Number", "", "A",1
 			P: "d|Y", "Number", "", "A",1
 			P: "d|Z", "Number", "", "A",1
 		}
 	}
-	AnimationCurve: 72851638, "AnimCurve::handgun.fire.RX", "" {
+	AnimationCurve: 76431997, "AnimCurve::handgun.fire.RX", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *3 {
@@ -1236,7 +1236,7 @@ Objects:  {
 			a: 3
 		}
 	}
-	AnimationCurve: 77500029, "AnimCurve::handgun.fire.RY", "" {
+	AnimationCurve: 75745921, "AnimCurve::handgun.fire.RY", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *3 {
@@ -1255,7 +1255,7 @@ Objects:  {
 			a: 3
 		}
 	}
-	AnimationCurve: 72260045, "AnimCurve::handgun.fire.RZ", "" {
+	AnimationCurve: 75281765, "AnimCurve::handgun.fire.RZ", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *3 {
@@ -1274,14 +1274,14 @@ Objects:  {
 			a: 3
 		}
 	}
-	AnimationCurveNode: 71987247, "AnimCurveNode::handgun.fire.P", "" {
+	AnimationCurveNode: 76268596, "AnimCurveNode::handgun.fire.P", "" {
 		Properties70:  {
 			P: "d|X", "Number", "", "A",1
 			P: "d|Y", "Number", "", "A",1
 			P: "d|Z", "Number", "", "A",1
 		}
 	}
-	AnimationCurve: 75482215, "AnimCurve::handgun.fire.PX", "" {
+	AnimationCurve: 71372204, "AnimCurve::handgun.fire.PX", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *3 {
@@ -1300,7 +1300,7 @@ Objects:  {
 			a: 3
 		}
 	}
-	AnimationCurve: 77979044, "AnimCurve::handgun.fire.PY", "" {
+	AnimationCurve: 74767211, "AnimCurve::handgun.fire.PY", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *3 {
@@ -1319,7 +1319,7 @@ Objects:  {
 			a: 3
 		}
 	}
-	AnimationCurve: 78169557, "AnimCurve::handgun.fire.PZ", "" {
+	AnimationCurve: 71436442, "AnimCurve::handgun.fire.PZ", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *3 {
@@ -1338,14 +1338,14 @@ Objects:  {
 			a: 3
 		}
 	}
-	AnimationCurveNode: 70101915, "AnimCurveNode::handgun.fire.R", "" {
+	AnimationCurveNode: 75777390, "AnimCurveNode::handgun.fire.R", "" {
 		Properties70:  {
 			P: "d|X", "Number", "", "A",1
 			P: "d|Y", "Number", "", "A",1
 			P: "d|Z", "Number", "", "A",1
 		}
 	}
-	AnimationCurve: 79387053, "AnimCurve::handgun.fire.RX", "" {
+	AnimationCurve: 71675549, "AnimCurve::handgun.fire.RX", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *1 {
@@ -1364,7 +1364,7 @@ Objects:  {
 			a: 1
 		}
 	}
-	AnimationCurve: 74655017, "AnimCurve::handgun.fire.RY", "" {
+	AnimationCurve: 75690876, "AnimCurve::handgun.fire.RY", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *1 {
@@ -1383,7 +1383,7 @@ Objects:  {
 			a: 1
 		}
 	}
-	AnimationCurve: 78321975, "AnimCurve::handgun.fire.RZ", "" {
+	AnimationCurve: 75012362, "AnimCurve::handgun.fire.RZ", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *1 {
@@ -1402,14 +1402,14 @@ Objects:  {
 			a: 1
 		}
 	}
-	AnimationCurveNode: 70423525, "AnimCurveNode::handgun.fire.P", "" {
+	AnimationCurveNode: 77732490, "AnimCurveNode::handgun.fire.P", "" {
 		Properties70:  {
 			P: "d|X", "Number", "", "A",1
 			P: "d|Y", "Number", "", "A",1
 			P: "d|Z", "Number", "", "A",1
 		}
 	}
-	AnimationCurve: 75250836, "AnimCurve::handgun.fire.PX", "" {
+	AnimationCurve: 71382286, "AnimCurve::handgun.fire.PX", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *3 {
@@ -1428,7 +1428,7 @@ Objects:  {
 			a: 3
 		}
 	}
-	AnimationCurve: 72021336, "AnimCurve::handgun.fire.PY", "" {
+	AnimationCurve: 74429526, "AnimCurve::handgun.fire.PY", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *3 {
@@ -1447,7 +1447,7 @@ Objects:  {
 			a: 3
 		}
 	}
-	AnimationCurve: 71282595, "AnimCurve::handgun.fire.PZ", "" {
+	AnimationCurve: 77177678, "AnimCurve::handgun.fire.PZ", "" {
 		Default: 0
 		KeyVer: 4008
 		KeyTime: *3 {
@@ -1474,196 +1474,196 @@ Objects:  {
 Connections:  {
 
 	;Model::gun, Model::RootNode
-	C: "OO",77822768,0
+	C: "OO",76307229,0
 
 	;Model::main_structure, Model::gun
-	C: "OO",79785063,77822768
+	C: "OO",77053365,76307229
 
 	;Model::trigger, Model::main_structure
-	C: "OO",77796621,79785063
+	C: "OO",72394743,77053365
 
 	;Model::cannon, Model::gun
-	C: "OO",79205736,77822768
+	C: "OO",72635734,76307229
 
 	;Model::barrel, Model::main_structure
-	C: "OO",75805395,79785063
+	C: "OO",72338046,77053365
 
 	;Model::cube, Model::main_structure
-	C: "OO",79675345,79785063
+	C: "OO",72446064,77053365
 
 	;Geometry::cube, Model::cube
-	C: "OO",79580196,79675345
+	C: "OO",79048949,72446064
 
 	;Material::texture.png, Model::cube
-	C: "OO",70493114,79675345
+	C: "OO",76524563,72446064
 
 	;Model::cube_1, Model::main_structure
-	C: "OO",74569796,79785063
+	C: "OO",78418328,77053365
 
 	;Geometry::cube_1, Model::cube_1
-	C: "OO",79415595,74569796
+	C: "OO",74364468,78418328
 
 	;Material::texture.png, Model::cube_1
-	C: "OO",70493114,74569796
+	C: "OO",76524563,78418328
 
 	;Model::cube_2, Model::main_structure
-	C: "OO",73249355,79785063
+	C: "OO",71111046,77053365
 
 	;Geometry::cube_2, Model::cube_2
-	C: "OO",77902042,73249355
+	C: "OO",72468464,71111046
 
 	;Material::texture.png, Model::cube_2
-	C: "OO",70493114,73249355
+	C: "OO",76524563,71111046
 
 	;Model::cube_3, Model::main_structure
-	C: "OO",79436913,79785063
+	C: "OO",73216170,77053365
 
 	;Geometry::cube_3, Model::cube_3
-	C: "OO",70411561,79436913
+	C: "OO",75923802,73216170
 
 	;Material::texture.png, Model::cube_3
-	C: "OO",70493114,79436913
+	C: "OO",76524563,73216170
 
 	;Model::cube_4, Model::main_structure
-	C: "OO",77432421,79785063
+	C: "OO",72993322,77053365
 
 	;Geometry::cube_4, Model::cube_4
-	C: "OO",71362239,77432421
+	C: "OO",71952623,72993322
 
 	;Material::texture.png, Model::cube_4
-	C: "OO",70493114,77432421
+	C: "OO",76524563,72993322
 
 	;Model::cube_5, Model::trigger
-	C: "OO",74635166,77796621
+	C: "OO",73802097,72394743
 
 	;Geometry::cube_5, Model::cube_5
-	C: "OO",74887350,74635166
+	C: "OO",76528338,73802097
 
 	;Material::texture.png, Model::cube_5
-	C: "OO",70493114,74635166
+	C: "OO",76524563,73802097
 
 	;Model::cube_6, Model::cannon
-	C: "OO",71564180,79205736
+	C: "OO",76416186,72635734
 
 	;Geometry::cube_6, Model::cube_6
-	C: "OO",78135261,71564180
+	C: "OO",77527455,76416186
 
 	;Material::texture.png, Model::cube_6
-	C: "OO",70493114,71564180
+	C: "OO",76524563,76416186
 
 	;Model::cube_7, Model::cannon
-	C: "OO",77446594,79205736
+	C: "OO",77680696,72635734
 
 	;Geometry::cube_7, Model::cube_7
-	C: "OO",76152433,77446594
+	C: "OO",76535957,77680696
 
 	;Material::texture.png, Model::cube_7
-	C: "OO",70493114,77446594
+	C: "OO",76524563,77680696
 
 	;Model::cube_8, Model::main_structure
-	C: "OO",70166097,79785063
+	C: "OO",77060435,77053365
 
 	;Geometry::cube_8, Model::cube_8
-	C: "OO",70798903,70166097
+	C: "OO",74002244,77060435
 
 	;Material::texture.png, Model::cube_8
-	C: "OO",70493114,70166097
+	C: "OO",76524563,77060435
 
 	;Model::cube_9, Model::cannon
-	C: "OO",78652680,79205736
+	C: "OO",71910312,72635734
 
 	;Geometry::cube_9, Model::cube_9
-	C: "OO",71031887,78652680
+	C: "OO",77787866,71910312
 
 	;Material::texture.png, Model::cube_9
-	C: "OO",70493114,78652680
+	C: "OO",76524563,71910312
 
 	;Model::cube_10, Model::cannon
-	C: "OO",76727166,79205736
+	C: "OO",71291462,72635734
 
 	;Geometry::cube_10, Model::cube_10
-	C: "OO",71417362,76727166
+	C: "OO",76030835,71291462
 
 	;Material::texture.png, Model::cube_10
-	C: "OO",70493114,76727166
+	C: "OO",76524563,71291462
 
 	;Model::cube_11, Model::barrel
-	C: "OO",76743293,75805395
+	C: "OO",74070315,72338046
 
 	;Geometry::cube_11, Model::cube_11
-	C: "OO",76441137,76743293
+	C: "OO",76517304,74070315
 
 	;Material::texture.png, Model::cube_11
-	C: "OO",70493114,76743293
+	C: "OO",76524563,74070315
 
 	;Texture::texture.png, Material::texture.png
-	C: "OP",77217465,70493114, "DiffuseColor"
+	C: "OP",77348970,76524563, "DiffuseColor"
 
 	;Video::texture.png, Texture::texture.png
-	C: "OO",72694714,77217465
+	C: "OO",78080605,77348970
 
 	;AnimLayer::handgun.fire, AnimStack::handgun.fire
-	C: "OO",79747660,78056252
+	C: "OO",76855705,79740592
 
 	;AnimCurveNode::handgun.fire.R, Model::gun
-	C: "OP",79585224,77822768, "Lcl Rotation"
+	C: "OP",79542900,76307229, "Lcl Rotation"
 
 	;AnimCurveNode::handgun.fire.R, AnimLayer::handgun.fire
-	C: "OO",79585224,79747660
+	C: "OO",79542900,76855705
 
 	;AnimCurve::handgun.fire.RX, AnimCurveNode::handgun.fire.R
-	C: "OP",72851638,79585224, "d|X"
+	C: "OP",76431997,79542900, "d|X"
 
 	;AnimCurve::handgun.fire.RY, AnimCurveNode::handgun.fire.R
-	C: "OP",77500029,79585224, "d|Y"
+	C: "OP",75745921,79542900, "d|Y"
 
 	;AnimCurve::handgun.fire.RZ, AnimCurveNode::handgun.fire.R
-	C: "OP",72260045,79585224, "d|Z"
+	C: "OP",75281765,79542900, "d|Z"
 
 	;AnimCurveNode::handgun.fire.P, Model::gun
-	C: "OP",71987247,77822768, "Lcl Translation"
+	C: "OP",76268596,76307229, "Lcl Translation"
 
 	;AnimCurveNode::handgun.fire.P, AnimLayer::handgun.fire
-	C: "OO",71987247,79747660
+	C: "OO",76268596,76855705
 
 	;AnimCurve::handgun.fire.PX, AnimCurveNode::handgun.fire.P
-	C: "OP",75482215,71987247, "d|X"
+	C: "OP",71372204,76268596, "d|X"
 
 	;AnimCurve::handgun.fire.PY, AnimCurveNode::handgun.fire.P
-	C: "OP",77979044,71987247, "d|Y"
+	C: "OP",74767211,76268596, "d|Y"
 
 	;AnimCurve::handgun.fire.PZ, AnimCurveNode::handgun.fire.P
-	C: "OP",78169557,71987247, "d|Z"
+	C: "OP",71436442,76268596, "d|Z"
 
 	;AnimCurveNode::handgun.fire.R, Model::cannon
-	C: "OP",70101915,79205736, "Lcl Rotation"
+	C: "OP",75777390,72635734, "Lcl Rotation"
 
 	;AnimCurveNode::handgun.fire.R, AnimLayer::handgun.fire
-	C: "OO",70101915,79747660
+	C: "OO",75777390,76855705
 
 	;AnimCurve::handgun.fire.RX, AnimCurveNode::handgun.fire.R
-	C: "OP",79387053,70101915, "d|X"
+	C: "OP",71675549,75777390, "d|X"
 
 	;AnimCurve::handgun.fire.RY, AnimCurveNode::handgun.fire.R
-	C: "OP",74655017,70101915, "d|Y"
+	C: "OP",75690876,75777390, "d|Y"
 
 	;AnimCurve::handgun.fire.RZ, AnimCurveNode::handgun.fire.R
-	C: "OP",78321975,70101915, "d|Z"
+	C: "OP",75012362,75777390, "d|Z"
 
 	;AnimCurveNode::handgun.fire.P, Model::cannon
-	C: "OP",70423525,79205736, "Lcl Translation"
+	C: "OP",77732490,72635734, "Lcl Translation"
 
 	;AnimCurveNode::handgun.fire.P, AnimLayer::handgun.fire
-	C: "OO",70423525,79747660
+	C: "OO",77732490,76855705
 
 	;AnimCurve::handgun.fire.PX, AnimCurveNode::handgun.fire.P
-	C: "OP",75250836,70423525, "d|X"
+	C: "OP",71382286,77732490, "d|X"
 
 	;AnimCurve::handgun.fire.PY, AnimCurveNode::handgun.fire.P
-	C: "OP",72021336,70423525, "d|Y"
+	C: "OP",74429526,77732490, "d|Y"
 
 	;AnimCurve::handgun.fire.PZ, AnimCurveNode::handgun.fire.P
-	C: "OP",71282595,70423525, "d|Z"
+	C: "OP",77177678,77732490, "d|Z"
 }
 
 ; Takes section
