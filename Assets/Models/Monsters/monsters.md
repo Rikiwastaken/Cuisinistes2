@@ -3,6 +3,7 @@
 - [Deathmoth](https://backrooms-wiki.wikidot.com/entity-4)
 - [Bacteria](https://backrooms-escape-together.fandom.com/wiki/Bacteria_(Entity))
 - [Hound](https://backrooms-wiki.wikidot.com/entity-8)
+- [Neighbourhood Watch](https://backrooms-wiki.wikidot.com/entity-96)
 
 ## Possible
 
@@ -16,5 +17,4 @@
 - [Wanderer](https://backrooms-wiki.wikidot.com/entity-79)
 - [Hermit](https://backrooms-wiki.wikidot.com/entity-83)
 - [Steel](https://backrooms-wiki.wikidot.com/entity-90)
-- [Neighbourhood Watch](https://backrooms-wiki.wikidot.com/entity-96)
 - [The Game Master](https://backrooms-wiki.wikidot.com/entity-99)
