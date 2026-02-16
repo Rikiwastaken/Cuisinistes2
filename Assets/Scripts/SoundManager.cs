@@ -29,7 +29,6 @@ public class SoundManager : MonoBehaviour
     public void PlaySFXFromList(List<AudioClip> cliplist, float pitchrandomness, Transform Emiter, float volume = -1)
     {
         int randomSFXID = Random.Range(0, cliplist.Count);
-        Debug.Log("playing : " + cliplist[randomSFXID]);
         StartCoroutine(PlaySFXCoroutine(cliplist[randomSFXID], pitchrandomness, Emiter, volume));
     }
 

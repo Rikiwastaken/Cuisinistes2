@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 6706614657143179944}
   - component: {fileID: 1247781604355889323}
   - component: {fileID: 3247550930479452848}
-  - component: {fileID: 4805973496346742904}
-  - component: {fileID: 240753766377184983}
+  - component: {fileID: 2550037940614220385}
   m_Layer: 0
   m_Name: DeathMoth
   m_TagString: Untagged
@@ -93,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthScript
   HP: 50
---- !u!65 &4805973496346742904
+--- !u!65 &2550037940614220385
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,35 +111,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.532211, y: 0.63821054, z: 0.95038235}
-  m_Center: {x: -0.0035436451, y: 0.85454357, z: 0.021264985}
---- !u!54 &240753766377184983
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2686418178066650683}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 1.3385267, y: 0.88390017, z: 1.3698721}
+  m_Center: {x: -0.0062692165, y: 0.9073796, z: -0.09090081}
 --- !u!1001 &2915636927205743885
 PrefabInstance:
   m_ObjectHideFlags: 0
