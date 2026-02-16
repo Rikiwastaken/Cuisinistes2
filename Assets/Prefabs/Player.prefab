@@ -311,10 +311,16 @@ MonoBehaviour:
   CameraTransform: {fileID: 1023333629102334493}
   speed: 10
   StartPos: {x: 0, y: 0, z: 0}
+  delaybetweenfootsteps: 0.2
   JumpVerticalSpeed: 5
   DoubleJumpSpeedRatio: 1
+  touchingground: 0
+  jumpavailable: 0
+  doublejumpavailable: 0
+  justjumpedcounter: 0
   jumpduration: 0.1
   downacceleration: 1
+  pressedjump: 0
   JumpSFX:
   - {fileID: 8300000, guid: e3381e8ce9bc39a43b8cdfba58cc911b, type: 3}
   - {fileID: 8300000, guid: 5ce062a1027f7714c8a232f142f2ecaa, type: 3}
