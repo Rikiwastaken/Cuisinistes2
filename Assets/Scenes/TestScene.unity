@@ -164,7 +164,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 7f78be2db5e0d674ebe84dd5fa0ce6c1, type: 2}
   m_BuildHeightMesh: 0
@@ -1124,37 +1124,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 240753766377184983, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
-      propertyPath: m_LinearDamping
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2686418178066650683, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
       propertyPath: m_Name
       value: DeathMoth
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805973496346742904, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805973496346742904, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
-      propertyPath: m_Size.z
-      value: 1.5323522
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805973496346742904, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
-      propertyPath: m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805973496346742904, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
-      propertyPath: m_Center.z
-      value: -0.1627495
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805973496346742904, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 34fd81500d27dd34d8b30e032b71a89c, type: 2}
-    - target: {fileID: 4805973496346742904, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8666795991944897193, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1196,9 +1168,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4805973496346742904, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
-    - {fileID: 240753766377184983, guid: cc0c2f65e2ddb0e43a82395bef1aa63e, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

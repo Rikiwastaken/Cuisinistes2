@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using static ShootScript;
 
 public class EnemyNavigation : MonoBehaviour
 {
@@ -17,13 +18,27 @@ public class EnemyNavigation : MonoBehaviour
 
     public bool debug;
 
-
+    private Animation Animation;
     public AnimationClip Idle;
     public AnimationClip Run;
     public AnimationClip Attack;
     public AnimationClip Die;
 
-    private Animation Animation; // ordre des animations : idle, run, attack, die
+
+    [Header("ShotVariables")]
+
+    public bool Shoots;
+    public int GunRange;
+    private int guncooldown;
+    public GunClass Gun;
+    public float freezetimeaftershooting;
+    private int freezetimeaftershootingcounter;
+
+
+
+
+
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,7 +61,18 @@ public class EnemyNavigation : MonoBehaviour
             delaybetweendistancerecalculation = (int)(delaybetweendestinatinationchecks / Time.deltaTime);
             if (engagedPlayer)
             {
-                GetComponent<NavMeshAgent>().SetDestination(player.position);
+                NavMeshPath path = new NavMeshPath();
+                GetComponent<NavMeshAgent>().CalculatePath(player.position, path);
+
+                if (path.status == NavMeshPathStatus.PathComplete)
+                {
+                    engagedPlayer = true;
+                    GetComponent<NavMeshAgent>().SetDestination(player.position);
+                }
+                else
+                {
+                    engagedPlayer = false;
+                }
             }
             else
             {
@@ -58,8 +84,15 @@ public class EnemyNavigation : MonoBehaviour
                     {
                         if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
                         {
-                            engagedPlayer = true;
-                            GetComponent<NavMeshAgent>().SetDestination(player.position);
+                            NavMeshPath path = new NavMeshPath();
+                            GetComponent<NavMeshAgent>().CalculatePath(player.position, path);
+
+                            if (path.status == NavMeshPathStatus.PathComplete)
+                            {
+                                engagedPlayer = true;
+                                GetComponent<NavMeshAgent>().SetDestination(player.position);
+                            }
+
                         }
                     }
                 }
@@ -67,6 +100,83 @@ public class EnemyNavigation : MonoBehaviour
         }
         ManageAnimation();
 
+        if (engagedPlayer)
+        {
+            transform.forward = (player.transform.position - transform.position).normalized;
+        }
+
+
+        if (freezetimeaftershootingcounter > 0)
+        {
+            freezetimeaftershootingcounter--;
+            if (!GetComponent<NavMeshAgent>().isStopped)
+            {
+                GetComponent<NavMeshAgent>().isStopped = true;
+            }
+        }
+        else
+        {
+            if (GetComponent<NavMeshAgent>().isStopped)
+            {
+                GetComponent<NavMeshAgent>().isStopped = false;
+            }
+        }
+
+        if (guncooldown > 0)
+        {
+            guncooldown--;
+
+        }
+        else
+        {
+
+            freezetimeaftershootingcounter = (int)(freezetimeaftershooting / Time.timeScale);
+
+            if (Shoots)
+            {
+                if (Vector3.Distance(player.transform.position, transform.position) <= GunRange)
+                {
+                    Vector3 directionToPlayer = (player.transform.position - transform.position - new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f)).normalized;
+
+                    if (Physics.Raycast(transform.position + new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f), directionToPlayer, out RaycastHit hit))
+                    {
+                        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+                        {
+
+                            Shoot();
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    private void Shoot()
+    {
+        Debug.Log(transform.name + " shoots");
+        guncooldown = (int)(Gun.GunCD / Time.deltaTime);
+
+        if (Animation.clip != Attack)
+        {
+            Animation.clip = Attack;
+        }
+        Animation.Play();
+
+        Vector3 direction = MovementController.instance.transform.position - transform.position - Gun.wheretospawnbullet;
+
+        GameObject newbullet = Instantiate(Gun.Bulletprefab, transform.position + Gun.wheretospawnbullet, Quaternion.identity);
+        newbullet.transform.forward = transform.forward;
+        BulletScript bulletscript = newbullet.GetComponentInChildren<BulletScript>();
+
+        bulletscript.InitializeBullet(direction, Gun.bulletspeed, gameObject, Gun.damage, Gun.recoil);
+
+
+        if (Gun.ShootSFX.Count > 0)
+        {
+            SoundManager.instance.PlaySFXFromList(Gun.ShootSFX, 0.05f, transform);
+        }
     }
 
 
@@ -114,6 +224,10 @@ public class EnemyNavigation : MonoBehaviour
         // Draw detection radius
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, AgroRange);
+
+        // Draw detection radius
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, GunRange);
 
         // Eye position
         Vector3 eyePos = transform.position + new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f);

@@ -12,6 +12,7 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        Debug.Log("collided with : " + other.transform.name);
         if (other.gameObject.layer != Emiter.gameObject.layer)
         {
             bullethitlogic(other.gameObject);
@@ -21,6 +22,7 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("collided with : " + other.name);
         if (other.gameObject.layer != Emiter.gameObject.layer)
         {
             bullethitlogic(other.gameObject);
