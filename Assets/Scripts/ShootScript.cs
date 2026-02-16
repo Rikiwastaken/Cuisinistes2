@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,11 +21,17 @@ public class ShootScript : MonoBehaviour
         public float recoil;
         public float bulletspeed;
         public float GunCD;
+        public int currentclip;
+        public int clipsize;
+        public int reserveammo;
         public Vector3 wheretospawnbullet;
         public AnimationClip ShootAnim;
         public AnimationClip ReloadAnim;
         public List<AudioClip> ShootSFX;
         public List<AudioClip> ReloadSFX;
+        public TextMeshProUGUI ReserveAmmoTMP;
+        public TextMeshProUGUI CurrentClipTMP;
+
     }
 
     public Transform MainCamera;
@@ -40,6 +47,7 @@ public class ShootScript : MonoBehaviour
     {
         shootAction = InputSystem.actions.FindAction("Shoot");
         ChangeGun(0);
+        InitializeAmmoText();
     }
 
     private void ChangeGun(int newGunID)
@@ -69,15 +77,52 @@ public class ShootScript : MonoBehaviour
         }
         if (shootAction.ReadValue<float>() != 0)
         {
-            if (GunCoolDown == 0)
+            if (GunCoolDown == 0 && (currentGunGO.GetComponentInChildren<Animation>().clip != GunList[currentgun].ReloadAnim) || !currentGunGO.GetComponentInChildren<Animation>().isPlaying)
             {
+                if (GunList[currentgun].currentclip > 0)
+                {
+                    Shoot();
+                    GunList[currentgun].currentclip--;
+                    GunList[currentgun].CurrentClipTMP.text = GunList[currentgun].currentclip + "/" + GunList[currentgun].clipsize;
+                }
+                else if (GunList[currentgun].reserveammo > 0)
+                {
+                    Reload();
+                }
 
-                Shoot();
 
 
             }
         }
 
+    }
+    private void Reload()
+    {
+
+        currentGunGO.GetComponentInChildren<Animation>().clip = GunList[currentgun].ReloadAnim;
+        currentGunGO.GetComponentInChildren<Animation>().Play();
+        if (GunList[currentgun].reserveammo >= GunList[currentgun].clipsize)
+        {
+            GunList[currentgun].currentclip = GunList[currentgun].clipsize;
+            GunList[currentgun].reserveammo -= GunList[currentgun].clipsize;
+        }
+        else
+        {
+            GunList[currentgun].currentclip = GunList[currentgun].reserveammo;
+            GunList[currentgun].reserveammo = 0;
+        }
+        GunList[currentgun].CurrentClipTMP.text = GunList[currentgun].currentclip + "/" + GunList[currentgun].clipsize;
+        GunList[currentgun].ReserveAmmoTMP.text = GunList[currentgun].reserveammo + "";
+
+    }
+
+    private void InitializeAmmoText()
+    {
+        foreach (GunClass gunClass in GunList)
+        {
+            gunClass.CurrentClipTMP.text = gunClass.currentclip + "/" + gunClass.clipsize;
+            gunClass.ReserveAmmoTMP.text = gunClass.reserveammo + "";
+        }
     }
 
     private void Shoot()
