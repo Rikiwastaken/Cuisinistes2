@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,8 @@ public class MovementController : MonoBehaviour
 
     public static MovementController instance;
 
+    [Header("UI")]
+    public TextMeshProUGUI HPTMP;
 
     [Header("Movement")]
     public Transform CameraTransform;

@@ -46,7 +46,7 @@ public class BulletScript : MonoBehaviour
         }
 
 
-        Destroy(transform.parent.gameObject);
+        Destroy(gameObject);
     }
 
     public void InitializeBullet(Vector3 direction, float speed, GameObject emiter, float damage, float recoil)

@@ -25,6 +25,11 @@ public class EnemyNavigation : MonoBehaviour
     public AnimationClip Die;
 
 
+    public Transform Canvas;
+    public UnityEngine.UI.Image Lifebar;
+
+    public bool ded;
+
     [Header("ShotVariables")]
 
     public bool Shoots;
@@ -52,6 +57,25 @@ public class EnemyNavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ded)
+        {
+            if (GetComponent<NavMeshAgent>().enabled)
+            {
+                GetComponent<NavMeshAgent>().enabled = false;
+            }
+            Vector3 directionToPlayer = (player.transform.position - transform.position - new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f)).normalized;
+
+            if (Physics.Raycast(transform.position + new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f), directionToPlayer, out RaycastHit hit))
+            {
+                if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player"))
+                {
+                    Destroy(gameObject);
+
+                }
+            }
+            return;
+        }
+
         if (delaybetweendistancerecalculation > 0)
         {
             delaybetweendistancerecalculation--;
@@ -150,12 +174,11 @@ public class EnemyNavigation : MonoBehaviour
             }
         }
 
-
+        Canvas.forward = player.transform.forward;
     }
 
     private void Shoot()
     {
-        Debug.Log(transform.name + " shoots");
         guncooldown = (int)(Gun.GunCD / Time.deltaTime);
 
         if (Animation.clip != Attack)
@@ -179,7 +202,17 @@ public class EnemyNavigation : MonoBehaviour
         }
     }
 
-
+    public void PlayDeathAnim()
+    {
+        Canvas.gameObject.SetActive(false);
+        GetComponent<BoxCollider>().enabled = false;
+        if (Animation.clip != Die)
+        {
+            Animation.clip = Die;
+        }
+        Animation.Play();
+        ded = true;
+    }
     private void ManageAnimation()
     {
         if (Animation.clip == Die)
