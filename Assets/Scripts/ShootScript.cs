@@ -104,7 +104,7 @@ public class ShootScript : MonoBehaviour
         newbullet.transform.forward = currentGunGO.transform.forward;
         BulletScript bulletscript = newbullet.GetComponentInChildren<BulletScript>();
 
-        bulletscript.InitializeBullet(direction, GunList[currentgun].bulletspeed, gameObject, GunList[currentgun].damage, GunList[currentgun].recoil);
+        bulletscript.InitializeBullet(direction, GunList[currentgun].bulletspeed, 0, GunList[currentgun].damage, GunList[currentgun].recoil);
 
 
 

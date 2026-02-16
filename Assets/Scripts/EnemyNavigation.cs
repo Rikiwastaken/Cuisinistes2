@@ -9,6 +9,8 @@ public class EnemyNavigation : MonoBehaviour
 
     public float AgroRange;
 
+    public float movingspeed;
+
     private int delaybetweendistancerecalculation;
     public float delaybetweendestinatinationchecks;
 
@@ -24,6 +26,7 @@ public class EnemyNavigation : MonoBehaviour
     public AnimationClip Attack;
     public AnimationClip Die;
 
+    private Vector3 lastlegaldestination;
 
     public Transform Canvas;
     public UnityEngine.UI.Image Lifebar;
@@ -41,17 +44,33 @@ public class EnemyNavigation : MonoBehaviour
 
 
 
+    [Header("dispawn")]
 
+    public float durationbeforedespawn;
 
+    private int durationbeforedespawncounter;
+
+    private NavMeshAgent agent;
+    private float nextDestinationUpdateTime;
+    private float nextShootTime;
+    private float nextDespawnCheckTime;
+    private float sqrAgroRange;
+    private float sqrGunRange;
 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = movingspeed;
+        sqrAgroRange = AgroRange * AgroRange;
+        sqrGunRange = GunRange * GunRange;
         delaybetweendistancerecalculation = Random.Range(0, 60);
         player = MovementController.instance.transform;
         Animation = GetComponentInChildren<Animation>();
+        Animation.clip = Idle;
+        Animation.Play();
     }
 
     // Update is called once per frame
@@ -59,122 +78,134 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (ded)
         {
-            if (GetComponent<NavMeshAgent>().enabled)
+            if (agent.enabled)
             {
-                GetComponent<NavMeshAgent>().enabled = false;
+                agent.enabled = false;
             }
-            Vector3 directionToPlayer = (player.transform.position - transform.position - new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f)).normalized;
+            Vector3 directionToPlayer = (player.transform.position - transform.position - new Vector3(0f, agent.height / 2f, 0f)).normalized;
 
-            if (Physics.Raycast(transform.position + new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f), directionToPlayer, out RaycastHit hit))
+            if (Physics.Raycast(transform.position + new Vector3(0f, agent.height / 2f, 0f), directionToPlayer, out RaycastHit hit, LayerMask.NameToLayer("Ground") | LayerMask.NameToLayer("Player")))
             {
                 if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player"))
                 {
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
+                    EnemySpawner.instance.EnemiesToRecycle.Add(gameObject);
 
                 }
             }
             return;
         }
 
-        if (delaybetweendistancerecalculation > 0)
-        {
-            delaybetweendistancerecalculation--;
-        }
-        else
-        {
-            delaybetweendistancerecalculation = (int)(delaybetweendestinatinationchecks / Time.deltaTime);
-            if (engagedPlayer)
-            {
-                NavMeshPath path = new NavMeshPath();
-                GetComponent<NavMeshAgent>().CalculatePath(player.position, path);
+        float sqrDistToPlayer = (player.position - transform.position).sqrMagnitude;
 
-                if (path.status == NavMeshPathStatus.PathComplete)
-                {
-                    engagedPlayer = true;
-                    GetComponent<NavMeshAgent>().SetDestination(player.position);
-                }
-                else
-                {
-                    engagedPlayer = false;
-                }
-            }
-            else
-            {
-                if (Vector3.Distance(player.transform.position, transform.position) <= AgroRange)
-                {
-                    Vector3 directionToPlayer = (player.transform.position - transform.position - new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f)).normalized;
+        if (Time.time >= nextDestinationUpdateTime)
+        {
+            nextDestinationUpdateTime = Time.time + 0.3f;
 
-                    if (Physics.Raycast(transform.position + new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f), directionToPlayer, out RaycastHit hit))
+            if (!engagedPlayer)
+            {
+                if (sqrDistToPlayer <= sqrAgroRange)
+                {
+                    if (HasLineOfSight())
                     {
-                        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
-                        {
-                            NavMeshPath path = new NavMeshPath();
-                            GetComponent<NavMeshAgent>().CalculatePath(player.position, path);
-
-                            if (path.status == NavMeshPathStatus.PathComplete)
-                            {
-                                engagedPlayer = true;
-                                GetComponent<NavMeshAgent>().SetDestination(player.position);
-                            }
-
-                        }
+                        engagedPlayer = true;
                     }
                 }
+            }
+
+            if (engagedPlayer)
+            {
+                agent.SetDestination(player.position);
             }
         }
         ManageAnimation();
 
-        if (engagedPlayer)
-        {
-            transform.forward = (player.transform.position - transform.position).normalized;
-        }
+
 
 
         if (freezetimeaftershootingcounter > 0)
         {
             freezetimeaftershootingcounter--;
-            if (!GetComponent<NavMeshAgent>().isStopped)
+            if (!agent.isStopped)
             {
-                GetComponent<NavMeshAgent>().isStopped = true;
+                agent.isStopped = true;
             }
         }
         else
         {
-            if (GetComponent<NavMeshAgent>().isStopped)
+            if (agent.isStopped)
             {
-                GetComponent<NavMeshAgent>().isStopped = false;
+                agent.isStopped = false;
             }
         }
-
-        if (guncooldown > 0)
+        if (engagedPlayer)
         {
-            guncooldown--;
-
-        }
-        else
-        {
-
-            freezetimeaftershootingcounter = (int)(freezetimeaftershooting / Time.timeScale);
-
-            if (Shoots)
+            if (Time.time >= nextShootTime)
             {
-                if (Vector3.Distance(player.transform.position, transform.position) <= GunRange)
+                nextShootTime = Time.time + Gun.GunCD;
+                if (Shoots)
                 {
-                    Vector3 directionToPlayer = (player.transform.position - transform.position - new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f)).normalized;
-
-                    if (Physics.Raycast(transform.position + new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f), directionToPlayer, out RaycastHit hit))
+                    if (sqrDistToPlayer <= sqrGunRange && HasLineOfSight())
                     {
-                        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
-                        {
-
-                            Shoot();
-                        }
+                        Shoot();
+                        nextShootTime = Time.time + Gun.GunCD;
                     }
                 }
             }
+
         }
 
-        Canvas.forward = player.transform.forward;
+    }
+
+    private bool HasLineOfSight()
+    {
+        Vector3 eyePos = transform.position + new Vector3(0, 0.5f, 0);
+        Vector3 targetPos = player.position;
+
+        Vector3 dir = targetPos - eyePos;
+        float distance = dir.magnitude;
+        dir.Normalize();
+
+        Debug.DrawRay(eyePos, dir * distance, Color.red, 0.1f);
+
+        if (Physics.Raycast(eyePos, dir, out RaycastHit hit, distance))
+        {
+            Debug.Log("Enemy hit: " + hit.transform.name);
+
+            if (hit.transform == player || hit.transform.IsChildOf(player))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void LateUpdate()
+    {
+        if (engagedPlayer)
+        {
+
+            Vector3 newforward = (player.transform.position - transform.position).normalized;
+
+            transform.LookAt(player);
+
+            durationbeforedespawncounter = 0;
+        }
+        else if (!ded)
+        {
+            durationbeforedespawncounter++;
+            if (durationbeforedespawncounter > durationbeforedespawn / Time.deltaTime)
+            {
+                durationbeforedespawncounter = 0;
+                PlayDeathAnim(true);
+                return;
+            }
+        }
+        if (Vector2.Distance(transform.position, player.transform.position) > 25)
+        {
+            PlayDeathAnim(true);
+        }
     }
 
     private void Shoot()
@@ -187,13 +218,13 @@ public class EnemyNavigation : MonoBehaviour
         }
         Animation.Play();
 
-        Vector3 direction = MovementController.instance.transform.position - transform.position - Gun.wheretospawnbullet;
+        Vector3 direction = player.transform.position - transform.position - Gun.wheretospawnbullet;
 
         GameObject newbullet = Instantiate(Gun.Bulletprefab, transform.position + Gun.wheretospawnbullet, Quaternion.identity);
         newbullet.transform.forward = transform.forward;
         BulletScript bulletscript = newbullet.GetComponentInChildren<BulletScript>();
 
-        bulletscript.InitializeBullet(direction, Gun.bulletspeed, gameObject, Gun.damage, Gun.recoil);
+        bulletscript.InitializeBullet(direction, Gun.bulletspeed, 1, Gun.damage, Gun.recoil);
 
 
         if (Gun.ShootSFX.Count > 0)
@@ -202,8 +233,16 @@ public class EnemyNavigation : MonoBehaviour
         }
     }
 
-    public void PlayDeathAnim()
+    public void PlayDeathAnim(bool immediate = false)
     {
+        EnemySpawner.instance.SpawnedEnemylist.Remove(gameObject);
+        if (immediate)
+        {
+            gameObject.SetActive(false);
+            EnemySpawner.instance.EnemiesToRecycle.Add(gameObject);
+            return;
+        }
+
         Canvas.gameObject.SetActive(false);
         GetComponent<BoxCollider>().enabled = false;
         if (Animation.clip != Die)
@@ -223,7 +262,7 @@ public class EnemyNavigation : MonoBehaviour
         {
             return;
         }
-        else if (Mathf.Abs(GetComponent<NavMeshAgent>().velocity.magnitude) >= 0.05f)
+        else if (Mathf.Abs(agent.velocity.magnitude) >= 0.01f)
         {
             if (Animation.clip != Run)
             {
@@ -263,11 +302,11 @@ public class EnemyNavigation : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, GunRange);
 
         // Eye position
-        Vector3 eyePos = transform.position + new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f);
+        Vector3 eyePos = transform.position + new Vector3(0f, agent.height / 2f, 0f);
 
 
         // Draw ray to player (if exists)
-        if (MovementController.instance != null)
+        if (player != null)
         {
             Transform player = MovementController.instance.transform;
             Vector3 toPlayer = (player.position - eyePos).normalized;
