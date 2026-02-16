@@ -170,7 +170,7 @@ public class EnemyNavigation : MonoBehaviour
 
         if (Physics.Raycast(eyePos, dir, out RaycastHit hit, distance))
         {
-            Debug.Log("Enemy hit: " + hit.transform.name);
+            //Debug.Log("Enemy hit: " + hit.transform.name);
 
             if (hit.transform == player || hit.transform.IsChildOf(player))
             {

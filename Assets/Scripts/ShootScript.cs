@@ -14,12 +14,15 @@ public class ShootScript : MonoBehaviour
         public GameObject GunModel;
         public Vector3 GunPosition;
         public Vector3 GunRotation;
+        public Vector3 GunScale = Vector3.one;
         public GameObject Bulletprefab;
         public float damage;
         public float recoil;
         public float bulletspeed;
         public float GunCD;
         public Vector3 wheretospawnbullet;
+        public AnimationClip ShootAnim;
+        public AnimationClip ReloadAnim;
         public List<AudioClip> ShootSFX;
         public List<AudioClip> ReloadSFX;
     }
@@ -51,6 +54,7 @@ public class ShootScript : MonoBehaviour
         currentGunGO = Instantiate(activegunclass.GunModel);
         currentGunGO.transform.parent = MainCamera;
         currentGunGO.transform.localPosition = activegunclass.GunPosition;
+        currentGunGO.transform.localScale = activegunclass.GunScale;
         currentGunGO.transform.localRotation = Quaternion.Euler(activegunclass.GunRotation);
         SetLayerAllChildren(currentGunGO.transform, LayerMask.NameToLayer("Weapons"));
 
@@ -79,6 +83,7 @@ public class ShootScript : MonoBehaviour
     private void Shoot()
     {
         GunCoolDown = (int)(GunList[currentgun].GunCD / Time.deltaTime);
+        currentGunGO.GetComponentInChildren<Animation>().clip = GunList[currentgun].ShootAnim;
         currentGunGO.GetComponentInChildren<Animation>().Play();
         Vector3 ScreenCentreCoordinates = new Vector3(0.5f, 0.5f, 0f);
         Vector3 projectileDestination = new Vector3();
@@ -107,8 +112,11 @@ public class ShootScript : MonoBehaviour
         bulletscript.InitializeBullet(direction, GunList[currentgun].bulletspeed, 0, GunList[currentgun].damage, GunList[currentgun].recoil);
 
 
+        if (GunList[currentgun].ShootSFX.Count > 0)
+        {
+            SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
+        }
 
-        SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
 
     }
 

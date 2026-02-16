@@ -756,30 +756,36 @@ MonoBehaviour:
     m_Flags: 0
   MainCamera: {fileID: 1023333629102334493}
   GunList:
+  - GunModel: {fileID: 2962789918115722720, guid: 14ccddb7d9b62ea46b4edb6a2baea2c8, type: 3}
+    GunPosition: {x: 1.57, y: -1.13, z: 2.32}
+    GunRotation: {x: 9.6, y: 175.4, z: 0}
+    GunScale: {x: 1, y: 1, z: 1}
+    Bulletprefab: {fileID: 9034123730837891189, guid: 08701053fd0a3fb438781149f1a62f8a, type: 3}
+    damage: 3
+    recoil: 0
+    bulletspeed: 5
+    GunCD: 0.2
+    wheretospawnbullet: {x: 0, y: 0.461, z: 1.363}
+    ShootAnim: {fileID: -4575775917281549716, guid: 3167744210a8563bea28f4fcb0348983, type: 3}
+    ReloadAnim: {fileID: -6317932003601483521, guid: 3167744210a8563bea28f4fcb0348983, type: 3}
+    ShootSFX: []
+    ReloadSFX: []
   - GunModel: {fileID: 2962789918115722720, guid: 46ed370b18d9cdb42a216c5eac4e86e3, type: 3}
     GunPosition: {x: 1.57, y: -1.21, z: 2.18}
     GunRotation: {x: 0, y: 162.419, z: 0}
+    GunScale: {x: 1, y: 1, z: 1}
     Bulletprefab: {fileID: 9034123730837891189, guid: edc69ef06ae621944823d093ed181627, type: 3}
     damage: 5
     recoil: 1
     bulletspeed: 4
     GunCD: 0.5
     wheretospawnbullet: {x: 0, y: 0.625, z: -0.475}
+    ShootAnim: {fileID: 9003156271695032890, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
+    ReloadAnim: {fileID: -4891696003755285387, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
     ShootSFX:
     - {fileID: 8300000, guid: 988d4d23b57ecaf45943b78724dd275b, type: 3}
     - {fileID: 8300000, guid: 3a899fa14384d28428606db409f6de5a, type: 3}
     - {fileID: 8300000, guid: 03e022d93b678a141906678d81d305fd, type: 3}
-    ReloadSFX: []
-  - GunModel: {fileID: 2962789918115722720, guid: 46ed370b18d9cdb42a216c5eac4e86e3, type: 3}
-    GunPosition: {x: 1.57, y: -1.21, z: 2.18}
-    GunRotation: {x: 50, y: 162.419, z: 0}
-    Bulletprefab: {fileID: 0}
-    damage: 0
-    recoil: 0
-    bulletspeed: 0
-    GunCD: 1
-    wheretospawnbullet: {x: 0, y: 0, z: 0}
-    ShootSFX: []
     ReloadSFX: []
 --- !u!114 &484629754530822652
 MonoBehaviour:
@@ -794,6 +800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   HP: 100
+  MaxHealth: 100
+  invframes: 0.1
 --- !u!1 &8029685756744981663
 GameObject:
   m_ObjectHideFlags: 0

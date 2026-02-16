@@ -48,6 +48,27 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator spawnEnemies()
     {
+        List<GameObject> enemiescopy = new List<GameObject>();
+
+        foreach (GameObject enemy in SpawnedEnemylist)
+        {
+            enemiescopy.Add(enemy);
+        }
+
+        foreach (GameObject enemy in enemiescopy)
+        {
+            if (!enemy.activeSelf)
+            {
+                SpawnedEnemylist.Remove(enemy);
+                if (!EnemiesToRecycle.Contains(enemy))
+                {
+                    EnemiesToRecycle.Add(enemy);
+                }
+            }
+        }
+
+
+
         int safeguard = 0;
         int spawnenemylistsize = SpawnedEnemylist.Count;
 
@@ -72,6 +93,8 @@ public class EnemySpawner : MonoBehaviour
                         newenemy.SetActive(true);
                         newenemy.GetComponent<HealthScript>().HP = newenemy.GetComponent<HealthScript>().MaxHealth;
                         newenemy.GetComponent<EnemyNavigation>().engagedPlayer = false;
+                        newenemy.GetComponent<EnemyNavigation>().Lifebar.fillAmount = 1f;
+                        newenemy.GetComponent<EnemyNavigation>().Canvas.gameObject.SetActive(false);
                     }
                     else
                     {
@@ -107,22 +130,6 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
-    bool RandomPoint(Vector3 center, out Vector3 result)
-    {
-        for (int i = 0; i < 30; i++)
-        {
-            Vector3 randomPoint = center + Random.insideUnitSphere * maxplayerrangewheretospawn;
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-            {
-                result = hit.position;
-                return true;
-            }
-        }
-        result = Vector3.zero;
-        return false;
-    }
-
 
     bool TryGetSpawnPosition(out Vector3 result)
     {
@@ -135,7 +142,7 @@ public class EnemySpawner : MonoBehaviour
             float angle = Random.Range(0f, 360f);
 
             Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-            Vector3 candidate = playerPos + dir * distance;
+            Vector3 candidate = playerPos + MovementController.instance.transform.forward * 3f + dir * distance;
 
             if (NavMesh.SamplePosition(candidate, out NavMeshHit hit, 2f, NavMesh.AllAreas))
             {
