@@ -230,10 +230,15 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (engagedPlayer)
         {
+            if (!ded)
+            {
+                var lookPos = player.position - transform.position;
+                lookPos.y = 0;
+                var rotation = Quaternion.LookRotation(lookPos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+            }
 
-            Vector3 newforward = (player.transform.position - transform.position).normalized;
 
-            transform.LookAt(player);
 
             durationbeforedespawncounter = 0;
         }
