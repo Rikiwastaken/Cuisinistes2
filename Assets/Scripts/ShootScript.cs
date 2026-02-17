@@ -259,6 +259,8 @@ public class ShootScript : MonoBehaviour
         Vector3 direction = projectileDestination - Worldspawn;
 
         GameObject newbullet = Instantiate(GunList[currentgun].Bulletprefab, Worldspawn, Quaternion.identity);
+        newbullet.transform.parent = currentGunGO.transform;
+        newbullet.transform.localPosition = GunList[currentgun].wheretospawnbullet;
         newbullet.transform.forward = currentGunGO.transform.forward;
         BulletScript bulletscript = newbullet.GetComponentInChildren<BulletScript>();
 
@@ -312,6 +314,8 @@ public class ShootScript : MonoBehaviour
             Vector3 spreadDirection = GetSpreadDirection(baseDirection, spreadAngle);
 
             GameObject newBullet = Instantiate(GunList[currentgun].Bulletprefab, worldSpawn, Quaternion.identity);
+            newBullet.transform.parent = currentGunGO.transform;
+            newBullet.transform.localPosition = GunList[currentgun].wheretospawnbullet;
             newBullet.transform.forward = spreadDirection;
 
             BulletScript bulletScript = newBullet.GetComponentInChildren<BulletScript>();
