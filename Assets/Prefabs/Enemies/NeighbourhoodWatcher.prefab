@@ -167,7 +167,7 @@ MonoBehaviour:
     GunRotation: {x: 0, y: 0, z: 0}
     GunScale: {x: 1, y: 1, z: 1}
     Bulletprefab: {fileID: 273267796892247371, guid: 95186d09905e4104ca59472ba59a3872, type: 3}
-    damage: 10
+    damage: 20
     recoil: 0
     bulletspeed: 3
     GunCD: 4
@@ -182,8 +182,10 @@ MonoBehaviour:
     ReserveAmmoTMP: {fileID: 0}
     CurrentClipTMP: {fileID: 0}
   freezetimeaftershooting: 0.6
+  minrangeformelee: 0
+  meleedamage: 0
   durationbeforedespawn: 10
-  globaldroprate: 60
+  globaldroprate: 50
   ammodropratepercent: 60
   armordroprate: 25
   healtkitdroprate: 15
@@ -208,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthScript
   HP: 50
-  MaxHealth: 20
+  MaxHealth: 25
   currentarmor: 0
   maxarmor: 0
   invframes: 0

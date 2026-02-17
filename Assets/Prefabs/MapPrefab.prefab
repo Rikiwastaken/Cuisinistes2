@@ -98,10 +98,11 @@ MonoBehaviour:
   - {fileID: 2686418178066650683, guid: f90e99bceaff93242b11dc5738afa4af, type: 3}
   - {fileID: 2686418178066650683, guid: 9373e775c3197db4fa24ee053c5a632e, type: 3}
   - {fileID: 2686418178066650683, guid: e36c2c42e051f0d43afbdaa0c0ab793d, type: 3}
+  - {fileID: 2686418178066650683, guid: 4227e2fc1b41d764db137d058db75ab0, type: 3}
   SpawnedEnemylist: []
   EnemiesToRecycle: []
   durationBetweenEnemySpawn: 1
-  totalenemyonthemap: 1
+  totalenemyonthemap: 10
   minplayerrangewheretospawn: 10
   maxplayerrangewheretospawn: 30
   EnemyHolder: {fileID: 0}

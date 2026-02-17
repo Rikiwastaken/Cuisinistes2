@@ -185,7 +185,7 @@ MonoBehaviour:
   minrangeformelee: 4
   meleedamage: 40
   durationbeforedespawn: 10
-  globaldroprate: 100
+  globaldroprate: 60
   ammodropratepercent: 60
   armordroprate: 25
   healtkitdroprate: 15
