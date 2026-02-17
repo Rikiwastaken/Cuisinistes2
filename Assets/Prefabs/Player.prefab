@@ -886,15 +886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e387cdb47e2fee438accf3678037147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  shootAction:
-    m_Name: Shoot
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ddc0270b-2552-4ef1-9218-cfb19c945975
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   MainCamera: {fileID: 1023333629102334493}
   GunList:
   - GunModel: {fileID: 2962789918115722720, guid: 46ed370b18d9cdb42a216c5eac4e86e3, type: 3}
@@ -916,7 +907,10 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 988d4d23b57ecaf45943b78724dd275b, type: 3}
     - {fileID: 8300000, guid: 3a899fa14384d28428606db409f6de5a, type: 3}
     - {fileID: 8300000, guid: 03e022d93b678a141906678d81d305fd, type: 3}
-    ReloadSFX: []
+    ReloadSFX:
+    - {fileID: 8300000, guid: 4947b9ab81226014f85ea4014ec3956f, type: 3}
+    - {fileID: 8300000, guid: 9f5e40d9fad3bff4b8d8cda33e51859a, type: 3}
+    - {fileID: 8300000, guid: a45951d43b6248c41aecf18472351f6f, type: 3}
     ReserveAmmoTMP: {fileID: 1372136017296284525}
     CurrentClipTMP: {fileID: 883676527848524228}
   - GunModel: {fileID: 2962789918115722720, guid: 14ccddb7d9b62ea46b4edb6a2baea2c8, type: 3}
@@ -934,10 +928,20 @@ MonoBehaviour:
     wheretospawnbullet: {x: 0, y: 0.461, z: 1.363}
     ShootAnim: {fileID: -4575775917281549716, guid: 3167744210a8563bea28f4fcb0348983, type: 3}
     ReloadAnim: {fileID: -6317932003601483521, guid: 3167744210a8563bea28f4fcb0348983, type: 3}
-    ShootSFX: []
-    ReloadSFX: []
+    ShootSFX:
+    - {fileID: 8300000, guid: cc020b5e6b4728b4f94302abe7693801, type: 3}
+    - {fileID: 8300000, guid: 396a5cbfeb43e3c4d8e10c71dcf64f19, type: 3}
+    - {fileID: 8300000, guid: cb120e018ec53f14cb4d0166a5b0995c, type: 3}
+    - {fileID: 8300000, guid: 0777beeb014092f4b856564e32fd849a, type: 3}
+    - {fileID: 8300000, guid: 7402d30d952436d439f2050280509825, type: 3}
+    ReloadSFX:
+    - {fileID: 8300000, guid: 2e7f547d815233b46a9678af7b5ad44b, type: 3}
     ReserveAmmoTMP: {fileID: 4393277931692648783}
     CurrentClipTMP: {fileID: 6072489959606445292}
+  EmptyCliPSFX:
+  - {fileID: 8300000, guid: 942e349fb322e714680f7ec1f6c54e99, type: 3}
+  - {fileID: 8300000, guid: daed41aee47af994684bb393be2175eb, type: 3}
+  - {fileID: 8300000, guid: f33d83386a328cc4fb182c5143e00f5e, type: 3}
 --- !u!114 &484629754530822652
 MonoBehaviour:
   m_ObjectHideFlags: 0
