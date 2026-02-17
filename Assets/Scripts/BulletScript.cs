@@ -13,6 +13,10 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if (other.transform.GetComponent<BulletScript>() != null)
+        {
+            return;
+        }
         if ((other.gameObject.GetComponent<MovementController>() != null && EmiterType == 1) || (other.gameObject.GetComponent<EnemyNavigation>() != null && EmiterType == 0))
         {
             bullethitlogic(other.gameObject);
@@ -22,6 +26,10 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.transform.GetComponent<BulletScript>() != null)
+        {
+            return;
+        }
         if ((other.gameObject.GetComponent<MovementController>() != null && EmiterType == 1) || (other.gameObject.GetComponent<EnemyNavigation>() != null && EmiterType == 0))
         {
             bullethitlogic(other.gameObject);

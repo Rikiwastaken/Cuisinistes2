@@ -7,6 +7,10 @@ public class HealthScript : MonoBehaviour
 
     public float MaxHealth;
 
+    public float currentarmor;
+
+    public float maxarmor;
+
     public float invframes;
     private int invframecounter;
 
@@ -18,19 +22,30 @@ public class HealthScript : MonoBehaviour
 
     private SoundManager soundManager;
 
+    public float timebeforeregen;
+
+    private float timetillregenstarts;
+
+    public float regenpersecond;
+
+
+
     private void Start()
     {
+
         HP = MaxHealth;
         isplayer = GetComponent<MovementController>() != null;
         soundManager = SoundManager.instance;
         if (isplayer)
         {
             movementController = GetComponent<MovementController>();
+            UpdateTexts();
         }
         else
         {
             enemyNavigation = GetComponent<EnemyNavigation>();
         }
+
     }
 
     private void Update()
@@ -39,15 +54,56 @@ public class HealthScript : MonoBehaviour
         {
             invframecounter--;
         }
+
+        if (isplayer)
+        {
+            if (Time.time > timetillregenstarts && HP < MaxHealth)
+            {
+                HP += regenpersecond * Time.deltaTime;
+                UpdateTexts();
+            }
+        }
+
+    }
+
+    public void UpdateTexts()
+    {
+        movementController.HPTMP.text = "HP : " + (int)HP;
+        if (currentarmor > 0)
+        {
+            movementController.HPTMP.text += "\nArmor : " + (int)(currentarmor);
+        }
     }
     public void TakeDamage(float damage)
     {
         if (invframecounter == 0)
         {
-            HP -= damage;
+            if (currentarmor > 0)
+            {
+                if (damage <= currentarmor)
+                {
+                    currentarmor -= damage;
+                }
+                else
+                {
+
+                    HP -= damage - currentarmor;
+                    currentarmor = 0;
+                }
+            }
+            else
+            {
+                HP -= damage;
+            }
+
+
             if (isplayer)
             {
-                movementController.HPTMP.text = "HP : " + HP;
+                timetillregenstarts = Time.time + timebeforeregen;
+
+                soundManager.PlaySFXFromList(movementController.playerDamageSounds, 0.05f, movementController.transform);
+
+                UpdateTexts();
                 invframecounter = (int)(invframes / Time.fixedDeltaTime);
             }
             else

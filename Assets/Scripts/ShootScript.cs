@@ -87,7 +87,15 @@ public class ShootScript : MonoBehaviour
             {
                 if (GunList[currentgun].currentclip > 0)
                 {
-                    Shoot();
+                    if (currentgun == 2)
+                    {
+                        ShootShotgun();
+                    }
+                    else
+                    {
+                        Shoot();
+                    }
+
                     GunList[currentgun].currentclip--;
                     GunList[currentgun].CurrentClipTMP.text = GunList[currentgun].currentclip + "/" + GunList[currentgun].clipsize;
                 }
@@ -246,11 +254,11 @@ public class ShootScript : MonoBehaviour
             projectileDestination = ray.GetPoint(100);
         }
 
-        Vector3 Worldspawn = currentGunGO.transform.position + GunList[currentgun].wheretospawnbullet;
+        Vector3 direction = (projectileDestination - currentGunGO.transform.position).normalized;
 
-        Vector3 direction = projectileDestination - Worldspawn;
-
-        GameObject newbullet = Instantiate(GunList[currentgun].Bulletprefab, Worldspawn, Quaternion.identity);
+        GameObject newbullet = Instantiate(GunList[currentgun].Bulletprefab);
+        newbullet.transform.parent = currentGunGO.transform;
+        newbullet.transform.localPosition = GunList[currentgun].wheretospawnbullet;
         newbullet.transform.forward = currentGunGO.transform.forward;
         BulletScript bulletscript = newbullet.GetComponentInChildren<BulletScript>();
 
@@ -264,6 +272,75 @@ public class ShootScript : MonoBehaviour
 
 
     }
+
+    private void ShootShotgun()
+    {
+
+        int pelletCount = 9;
+        float spreadAngle = 10f;
+
+        // Set gun cooldown
+        GunCoolDown = (int)(GunList[currentgun].GunCD / Time.deltaTime);
+
+        // Play shooting animation
+        Animation gunAnimation = currentGunGO.GetComponentInChildren<Animation>();
+        gunAnimation.clip = GunList[currentgun].ShootAnim;
+        gunAnimation.Play();
+
+        // Calculate projectile destination from center of screen
+        Vector3 screenCentre = new Vector3(0.5f, 0.5f, 0f);
+        Vector3 projectileDestination;
+        Ray ray = MainCamera.GetComponent<Camera>().ViewportPointToRay(screenCentre);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            projectileDestination = hit.point;
+        }
+        else
+        {
+            projectileDestination = ray.GetPoint(100); // fallback distance
+        }
+
+        // Spawn position for bullets
+        Vector3 baseDirection = (projectileDestination - currentGunGO.transform.position).normalized;
+
+        // Fire multiple pellets
+        for (int i = 0; i < pelletCount; i++)
+        {
+            Vector3 spreadDirection = GetSpreadDirection(baseDirection, spreadAngle);
+
+            GameObject newBullet = Instantiate(GunList[currentgun].Bulletprefab, Vector3.zero, Quaternion.identity);
+            newBullet.transform.parent = currentGunGO.transform;
+            newBullet.transform.localPosition = GunList[currentgun].wheretospawnbullet;
+            newBullet.transform.forward = spreadDirection;
+
+            BulletScript bulletScript = newBullet.GetComponentInChildren<BulletScript>();
+
+            bulletScript.InitializeBullet(spreadDirection, GunList[currentgun].bulletspeed, 0, GunList[currentgun].damage, GunList[currentgun].recoil);
+        }
+
+        // Play shooting sound
+        if (GunList[currentgun].ShootSFX.Count > 0)
+        {
+            SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
+        }
+    }
+
+    /// <summary>
+    /// Returns a random direction within a cone around the base direction
+    /// </summary>
+    private Vector3 GetSpreadDirection(Vector3 direction, float angle)
+    {
+        // Random circular spread
+        float spreadRadius = Mathf.Tan(angle * Mathf.Deg2Rad);
+        Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * spreadRadius;
+
+        Vector3 spread = direction + currentGunGO.transform.right * randomCircle.x + currentGunGO.transform.up * randomCircle.y;
+
+        return spread.normalized;
+    }
+
 
     void SetLayerAllChildren(Transform root, int layer)
     {

@@ -183,8 +183,18 @@ MonoBehaviour:
     CurrentClipTMP: {fileID: 0}
   freezetimeaftershooting: 0.6
   durationbeforedespawn: 10
-  dropratepercent: 25
+  globaldroprate: 60
+  ammodropratepercent: 60
+  armordroprate: 25
+  healtkitdroprate: 15
   AmmoBoxPrefab: {fileID: 8594776281252626752, guid: a328dada7dd3de44f9168da23e4ef451, type: 3}
+  HealthKitPrefab: {fileID: 8594776281252626752, guid: b3692803d71aabd4d8fa9ac0d81873e8, type: 3}
+  ArmorKitPrefab: {fileID: 8594776281252626752, guid: ed7f82ff0dc1f3c40828049ab0098768, type: 3}
+  AttackSound: []
+  Idlesound: []
+  DamageSound: []
+  DeathSound: []
+  timebetweenidlesound: 0
 --- !u!114 &3247550930479452848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +209,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthScript
   HP: 50
   MaxHealth: 20
+  currentarmor: 0
+  maxarmor: 0
   invframes: 0
+  timebeforeregen: 0
+  regenpersecond: 0
 --- !u!65 &2550037940614220385
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -219,8 +233,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.5511022, y: 1.1697948, z: 1.3698721}
-  m_Center: {x: 0.018591166, y: 1.9080108, z: -0.09090078}
+  m_Size: {x: 3.5511022, y: 2.1020658, z: 1.3698721}
+  m_Center: {x: 0.018591166, y: 1.4418753, z: -0.09090078}
 --- !u!1 &4144575920706948830
 GameObject:
   m_ObjectHideFlags: 0

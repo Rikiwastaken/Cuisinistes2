@@ -43,6 +43,11 @@ public class EnemyNavigation : MonoBehaviour
     public float freezetimeaftershooting;
     private int freezetimeaftershootingcounter;
 
+    [Header("Melee Variables")]
+
+    public float minrangeformelee;
+    private bool isinmelee;
+    public float meleedamage;
 
 
     [Header("dispawn")]
@@ -61,8 +66,13 @@ public class EnemyNavigation : MonoBehaviour
 
 
     [Header("drop")]
-    public int dropratepercent;
+    public int globaldroprate;
+    public int ammodropratepercent;
+    public int armordroprate;
+    public int healtkitdroprate;
     public GameObject AmmoBoxPrefab;
+    public GameObject HealthKitPrefab;
+    public GameObject ArmorKitPrefab;
 
     [Header("Sound")]
 
@@ -182,8 +192,26 @@ public class EnemyNavigation : MonoBehaviour
                         nextShootTime = Time.time + Gun.GunCD;
                     }
                 }
+
             }
 
+
+            if (!Shoots && sqrDistToPlayer <= minrangeformelee * minrangeformelee && HasLineOfSight() && !isinmelee)
+            {
+                isinmelee = true;
+                Animation.clip = Attack;
+                Animation.Play();
+            }
+
+            if (isinmelee && (!Animation.isPlaying || Animation.clip != Attack))
+            {
+                Debug.Log("finisfhing attack");
+                isinmelee = false;
+                if (sqrDistToPlayer <= minrangeformelee * minrangeformelee)
+                {
+                    player.GetComponent<HealthScript>().TakeDamage(meleedamage);
+                }
+            }
         }
 
         // Idle Sounds
@@ -225,10 +253,19 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (engagedPlayer)
         {
+            if (!ded)
+            {
+                var lookPos = player.position - transform.position;
+                lookPos.y = 0;
+                if (lookPos != Vector3.zero)
+                {
+                    var rotation = Quaternion.LookRotation(lookPos);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+                }
 
-            Vector3 newforward = (player.transform.position - transform.position).normalized;
+            }
 
-            transform.LookAt(player);
+
 
             durationbeforedespawncounter = 0;
         }
@@ -277,11 +314,27 @@ public class EnemyNavigation : MonoBehaviour
     public void TriggerDrop()
     {
         int randomvalue = UnityEngine.Random.Range(0, 100);
-        if (randomvalue <= dropratepercent)
+        if (randomvalue <= globaldroprate)
         {
-            GameObject newammobox = Instantiate(AmmoBoxPrefab);
-            newammobox.transform.position = transform.position + new Vector3(0, 0.5f, 0);
-            newammobox.GetComponent<AmmoBoxScript>().InitializeAmmoBox();
+
+            int droptablerandomvalue = UnityEngine.Random.Range(0, ammodropratepercent + armordroprate + healtkitdroprate);
+            if (droptablerandomvalue <= ammodropratepercent)
+            {
+                GameObject newammobox = Instantiate(AmmoBoxPrefab);
+                newammobox.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                newammobox.GetComponent<AmmoBoxScript>().InitializeAmmoBox();
+            }
+            else if (droptablerandomvalue <= armordroprate)
+            {
+                GameObject newarmor = Instantiate(ArmorKitPrefab);
+                newarmor.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            }
+            else
+            {
+                GameObject newhealthkit = Instantiate(HealthKitPrefab);
+                newhealthkit.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            }
+
         }
     }
     public void PlayDeathAnim(bool immediate = false)
