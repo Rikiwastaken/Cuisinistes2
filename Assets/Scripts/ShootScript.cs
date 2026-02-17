@@ -262,7 +262,7 @@ public class ShootScript : MonoBehaviour
         newbullet.transform.forward = currentGunGO.transform.forward;
         BulletScript bulletscript = newbullet.GetComponentInChildren<BulletScript>();
 
-        bulletscript.InitializeBullet(direction, GunList[currentgun].bulletspeed, 0, GunList[currentgun].damage, GunList[currentgun].recoil);
+        bulletscript.InitializeBullet(direction, GunList[currentgun].bulletspeed + GetComponent<Rigidbody>().linearVelocity.magnitude, 0, GunList[currentgun].damage, GunList[currentgun].recoil);
 
 
         if (GunList[currentgun].ShootSFX.Count > 0)
@@ -319,7 +319,7 @@ public class ShootScript : MonoBehaviour
 
             BulletScript bulletScript = newBullet.GetComponentInChildren<BulletScript>();
 
-            bulletScript.InitializeBullet(spreadDirection, GunList[currentgun].bulletspeed, 0, GunList[currentgun].damage, GunList[currentgun].recoil);
+            bulletScript.InitializeBullet(spreadDirection, GunList[currentgun].bulletspeed + GetComponent<Rigidbody>().linearVelocity.magnitude, 0, GunList[currentgun].damage, GunList[currentgun].recoil);
             newBullet.transform.parent = null;
 
         }
