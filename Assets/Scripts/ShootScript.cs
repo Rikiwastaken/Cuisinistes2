@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class ShootScript : MonoBehaviour
 {
 
-    public InputAction shootAction;
+    private InputAction shootAction;
 
     [Serializable]
     public class GunClass
@@ -29,11 +29,13 @@ public class ShootScript : MonoBehaviour
         public AnimationClip ReloadAnim;
         public List<AudioClip> ShootSFX;
         public List<AudioClip> ReloadSFX;
+
         public TextMeshProUGUI ReserveAmmoTMP;
         public TextMeshProUGUI CurrentClipTMP;
 
     }
 
+    private float previousshoot;
     public Transform MainCamera;
 
     [Header("GunVariables")]
@@ -41,11 +43,15 @@ public class ShootScript : MonoBehaviour
     private int currentgun;
     private GameObject currentGunGO;
     private int GunCoolDown;
+    public List<AudioClip> EmptyCliPSFX;
+    private float previousscroll;
+    private InputAction WeaponChangeAction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         shootAction = InputSystem.actions.FindAction("Shoot");
+        WeaponChangeAction = InputSystem.actions.FindAction("ChangeWeapon");
         ChangeGun(0);
         InitializeAmmoText();
     }
@@ -61,7 +67,7 @@ public class ShootScript : MonoBehaviour
         }
         currentGunGO = Instantiate(activegunclass.GunModel);
         currentGunGO.transform.parent = MainCamera;
-        currentGunGO.transform.localPosition = activegunclass.GunPosition;
+        currentGunGO.transform.localPosition = activegunclass.GunPosition - new Vector3(0, 2, 0);
         currentGunGO.transform.localScale = activegunclass.GunScale;
         currentGunGO.transform.localRotation = Quaternion.Euler(activegunclass.GunRotation);
         SetLayerAllChildren(currentGunGO.transform, LayerMask.NameToLayer("Weapons"));
@@ -89,11 +95,61 @@ public class ShootScript : MonoBehaviour
                 {
                     Reload();
                 }
+                else if (previousshoot == 0)
+                {
+                    GunCoolDown = (int)(Mathf.Max(GunList[currentgun].GunCD / Time.deltaTime, GunList[currentgun].ShootAnim.length / Time.deltaTime));
+                    previousshoot = 1;
+                    if (EmptyCliPSFX.Count > 0)
+                    {
 
+                        SoundManager.instance.PlaySFXFromList(EmptyCliPSFX, 0.05f, transform);
+                    }
+                }
 
 
             }
         }
+        else
+        {
+            previousshoot = 0;
+        }
+
+
+        if (currentGunGO != null && currentGunGO.transform.localPosition.y < GunList[currentgun].GunPosition.y)
+        {
+            currentGunGO.transform.localPosition += new Vector3(0f, 5 * Time.deltaTime, 0f);
+        }
+
+
+        float weaponchangeval = WeaponChangeAction.ReadValue<float>();
+
+        if (weaponchangeval != 0 && previousscroll != weaponchangeval)
+        {
+            if (weaponchangeval > 1)
+            {
+                if (currentgun < GunList.Count - 1)
+                {
+                    currentgun++;
+                }
+                else
+                {
+                    currentgun = 0;
+                }
+            }
+            else
+            {
+                if (currentgun > 0)
+                {
+                    currentgun--;
+                }
+                else
+                {
+                    currentgun = GunList.Count - 1;
+                }
+            }
+            ChangeGun(currentgun);
+        }
+        previousscroll = weaponchangeval;
 
     }
     private void Reload()
@@ -113,7 +169,10 @@ public class ShootScript : MonoBehaviour
         }
         GunList[currentgun].CurrentClipTMP.text = GunList[currentgun].currentclip + "/" + GunList[currentgun].clipsize;
         GunList[currentgun].ReserveAmmoTMP.text = GunList[currentgun].reserveammo + "";
-
+        if (GunList[currentgun].ReloadSFX.Count > 0)
+        {
+            SoundManager.instance.PlaySFXFromList(GunList[currentgun].ReloadSFX, 0.05f, transform);
+        }
     }
 
     private void InitializeAmmoText()
