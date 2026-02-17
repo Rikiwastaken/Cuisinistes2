@@ -91,6 +91,8 @@ public class EnemySpawner : MonoBehaviour
                         newenemy.SetActive(true);
                         newenemy.GetComponent<HealthScript>().HP = newenemy.GetComponent<HealthScript>().MaxHealth;
                         newenemy.GetComponent<EnemyNavigation>().engagedPlayer = false;
+                        newenemy.GetComponent<BoxCollider>().enabled = true;
+                        newenemy.GetComponent<NavMeshAgent>().enabled = true;
                         newenemy.GetComponent<EnemyNavigation>().Lifebar.fillAmount = 1f;
                         newenemy.GetComponent<EnemyNavigation>().Canvas.gameObject.SetActive(false);
                     }

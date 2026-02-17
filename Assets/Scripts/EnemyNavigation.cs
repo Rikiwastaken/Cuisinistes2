@@ -131,9 +131,7 @@ public class EnemyNavigation : MonoBehaviour
 
             if (newratio <= 0)
             {
-                EnemySpawner.instance.SpawnedEnemylist.Remove(gameObject);
-                gameObject.SetActive(false);
-                EnemySpawner.instance.EnemiesToRecycle.Add(gameObject);
+                RecycleEnemy();
             }
 
             return;
@@ -207,7 +205,6 @@ public class EnemyNavigation : MonoBehaviour
 
             if (isinmelee && (!Animation.isPlaying || Animation.clip != Attack))
             {
-                Debug.Log("finisfhing attack");
                 isinmelee = false;
                 if (sqrDistToPlayer <= minrangeformelee * minrangeformelee)
                 {
@@ -225,6 +222,27 @@ public class EnemyNavigation : MonoBehaviour
             SoundManager.instance.PlaySFXFromList(Idlesound, 0.05f, transform);
         }
 
+
+        // lifebarorientation
+
+        if (Canvas.gameObject.activeSelf)
+        {
+            Canvas.LookAt(player);
+        }
+
+    }
+
+    public void RecycleEnemy()
+    {
+        EnemySpawner.instance.SpawnedEnemylist.Remove(gameObject);
+        gameObject.SetActive(false);
+        ded = false;
+        foreach (Material mat in enemymat)
+        {
+            mat.SetFloat("_DissolvePercent", 1f);
+        }
+
+        EnemySpawner.instance.EnemiesToRecycle.Add(gameObject);
     }
 
     private bool HasLineOfSight()
@@ -344,8 +362,7 @@ public class EnemyNavigation : MonoBehaviour
         EnemySpawner.instance.SpawnedEnemylist.Remove(gameObject);
         if (immediate)
         {
-            gameObject.SetActive(false);
-            EnemySpawner.instance.EnemiesToRecycle.Add(gameObject);
+            RecycleEnemy();
             return;
         }
 

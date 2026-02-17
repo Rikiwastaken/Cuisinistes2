@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6633728134310714700}
   - component: {fileID: 3983080921171305290}
   - component: {fileID: 4271628618653209857}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: LifeBarBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,6 +216,7 @@ MonoBehaviour:
   invframes: 0
   timebeforeregen: 0
   regenpersecond: 0
+  HurtPostProcessing: {fileID: 0}
 --- !u!65 &2550037940614220385
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -248,7 +249,7 @@ GameObject:
   - component: {fileID: 5755216685628303474}
   - component: {fileID: 5959966999276354590}
   - component: {fileID: 2492216953354984197}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: LifeBarFilling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +325,7 @@ GameObject:
   - component: {fileID: 2020973866206605659}
   - component: {fileID: 958994515106697387}
   - component: {fileID: 8447579324143943222}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
