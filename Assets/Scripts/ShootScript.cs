@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ShootScript : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class ShootScript : MonoBehaviour
         public TextMeshProUGUI ReserveAmmoTMP;
         public TextMeshProUGUI CurrentClipTMP;
 
+
     }
 
     private float previousshoot;
@@ -50,6 +52,7 @@ public class ShootScript : MonoBehaviour
     private InputAction WeaponChangeAction;
     private InputAction ReloadAction;
     private float previousReloadInput;
+    public List<Image> SelectedSprite;
 
 
     private void Awake()
@@ -162,6 +165,16 @@ public class ShootScript : MonoBehaviour
 
     }
 
+    private void UpdateSelectedSprite()
+    {
+        foreach (Image SelectedSprite in SelectedSprite)
+        {
+            SelectedSprite.gameObject.SetActive(false);
+        }
+
+        SelectedSprite[currentgun].gameObject.SetActive(true);
+
+    }
     private void ChangeGun(int newGunID)
     {
         currentgun = newGunID;
@@ -177,7 +190,7 @@ public class ShootScript : MonoBehaviour
         currentGunGO.transform.localScale = activegunclass.GunScale;
         currentGunGO.transform.localRotation = Quaternion.Euler(activegunclass.GunRotation);
         SetLayerAllChildren(currentGunGO.transform, LayerMask.NameToLayer("Weapons"));
-
+        UpdateSelectedSprite();
     }
     private void Reload()
     {
