@@ -1340,18 +1340,18 @@ MonoBehaviour:
   MainCamera: {fileID: 1023333629102334493}
   GunList:
   - GunModel: {fileID: 2962789918115722720, guid: 46ed370b18d9cdb42a216c5eac4e86e3, type: 3}
-    GunPosition: {x: 1.57, y: -1.21, z: 2.18}
-    GunRotation: {x: 0, y: 162.419, z: 0}
+    GunPosition: {x: 0.5, y: -0.3, z: 0.8}
+    GunRotation: {x: 0, y: 180, z: 0}
     GunScale: {x: 1, y: 1, z: 1}
     Bulletprefab: {fileID: 9034123730837891189, guid: edc69ef06ae621944823d093ed181627, type: 3}
     damage: 5
     recoil: 1
-    bulletspeed: 8
+    bulletspeed: 20
     GunCD: 0.5
     currentclip: 8
     clipsize: 8
     reserveammo: 16
-    wheretospawnbullet: {x: 0, y: 0.625, z: -0.475}
+    wheretospawnbullet: {x: 0, y: 0.25, z: 0}
     ShootAnim: {fileID: 9003156271695032890, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
     ReloadAnim: {fileID: -4891696003755285387, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
     ShootSFX:
@@ -1365,18 +1365,18 @@ MonoBehaviour:
     ReserveAmmoTMP: {fileID: 1372136017296284525}
     CurrentClipTMP: {fileID: 883676527848524228}
   - GunModel: {fileID: 2962789918115722720, guid: 14ccddb7d9b62ea46b4edb6a2baea2c8, type: 3}
-    GunPosition: {x: 1.57, y: -1.13, z: 2.32}
-    GunRotation: {x: 9.6, y: 175.4, z: 0}
-    GunScale: {x: -1, y: 1, z: -1}
+    GunPosition: {x: 0.45, y: -0.4, z: 0.9}
+    GunRotation: {x: 0, y: 0, z: 0}
+    GunScale: {x: 1, y: 1, z: 1}
     Bulletprefab: {fileID: 9034123730837891189, guid: 08701053fd0a3fb438781149f1a62f8a, type: 3}
     damage: 3
     recoil: 0
-    bulletspeed: 10
+    bulletspeed: 20
     GunCD: 0.2
     currentclip: 30
     clipsize: 30
     reserveammo: 30
-    wheretospawnbullet: {x: 0, y: 0.461, z: 1.363}
+    wheretospawnbullet: {x: 0, y: 0.2, z: 0.2}
     ShootAnim: {fileID: -4575775917281549716, guid: 3167744210a8563bea28f4fcb0348983, type: 3}
     ReloadAnim: {fileID: -6317932003601483521, guid: 3167744210a8563bea28f4fcb0348983, type: 3}
     ShootSFX:
@@ -1390,18 +1390,18 @@ MonoBehaviour:
     ReserveAmmoTMP: {fileID: 4393277931692648783}
     CurrentClipTMP: {fileID: 6072489959606445292}
   - GunModel: {fileID: 2962789918115722720, guid: b0595aa90a4db0048b1d20153b432564, type: 3}
-    GunPosition: {x: 1.57, y: -1.13, z: 2.32}
+    GunPosition: {x: 0.5, y: -0.3, z: 0.925}
     GunRotation: {x: 0, y: 0, z: 0}
     GunScale: {x: 1, y: 1, z: 1}
     Bulletprefab: {fileID: 8148637872722096646, guid: 9b7ce436f33846f4e91b8d6167bbe38a, type: 3}
     damage: 2
     recoil: 0
-    bulletspeed: 15
+    bulletspeed: 20
     GunCD: 0.5
     currentclip: 6
     clipsize: 6
     reserveammo: 12
-    wheretospawnbullet: {x: 0, y: 0.461, z: 1.363}
+    wheretospawnbullet: {x: 0, y: 0.1, z: 0}
     ShootAnim: {fileID: -6500431357784912164, guid: cccd5dfba52cf0e8e8e030ba0f25b00c, type: 3}
     ReloadAnim: {fileID: -7527877632037857128, guid: cccd5dfba52cf0e8e8e030ba0f25b00c, type: 3}
     ShootSFX:
@@ -1414,6 +1414,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 2e7f547d815233b46a9678af7b5ad44b, type: 3}
     ReserveAmmoTMP: {fileID: 8704634350139425386}
     CurrentClipTMP: {fileID: 3541501672061897883}
+  currentGunGO: {fileID: 0}
   EmptyCliPSFX:
   - {fileID: 8300000, guid: 942e349fb322e714680f7ec1f6c54e99, type: 3}
   - {fileID: 8300000, guid: daed41aee47af994684bb393be2175eb, type: 3}

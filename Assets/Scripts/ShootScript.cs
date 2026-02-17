@@ -45,7 +45,7 @@ public class ShootScript : MonoBehaviour
     [Header("GunVariables")]
     public List<GunClass> GunList;
     private int currentgun;
-    private GameObject currentGunGO;
+    public GameObject currentGunGO;
     private int GunCoolDown;
     public List<AudioClip> EmptyCliPSFX;
     private float previousscroll;
@@ -194,7 +194,7 @@ public class ShootScript : MonoBehaviour
         }
         currentGunGO = Instantiate(activegunclass.GunModel);
         currentGunGO.transform.parent = MainCamera;
-        currentGunGO.transform.localPosition = activegunclass.GunPosition - new Vector3(0, 2, 0);
+        currentGunGO.transform.localPosition = activegunclass.GunPosition;
         currentGunGO.transform.localScale = activegunclass.GunScale;
         currentGunGO.transform.localRotation = Quaternion.Euler(activegunclass.GunRotation);
         SetLayerAllChildren(currentGunGO.transform, LayerMask.NameToLayer("Weapons"));
@@ -259,6 +259,7 @@ public class ShootScript : MonoBehaviour
         GameObject newbullet = Instantiate(GunList[currentgun].Bulletprefab);
         newbullet.transform.parent = currentGunGO.transform;
         newbullet.transform.localPosition = GunList[currentgun].wheretospawnbullet;
+        newbullet.transform.parent = null;
         newbullet.transform.forward = currentGunGO.transform.forward;
         BulletScript bulletscript = newbullet.GetComponentInChildren<BulletScript>();
 
@@ -269,8 +270,6 @@ public class ShootScript : MonoBehaviour
         {
             SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
         }
-
-        newbullet.transform.parent = null;
 
 
     }
@@ -314,6 +313,7 @@ public class ShootScript : MonoBehaviour
 
             GameObject newBullet = Instantiate(GunList[currentgun].Bulletprefab, Vector3.zero, Quaternion.identity);
             newBullet.transform.parent = currentGunGO.transform;
+            //newBullet.transform.localPosition = GunList[currentgun].wheretospawnbullet;
             newBullet.transform.localPosition = GunList[currentgun].wheretospawnbullet;
             newBullet.transform.forward = spreadDirection;
 
