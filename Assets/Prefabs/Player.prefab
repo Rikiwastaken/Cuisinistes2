@@ -1392,9 +1392,9 @@ MonoBehaviour:
     GunRotation: {x: 0, y: 0, z: 0}
     GunScale: {x: 1, y: 1, z: 1}
     Bulletprefab: {fileID: 9034123730837891189, guid: 08701053fd0a3fb438781149f1a62f8a, type: 3}
-    damage: 3
+    damage: 2
     recoil: 0
-    bulletspeed: 10
+    bulletspeed: 15
     GunCD: 0.5
     currentclip: 6
     clipsize: 6

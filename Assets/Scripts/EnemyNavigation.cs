@@ -43,6 +43,11 @@ public class EnemyNavigation : MonoBehaviour
     public float freezetimeaftershooting;
     private int freezetimeaftershootingcounter;
 
+    [Header("Melee Variables")]
+
+    public float minrangeformelee;
+    private bool isinmelee;
+    public float meleedamage;
 
 
     [Header("dispawn")]
@@ -187,8 +192,24 @@ public class EnemyNavigation : MonoBehaviour
                         nextShootTime = Time.time + Gun.GunCD;
                     }
                 }
+                else
+                {
+                    if (sqrDistToPlayer <= minrangeformelee * minrangeformelee && HasLineOfSight())
+                    {
+                        isinmelee = true;
+                        Animation.clip = Attack;
+                        Animation.Play();
+                    }
+                }
             }
-
+            if (isinmelee && (!Animation.isPlaying || Animation.clip != Attack))
+            {
+                isinmelee = false;
+                if (sqrDistToPlayer <= minrangeformelee * minrangeformelee)
+                {
+                    player.GetComponent<HealthScript>().TakeDamage(meleedamage);
+                }
+            }
         }
 
         // Idle Sounds
