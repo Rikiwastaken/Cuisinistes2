@@ -490,26 +490,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 2818514293851467102, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
-      propertyPath: EnemyHolder
-      value: 
-      objectReference: {fileID: 1172993733}
-    - target: {fileID: 2818514293851467102, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
-      propertyPath: totalenemyonthemap
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2818514293851467102, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
-      propertyPath: minplayerrangewheretospawn
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5466327627364775251, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 5886878782515911745, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: ed895608564b7d9409e855e85b7ce903, type: 2}
+      objectReference: {fileID: 23800000, guid: b8592dca74bfdb448abbb43398086adf, type: 2}
     - target: {fileID: 8993208008032642761, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
