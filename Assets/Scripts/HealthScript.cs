@@ -74,6 +74,7 @@ public class HealthScript : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        Debug.Log(damage);
         if (invframecounter == 0)
         {
             if (currentarmor > 0)

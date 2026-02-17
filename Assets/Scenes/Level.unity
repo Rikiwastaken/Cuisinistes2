@@ -251,12 +251,12 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: GunList.Array.data[0].bulletspeed
-      value: 8
+      propertyPath: GunList.Array.data[2].damage
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: GunList.Array.data[1].bulletspeed
-      value: 10
+      propertyPath: GunList.Array.data[2].bulletspeed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
