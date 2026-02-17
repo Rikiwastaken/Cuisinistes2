@@ -58,6 +58,9 @@ public class EnemyNavigation : MonoBehaviour
     private float sqrGunRange;
 
 
+    [Header("drop")]
+    public int dropratepercent;
+    public GameObject AmmoBoxPrefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -233,6 +236,17 @@ public class EnemyNavigation : MonoBehaviour
         }
     }
 
+
+    public void TriggerDrop()
+    {
+        int randomvalue = UnityEngine.Random.Range(0, 100);
+        if (randomvalue <= dropratepercent)
+        {
+            GameObject newammobox = Instantiate(AmmoBoxPrefab);
+            newammobox.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            newammobox.GetComponent<AmmoBoxScript>().InitializeAmmoBox();
+        }
+    }
     public void PlayDeathAnim(bool immediate = false)
     {
         EnemySpawner.instance.SpawnedEnemylist.Remove(gameObject);
@@ -302,7 +316,7 @@ public class EnemyNavigation : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, GunRange);
 
         // Eye position
-        Vector3 eyePos = transform.position + new Vector3(0f, agent.height / 2f, 0f);
+        Vector3 eyePos = transform.position + new Vector3(0f, GetComponent<NavMeshAgent>().height / 2f, 0f);
 
 
         // Draw ray to player (if exists)

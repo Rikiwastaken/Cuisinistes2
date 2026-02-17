@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class ShootScript : MonoBehaviour
 {
 
+    public static ShootScript instance;
+
     private InputAction shootAction;
 
     [Serializable]
@@ -49,6 +51,13 @@ public class ShootScript : MonoBehaviour
     private InputAction ReloadAction;
     private float previousReloadInput;
 
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -59,23 +68,7 @@ public class ShootScript : MonoBehaviour
         InitializeAmmoText();
     }
 
-    private void ChangeGun(int newGunID)
-    {
-        currentgun = newGunID;
 
-        GunClass activegunclass = GunList[currentgun];
-        if (currentGunGO != null)
-        {
-            DestroyImmediate(currentGunGO);
-        }
-        currentGunGO = Instantiate(activegunclass.GunModel);
-        currentGunGO.transform.parent = MainCamera;
-        currentGunGO.transform.localPosition = activegunclass.GunPosition - new Vector3(0, 2, 0);
-        currentGunGO.transform.localScale = activegunclass.GunScale;
-        currentGunGO.transform.localRotation = Quaternion.Euler(activegunclass.GunRotation);
-        SetLayerAllChildren(currentGunGO.transform, LayerMask.NameToLayer("Weapons"));
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -168,6 +161,24 @@ public class ShootScript : MonoBehaviour
         previousReloadInput = reloadinput;
 
     }
+
+    private void ChangeGun(int newGunID)
+    {
+        currentgun = newGunID;
+
+        GunClass activegunclass = GunList[currentgun];
+        if (currentGunGO != null)
+        {
+            DestroyImmediate(currentGunGO);
+        }
+        currentGunGO = Instantiate(activegunclass.GunModel);
+        currentGunGO.transform.parent = MainCamera;
+        currentGunGO.transform.localPosition = activegunclass.GunPosition - new Vector3(0, 2, 0);
+        currentGunGO.transform.localScale = activegunclass.GunScale;
+        currentGunGO.transform.localRotation = Quaternion.Euler(activegunclass.GunRotation);
+        SetLayerAllChildren(currentGunGO.transform, LayerMask.NameToLayer("Weapons"));
+
+    }
     private void Reload()
     {
 
@@ -192,7 +203,7 @@ public class ShootScript : MonoBehaviour
         }
     }
 
-    private void InitializeAmmoText()
+    public void InitializeAmmoText()
     {
         foreach (GunClass gunClass in GunList)
         {

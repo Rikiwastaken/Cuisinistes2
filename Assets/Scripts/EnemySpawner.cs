@@ -82,8 +82,6 @@ public class EnemySpawner : MonoBehaviour
                 if (newpos != Vector3.zero)
                 {
 
-                    Debug.Log(newpos);
-
                     int randomID = UnityEngine.Random.Range(0, enemyprefabList.Count);
                     GameObject newenemy = null;
                     if (EnemiesToRecycle.Count > 0)

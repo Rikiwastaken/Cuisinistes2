@@ -165,16 +165,26 @@ MonoBehaviour:
     GunModel: {fileID: 0}
     GunPosition: {x: 0, y: 0, z: 0}
     GunRotation: {x: 0, y: 0, z: 0}
+    GunScale: {x: 1, y: 1, z: 1}
     Bulletprefab: {fileID: 273267796892247371, guid: 95186d09905e4104ca59472ba59a3872, type: 3}
     damage: 10
     recoil: 0
     bulletspeed: 3
     GunCD: 4
+    currentclip: 0
+    clipsize: 0
+    reserveammo: 0
     wheretospawnbullet: {x: 0, y: 0.4, z: 0.3}
+    ShootAnim: {fileID: 0}
+    ReloadAnim: {fileID: 0}
     ShootSFX: []
     ReloadSFX: []
+    ReserveAmmoTMP: {fileID: 0}
+    CurrentClipTMP: {fileID: 0}
   freezetimeaftershooting: 0.6
   durationbeforedespawn: 10
+  dropratepercent: 25
+  AmmoBoxPrefab: {fileID: 8594776281252626752, guid: a328dada7dd3de44f9168da23e4ef451, type: 3}
 --- !u!114 &3247550930479452848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthScript
   HP: 50
   MaxHealth: 20
+  invframes: 0
 --- !u!65 &2550037940614220385
 BoxCollider:
   m_ObjectHideFlags: 0

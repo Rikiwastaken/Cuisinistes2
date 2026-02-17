@@ -54,6 +54,7 @@ public class HealthScript : MonoBehaviour
                 if (HP <= 0 && !enemyNavigation.ded)
                 {
                     enemyNavigation.PlayDeathAnim();
+                    enemyNavigation.TriggerDrop();
                 }
                 else
                 {
