@@ -270,6 +270,8 @@ public class ShootScript : MonoBehaviour
             SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
         }
 
+        newbullet.transform.parent = null;
+
 
     }
 
@@ -318,6 +320,8 @@ public class ShootScript : MonoBehaviour
             BulletScript bulletScript = newBullet.GetComponentInChildren<BulletScript>();
 
             bulletScript.InitializeBullet(spreadDirection, GunList[currentgun].bulletspeed, 0, GunList[currentgun].damage, GunList[currentgun].recoil);
+            newBullet.transform.parent = null;
+
         }
 
         // Play shooting sound

@@ -131,7 +131,9 @@ public class EnemyNavigation : MonoBehaviour
 
             if (newratio <= 0)
             {
-                Destroy(gameObject);
+                EnemySpawner.instance.SpawnedEnemylist.Remove(gameObject);
+                gameObject.SetActive(false);
+                EnemySpawner.instance.EnemiesToRecycle.Add(gameObject);
             }
 
             return;

@@ -103,8 +103,8 @@ MonoBehaviour:
   EnemiesToRecycle: []
   durationBetweenEnemySpawn: 1
   totalenemyonthemap: 10
-  minplayerrangewheretospawn: 10
-  maxplayerrangewheretospawn: 30
+  minplayerrangewheretospawn: 15
+  maxplayerrangewheretospawn: 35
   EnemyHolder: {fileID: 0}
 --- !u!1001 &1181291767732638905
 PrefabInstance:

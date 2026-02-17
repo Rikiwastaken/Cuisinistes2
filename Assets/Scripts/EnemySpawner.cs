@@ -146,6 +146,10 @@ public class EnemySpawner : MonoBehaviour
             Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
             Vector3 candidate = playerPos + MovementController.instance.transform.forward * 10f + dir * distance;
 
+
+            if (Vector3.Distance(candidate, playerPos) < minplayerrangewheretospawn)
+                continue;
+
             if (NavMesh.SamplePosition(candidate, out NavMeshHit hit, 2f, NavMesh.AllAreas))
             {
                 Vector3 spawnPos = hit.position;

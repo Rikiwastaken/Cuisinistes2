@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class HealthScript : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class HealthScript : MonoBehaviour
 
     public float regenpersecond;
 
-
+    public Volume HurtPostProcessing;
 
     private void Start()
     {
@@ -61,6 +62,7 @@ public class HealthScript : MonoBehaviour
             {
                 HP += regenpersecond * Time.deltaTime;
                 UpdateTexts();
+                ManageHurtPostProcessing();
             }
         }
 
@@ -74,6 +76,22 @@ public class HealthScript : MonoBehaviour
             movementController.HPTMP.text += "\nArmor : " + (int)(currentarmor);
         }
     }
+
+    private void ManageHurtPostProcessing()
+    {
+        if (HP < MaxHealth / 2)
+        {
+            HurtPostProcessing.weight = 1 - (HP - 10f) / (MaxHealth / 2f - 10f);
+        }
+        else
+        {
+            if (HurtPostProcessing.weight != 0)
+            {
+                HurtPostProcessing.weight = 0;
+            }
+        }
+    }
+
     public void TakeDamage(float damage)
     {
         if (invframecounter == 0)
@@ -102,7 +120,7 @@ public class HealthScript : MonoBehaviour
                 timetillregenstarts = Time.time + timebeforeregen;
 
                 soundManager.PlaySFXFromList(movementController.playerDamageSounds, 0.05f, movementController.transform);
-
+                ManageHurtPostProcessing();
                 UpdateTexts();
                 invframecounter = (int)(invframes / Time.fixedDeltaTime);
             }
