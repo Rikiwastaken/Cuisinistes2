@@ -29,10 +29,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2077028507436550674}
+  - {fileID: 8171619426066394297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1970798800450678265
+--- !u!1001 &8569740892001471314
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -90,32 +90,33 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 244376175388931430}
+      addedObject: {fileID: 1134552729657584714}
   m_SourcePrefab: {fileID: 100100000, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
---- !u!1 &1700327390970761384 stripped
+--- !u!4 &8171619426066394297 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
+  m_PrefabInstance: {fileID: 8569740892001471314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8803618346897389059 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
-  m_PrefabInstance: {fileID: 1970798800450678265}
+  m_PrefabInstance: {fileID: 8569740892001471314}
   m_PrefabAsset: {fileID: 0}
---- !u!111 &244376175388931430
+--- !u!111 &1134552729657584714
 Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700327390970761384}
+  m_GameObject: {fileID: 8803618346897389059}
   m_Enabled: 1
   serializedVersion: 4
   m_Animation: {fileID: 9003156271695032890, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
   m_Animations:
   - {fileID: 9003156271695032890, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
+  - {fileID: -4891696003755285387, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
---- !u!4 &2077028507436550674 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
-  m_PrefabInstance: {fileID: 1970798800450678265}
-  m_PrefabAsset: {fileID: 0}

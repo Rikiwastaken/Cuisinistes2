@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ShootScript : MonoBehaviour
 {
 
-    public InputAction shootAction;
+    private InputAction shootAction;
 
     [Serializable]
     public class GunClass
@@ -14,16 +15,27 @@ public class ShootScript : MonoBehaviour
         public GameObject GunModel;
         public Vector3 GunPosition;
         public Vector3 GunRotation;
+        public Vector3 GunScale = Vector3.one;
         public GameObject Bulletprefab;
         public float damage;
         public float recoil;
         public float bulletspeed;
         public float GunCD;
+        public int currentclip;
+        public int clipsize;
+        public int reserveammo;
         public Vector3 wheretospawnbullet;
+        public AnimationClip ShootAnim;
+        public AnimationClip ReloadAnim;
         public List<AudioClip> ShootSFX;
         public List<AudioClip> ReloadSFX;
+
+        public TextMeshProUGUI ReserveAmmoTMP;
+        public TextMeshProUGUI CurrentClipTMP;
+
     }
 
+    private float previousshoot;
     public Transform MainCamera;
 
     [Header("GunVariables")]
@@ -31,12 +43,20 @@ public class ShootScript : MonoBehaviour
     private int currentgun;
     private GameObject currentGunGO;
     private int GunCoolDown;
+    public List<AudioClip> EmptyCliPSFX;
+    private float previousscroll;
+    private InputAction WeaponChangeAction;
+    private InputAction ReloadAction;
+    private float previousReloadInput;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         shootAction = InputSystem.actions.FindAction("Shoot");
+        WeaponChangeAction = InputSystem.actions.FindAction("ChangeWeapon");
+        ReloadAction = InputSystem.actions.FindAction("Reload");
         ChangeGun(0);
+        InitializeAmmoText();
     }
 
     private void ChangeGun(int newGunID)
@@ -50,7 +70,8 @@ public class ShootScript : MonoBehaviour
         }
         currentGunGO = Instantiate(activegunclass.GunModel);
         currentGunGO.transform.parent = MainCamera;
-        currentGunGO.transform.localPosition = activegunclass.GunPosition;
+        currentGunGO.transform.localPosition = activegunclass.GunPosition - new Vector3(0, 2, 0);
+        currentGunGO.transform.localScale = activegunclass.GunScale;
         currentGunGO.transform.localRotation = Quaternion.Euler(activegunclass.GunRotation);
         SetLayerAllChildren(currentGunGO.transform, LayerMask.NameToLayer("Weapons"));
 
@@ -59,26 +80,131 @@ public class ShootScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //shoot
         if (GunCoolDown > 0)
         {
             GunCoolDown--;
         }
         if (shootAction.ReadValue<float>() != 0)
         {
-            if (GunCoolDown == 0)
+            if (GunCoolDown == 0 && (currentGunGO.GetComponentInChildren<Animation>().clip != GunList[currentgun].ReloadAnim) || !currentGunGO.GetComponentInChildren<Animation>().isPlaying)
             {
+                if (GunList[currentgun].currentclip > 0)
+                {
+                    Shoot();
+                    GunList[currentgun].currentclip--;
+                    GunList[currentgun].CurrentClipTMP.text = GunList[currentgun].currentclip + "/" + GunList[currentgun].clipsize;
+                }
+                else if (GunList[currentgun].reserveammo > 0)
+                {
+                    Reload();
+                }
+                else if (previousshoot == 0)
+                {
+                    GunCoolDown = (int)(Mathf.Max(GunList[currentgun].GunCD / Time.deltaTime, GunList[currentgun].ShootAnim.length / Time.deltaTime));
+                    previousshoot = 1;
+                    if (EmptyCliPSFX.Count > 0)
+                    {
 
-                Shoot();
+                        SoundManager.instance.PlaySFXFromList(EmptyCliPSFX, 0.05f, transform);
+                    }
+                }
 
 
             }
         }
+        else
+        {
+            previousshoot = 0;
+        }
 
+        //make gun appear
+        if (currentGunGO != null && currentGunGO.transform.localPosition.y < GunList[currentgun].GunPosition.y)
+        {
+            currentGunGO.transform.localPosition += new Vector3(0f, 5 * Time.deltaTime, 0f);
+        }
+
+        //Change gun
+        float weaponchangeval = WeaponChangeAction.ReadValue<float>();
+
+        if (weaponchangeval != 0 && previousscroll != weaponchangeval && !currentGunGO.GetComponentInChildren<Animation>().isPlaying)
+        {
+            if (weaponchangeval > 1)
+            {
+                if (currentgun < GunList.Count - 1)
+                {
+                    currentgun++;
+                }
+                else
+                {
+                    currentgun = 0;
+                }
+            }
+            else
+            {
+                if (currentgun > 0)
+                {
+                    currentgun--;
+                }
+                else
+                {
+                    currentgun = GunList.Count - 1;
+                }
+            }
+            ChangeGun(currentgun);
+        }
+        previousscroll = weaponchangeval;
+
+
+        //manualReload
+
+        float reloadinput = ReloadAction.ReadValue<float>();
+
+        if (reloadinput != 0 && !currentGunGO.GetComponentInChildren<Animation>().isPlaying && reloadinput != previousReloadInput && GunList[currentgun].currentclip < GunList[currentgun].clipsize && GunList[currentgun].reserveammo > 0)
+        {
+            Reload();
+        }
+
+        previousReloadInput = reloadinput;
+
+    }
+    private void Reload()
+    {
+
+        currentGunGO.GetComponentInChildren<Animation>().clip = GunList[currentgun].ReloadAnim;
+        currentGunGO.GetComponentInChildren<Animation>().Play();
+        int bulletneeded = GunList[currentgun].clipsize - GunList[currentgun].currentclip;
+        if (GunList[currentgun].reserveammo >= bulletneeded)
+        {
+            GunList[currentgun].currentclip = GunList[currentgun].clipsize;
+            GunList[currentgun].reserveammo -= bulletneeded;
+        }
+        else
+        {
+            GunList[currentgun].currentclip = GunList[currentgun].reserveammo;
+            GunList[currentgun].reserveammo = 0;
+        }
+        GunList[currentgun].CurrentClipTMP.text = GunList[currentgun].currentclip + "/" + GunList[currentgun].clipsize;
+        GunList[currentgun].ReserveAmmoTMP.text = GunList[currentgun].reserveammo + "";
+        if (GunList[currentgun].ReloadSFX.Count > 0)
+        {
+            SoundManager.instance.PlaySFXFromList(GunList[currentgun].ReloadSFX, 0.05f, transform);
+        }
+    }
+
+    private void InitializeAmmoText()
+    {
+        foreach (GunClass gunClass in GunList)
+        {
+            gunClass.CurrentClipTMP.text = gunClass.currentclip + "/" + gunClass.clipsize;
+            gunClass.ReserveAmmoTMP.text = gunClass.reserveammo + "";
+        }
     }
 
     private void Shoot()
     {
         GunCoolDown = (int)(GunList[currentgun].GunCD / Time.deltaTime);
+        currentGunGO.GetComponentInChildren<Animation>().clip = GunList[currentgun].ShootAnim;
         currentGunGO.GetComponentInChildren<Animation>().Play();
         Vector3 ScreenCentreCoordinates = new Vector3(0.5f, 0.5f, 0f);
         Vector3 projectileDestination = new Vector3();
@@ -104,11 +230,14 @@ public class ShootScript : MonoBehaviour
         newbullet.transform.forward = currentGunGO.transform.forward;
         BulletScript bulletscript = newbullet.GetComponentInChildren<BulletScript>();
 
-        bulletscript.InitializeBullet(direction, GunList[currentgun].bulletspeed, gameObject, GunList[currentgun].damage, GunList[currentgun].recoil);
+        bulletscript.InitializeBullet(direction, GunList[currentgun].bulletspeed, 0, GunList[currentgun].damage, GunList[currentgun].recoil);
 
 
+        if (GunList[currentgun].ShootSFX.Count > 0)
+        {
+            SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
+        }
 
-        SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
 
     }
 

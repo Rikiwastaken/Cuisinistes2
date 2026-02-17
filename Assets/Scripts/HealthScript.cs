@@ -7,33 +7,64 @@ public class HealthScript : MonoBehaviour
 
     public float MaxHealth;
 
+    public float invframes;
+    private int invframecounter;
+
+    bool isplayer;
+
+    private EnemyNavigation enemyNavigation;
+
+    private MovementController movementController;
+
     private void Start()
     {
         HP = MaxHealth;
+        isplayer = GetComponent<MovementController>() != null;
+        if (isplayer)
+        {
+            movementController = GetComponent<MovementController>();
+        }
+        else
+        {
+            enemyNavigation = GetComponent<EnemyNavigation>();
+        }
+    }
+
+    private void Update()
+    {
+        if (invframecounter > 0)
+        {
+            invframecounter--;
+        }
     }
     public void TakeDamage(float damage)
     {
-        HP -= damage;
-        if (GetComponent<EnemyNavigation>() != null)
+        if (invframecounter == 0)
         {
-            GetComponent<EnemyNavigation>().engagedPlayer = true;
-
-            if (HP <= 0 && !GetComponent<EnemyNavigation>().ded)
+            HP -= damage;
+            if (isplayer)
             {
-                GetComponent<EnemyNavigation>().PlayDeathAnim();
+                movementController.HPTMP.text = "HP : " + HP;
+                invframecounter = (int)(invframes / Time.fixedDeltaTime);
             }
             else
             {
-                if (!GetComponent<EnemyNavigation>().Canvas.gameObject.activeSelf)
+                enemyNavigation.engagedPlayer = true;
+
+                if (HP <= 0 && !enemyNavigation.ded)
                 {
-                    GetComponent<EnemyNavigation>().Canvas.gameObject.SetActive(true);
+                    enemyNavigation.PlayDeathAnim();
                 }
-                GetComponent<EnemyNavigation>().Lifebar.fillAmount = HP / MaxHealth;
+                else
+                {
+                    if (!enemyNavigation.Canvas.gameObject.activeSelf)
+                    {
+                        enemyNavigation.Canvas.gameObject.SetActive(true);
+                    }
+                    enemyNavigation.Lifebar.fillAmount = HP / MaxHealth;
+                }
             }
         }
-        if (GetComponent<MovementController>() != null)
-        {
-            GetComponent<MovementController>().HPTMP.text = "HP : " + HP;
-        }
+
     }
 }

@@ -3,17 +3,17 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
 
-    public GameObject Emiter;
+    public int EmiterType; // 0 = player, 1=enemy
     public Vector3 Direction;
     public float Speed;
     public float Damage;
     public float Recoil;
 
+    private int duration;
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("collided with : " + other.transform.name);
-        if (other.gameObject.layer != Emiter.gameObject.layer)
+        if ((other.gameObject.GetComponent<MovementController>() != null && EmiterType == 1) || (other.gameObject.GetComponent<EnemyNavigation>() != null && EmiterType == 0))
         {
             bullethitlogic(other.gameObject);
         }
@@ -22,8 +22,7 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collided with : " + other.name);
-        if (other.gameObject.layer != Emiter.gameObject.layer)
+        if ((other.gameObject.GetComponent<MovementController>() != null && EmiterType == 1) || (other.gameObject.GetComponent<EnemyNavigation>() != null && EmiterType == 0))
         {
             bullethitlogic(other.gameObject);
         }
@@ -34,6 +33,11 @@ public class BulletScript : MonoBehaviour
     void FixedUpdate()
     {
         transform.position += Direction * Speed * Time.fixedDeltaTime;
+        duration++;
+        if (duration > 5 / Time.deltaTime)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void bullethitlogic(GameObject collision)
@@ -49,9 +53,9 @@ public class BulletScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void InitializeBullet(Vector3 direction, float speed, GameObject emiter, float damage, float recoil)
+    public void InitializeBullet(Vector3 direction, float speed, int emiter, float damage, float recoil)
     {
-        Emiter = emiter;
+        EmiterType = emiter;
         Direction = direction;
         Speed = speed;
         Damage = damage;

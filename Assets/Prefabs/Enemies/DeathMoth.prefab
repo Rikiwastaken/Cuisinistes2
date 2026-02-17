@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   engagedPlayer: 0
   AgroRange: 20
+  movingspeed: 5
   delaybetweendestinatinationchecks: 0.3
   mindistbeforefiring: 0
   debug: 1
@@ -156,6 +157,8 @@ MonoBehaviour:
   Attack: {fileID: -1849552661104503501, guid: f2d5872472cd52bda991493d845f35d6, type: 3}
   Die: {fileID: -8379630200991454149, guid: f2d5872472cd52bda991493d845f35d6, type: 3}
   Canvas: {fileID: 7183150399480153850}
+  Lifebar: {fileID: 2492216953354984197}
+  ded: 0
   Shoots: 1
   GunRange: 25
   Gun:
@@ -171,6 +174,7 @@ MonoBehaviour:
     ShootSFX: []
     ReloadSFX: []
   freezetimeaftershooting: 0.6
+  durationbeforedespawn: 10
 --- !u!114 &3247550930479452848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthScript
   HP: 50
+  MaxHealth: 15
 --- !u!65 &2550037940614220385
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -298,7 +303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7183150399480153850
 RectTransform:
   m_ObjectHideFlags: 0
