@@ -46,30 +46,6 @@ public class SoundManager : MonoBehaviour
             vol = SFXVol;
         }
 
-        GameObject newAudioSource = new GameObject();
-        newAudioSource.name = clip.name;
-        newAudioSource.transform.parent = transform;
-        if (Emiter == null)
-        {
-            newAudioSource.transform.localPosition = Vector3.zero;
-        }
-        else
-        {
-            newAudioSource.transform.position = Emiter.position;
-        }
-
-        IndividualSoundScript ISS = newAudioSource.AddComponent<IndividualSoundScript>();
-        ISS.basevolume = vol;
-        ISS.Emiter = Emiter;
-        if (MovementController.instance != null)
-        {
-            ISS.PlayerTransform = MovementController.instance.transform;
-        }
-        ISS.maxdistancetonullify = maxdistancetonullify;
-        AudioSource AS = newAudioSource.AddComponent<AudioSource>();
-        AS.outputAudioMixerGroup = AudioMixer.FindMatchingGroups("SFX")[0];
-        AS.clip = clip;
-
         float volume = 1;
         if (MovementController.instance)
         {
@@ -85,11 +61,42 @@ public class SoundManager : MonoBehaviour
             }
         }
 
+        if (volume > 0f)
+        {
+            GameObject newAudioSource = new GameObject();
+            newAudioSource.name = clip.name;
+            newAudioSource.transform.parent = transform;
+            if (Emiter == null)
+            {
+                newAudioSource.transform.localPosition = Vector3.zero;
+            }
+            else
+            {
+                newAudioSource.transform.position = Emiter.position;
+            }
 
-        AS.volume = vol * volume;
-        AS.pitch = 1f + UnityEngine.Random.Range(-pitchrandomness, pitchrandomness);
-        AS.Play();
-        yield return new WaitForSeconds(AS.clip.length);
-        Destroy(newAudioSource);
+            IndividualSoundScript ISS = newAudioSource.AddComponent<IndividualSoundScript>();
+            ISS.basevolume = vol;
+            ISS.Emiter = Emiter;
+            if (MovementController.instance != null)
+            {
+                ISS.PlayerTransform = MovementController.instance.transform;
+            }
+            ISS.maxdistancetonullify = maxdistancetonullify;
+            AudioSource AS = newAudioSource.AddComponent<AudioSource>();
+            AS.outputAudioMixerGroup = AudioMixer.FindMatchingGroups("SFX")[0];
+            AS.clip = clip;
+
+
+
+
+            AS.volume = vol * volume;
+            AS.pitch = 1f + UnityEngine.Random.Range(-pitchrandomness, pitchrandomness);
+            AS.Play();
+            yield return new WaitForSeconds(AS.clip.length);
+            Destroy(newAudioSource);
+        }
+
+
     }
 }

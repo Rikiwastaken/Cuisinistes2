@@ -16,10 +16,13 @@ public class HealthScript : MonoBehaviour
 
     private MovementController movementController;
 
+    private SoundManager soundManager;
+
     private void Start()
     {
         HP = MaxHealth;
         isplayer = GetComponent<MovementController>() != null;
+        soundManager = SoundManager.instance;
         if (isplayer)
         {
             movementController = GetComponent<MovementController>();
@@ -49,15 +52,25 @@ public class HealthScript : MonoBehaviour
             }
             else
             {
+
+
                 enemyNavigation.engagedPlayer = true;
 
                 if (HP <= 0 && !enemyNavigation.ded)
                 {
+                    if (enemyNavigation.DeathSound.Count > 0)
+                    {
+                        soundManager.PlaySFXFromList(enemyNavigation.DeathSound, 0.5f, enemyNavigation.transform);
+                    }
                     enemyNavigation.PlayDeathAnim();
                     enemyNavigation.TriggerDrop();
                 }
                 else
                 {
+                    if (enemyNavigation.DamageSound.Count > 0)
+                    {
+                        soundManager.PlaySFXFromList(enemyNavigation.DamageSound, 0.5f, enemyNavigation.transform);
+                    }
                     if (!enemyNavigation.Canvas.gameObject.activeSelf)
                     {
                         enemyNavigation.Canvas.gameObject.SetActive(true);

@@ -185,6 +185,20 @@ MonoBehaviour:
   durationbeforedespawn: 10
   dropratepercent: 25
   AmmoBoxPrefab: {fileID: 8594776281252626752, guid: a328dada7dd3de44f9168da23e4ef451, type: 3}
+  AttackSound:
+  - {fileID: 8300000, guid: 105cd566524c10d41995a78a61a29718, type: 3}
+  - {fileID: 8300000, guid: 7baac02e962ab0c4893346cc2f110a5d, type: 3}
+  - {fileID: 8300000, guid: 30d1dbe24587103428f906eea20452aa, type: 3}
+  Idlesound: []
+  DamageSound:
+  - {fileID: 8300000, guid: fd29cd9b23a6d964c80e110d636a3122, type: 3}
+  - {fileID: 8300000, guid: af57c1812b012b04ab09ebcc29d007d7, type: 3}
+  - {fileID: 8300000, guid: 74d260cf5f45da7438f37344ad9db70c, type: 3}
+  DeathSound:
+  - {fileID: 8300000, guid: 1e60089e8c494444d851707373d9dc73, type: 3}
+  - {fileID: 8300000, guid: ba7a9aabb710da043b4901bdeb26ffd3, type: 3}
+  - {fileID: 8300000, guid: a7affa9387b41fc458abf4f3d7a11022, type: 3}
+  timebetweenidlesound: 10
 --- !u!114 &3247550930479452848
 MonoBehaviour:
   m_ObjectHideFlags: 0
