@@ -134,17 +134,27 @@ public class EnemySpawner : MonoBehaviour
         Vector3 playerPos = MovementController.instance.transform.position;
         Camera cam = Camera.main;
 
+
+        float checkRadius = 0.5f;
+        LayerMask wallMask = LayerMask.GetMask("Ground");
+
         for (int i = 0; i < 10; i++) // max 10 attempts per frame
         {
             float distance = Random.Range(minplayerrangewheretospawn, maxplayerrangewheretospawn);
             float angle = Random.Range(0f, 360f);
 
             Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-            Vector3 candidate = playerPos + MovementController.instance.transform.forward * 3f + dir * distance;
+            Vector3 candidate = playerPos + MovementController.instance.transform.forward * 10f + dir * distance;
 
             if (NavMesh.SamplePosition(candidate, out NavMeshHit hit, 2f, NavMesh.AllAreas))
             {
                 Vector3 spawnPos = hit.position;
+
+                //checkifinsidewall
+                bool insideWall = Physics.CheckSphere(spawnPos + new Vector3(0, checkRadius + 0.1f, 0), checkRadius, wallMask);
+
+                if (insideWall)
+                    continue; // Try another position
 
                 // Check if behind camera
                 Vector3 viewportPoint = cam.WorldToViewportPoint(spawnPos);
@@ -164,33 +174,6 @@ public class EnemySpawner : MonoBehaviour
 
         result = Vector3.zero;
         return false;
-    }
-
-    private bool checkifspawnposisvalid(Vector3 position)
-    {
-
-        //if (position.y > -1f)
-        //{
-        //    return false;
-        //}
-
-        Vector3 playerpos = MovementController.instance.transform.position;
-
-        //if (Vector3.Distance(position, playerpos) > playerrangewheretospawn)
-        //{
-        //    return false;
-        //}
-
-
-
-        Vector3 direction = (playerpos - position - new Vector3(0, 0.5f, 0)).normalized;
-
-        if (Physics.Raycast(position, direction, out RaycastHit hit, maxplayerrangewheretospawn, LayerMask.GetMask("Player", "Ground")))
-        {
-            return false;
-        }
-
-        return true;
     }
 
 }

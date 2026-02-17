@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using static ShootScript;
@@ -56,6 +57,7 @@ public class EnemyNavigation : MonoBehaviour
     private float nextDespawnCheckTime;
     private float sqrAgroRange;
     private float sqrGunRange;
+    private List<Material> enemymat = new List<Material>();
 
 
     [Header("drop")]
@@ -74,6 +76,15 @@ public class EnemyNavigation : MonoBehaviour
         Animation = GetComponentInChildren<Animation>();
         Animation.clip = Idle;
         Animation.Play();
+        foreach (MeshRenderer MR in GetComponentsInChildren<MeshRenderer>())
+        {
+            if (MR != null && MR.material != null)
+            {
+                enemymat.Add(MR.material);
+
+            }
+
+        }
     }
 
     // Update is called once per frame
@@ -87,15 +98,19 @@ public class EnemyNavigation : MonoBehaviour
             }
             Vector3 directionToPlayer = (player.transform.position - transform.position - new Vector3(0f, agent.height / 2f, 0f)).normalized;
 
-            if (Physics.Raycast(transform.position + new Vector3(0f, agent.height / 2f, 0f), directionToPlayer, out RaycastHit hit, LayerMask.NameToLayer("Ground") | LayerMask.NameToLayer("Player")))
-            {
-                if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player"))
-                {
-                    gameObject.SetActive(false);
-                    EnemySpawner.instance.EnemiesToRecycle.Add(gameObject);
+            float newratio = enemymat[0].GetFloat("_DissolvePercent") - Time.deltaTime / 3f;
 
-                }
+            foreach (Material mat in enemymat)
+            {
+                mat.SetFloat("_DissolvePercent", newratio);
             }
+
+
+            if (newratio <= 0)
+            {
+                Destroy(gameObject);
+            }
+
             return;
         }
 
