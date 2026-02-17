@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 3247550930479452848}
   - component: {fileID: 2550037940614220385}
   m_Layer: 0
-  m_Name: NeighbourhoodWatcher
+  m_Name: NeighbourhoodWatcher 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

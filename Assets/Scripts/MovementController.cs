@@ -37,10 +37,12 @@ public class MovementController : MonoBehaviour
 
     public bool pressedjump;
 
+    [Header("Sounds")]
     public List<AudioClip> JumpSFX;
     public List<AudioClip> AirStepSFX;
     public List<AudioClip> TouchGroundSFX;
     public List<AudioClip> FootStep;
+    public List<AudioClip> playerDamageSounds;
 
     private bool previoustouchingground;
 

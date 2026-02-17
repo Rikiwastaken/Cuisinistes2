@@ -1298,6 +1298,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c70b34abf9d544e4a8915d0fc010b3c1, type: 3}
   - {fileID: 8300000, guid: 80f2d984dc5bdf144a0f5484b3196c09, type: 3}
   - {fileID: 8300000, guid: 0953a8563454607459ad5688c12d32ea, type: 3}
+  playerDamageSounds:
+  - {fileID: 8300000, guid: d33de8844a4549f4db68a47f2468b6f7, type: 3}
+  - {fileID: 8300000, guid: 1b3f60b39904d3342a637e790e47ded8, type: 3}
+  - {fileID: 8300000, guid: c2d28442c17fdc94f96343f2817d69e4, type: 3}
 --- !u!65 &6582072028611678216
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -28,6 +28,8 @@ public class HealthScript : MonoBehaviour
 
     public float regenpersecond;
 
+
+
     private void Start()
     {
 
@@ -98,6 +100,9 @@ public class HealthScript : MonoBehaviour
             if (isplayer)
             {
                 timetillregenstarts = Time.time + timebeforeregen;
+
+                soundManager.PlaySFXFromList(movementController.playerDamageSounds, 0.05f, movementController.transform);
+
                 UpdateTexts();
                 invframecounter = (int)(invframes / Time.fixedDeltaTime);
             }
