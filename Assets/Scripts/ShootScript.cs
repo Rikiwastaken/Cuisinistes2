@@ -46,12 +46,15 @@ public class ShootScript : MonoBehaviour
     public List<AudioClip> EmptyCliPSFX;
     private float previousscroll;
     private InputAction WeaponChangeAction;
+    private InputAction ReloadAction;
+    private float previousReloadInput;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         shootAction = InputSystem.actions.FindAction("Shoot");
         WeaponChangeAction = InputSystem.actions.FindAction("ChangeWeapon");
+        ReloadAction = InputSystem.actions.FindAction("Reload");
         ChangeGun(0);
         InitializeAmmoText();
     }
@@ -77,6 +80,7 @@ public class ShootScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //shoot
         if (GunCoolDown > 0)
         {
             GunCoolDown--;
@@ -114,16 +118,16 @@ public class ShootScript : MonoBehaviour
             previousshoot = 0;
         }
 
-
+        //make gun appear
         if (currentGunGO != null && currentGunGO.transform.localPosition.y < GunList[currentgun].GunPosition.y)
         {
             currentGunGO.transform.localPosition += new Vector3(0f, 5 * Time.deltaTime, 0f);
         }
 
-
+        //Change gun
         float weaponchangeval = WeaponChangeAction.ReadValue<float>();
 
-        if (weaponchangeval != 0 && previousscroll != weaponchangeval)
+        if (weaponchangeval != 0 && previousscroll != weaponchangeval && !currentGunGO.GetComponentInChildren<Animation>().isPlaying)
         {
             if (weaponchangeval > 1)
             {
@@ -151,16 +155,29 @@ public class ShootScript : MonoBehaviour
         }
         previousscroll = weaponchangeval;
 
+
+        //manualReload
+
+        float reloadinput = ReloadAction.ReadValue<float>();
+
+        if (reloadinput != 0 && !currentGunGO.GetComponentInChildren<Animation>().isPlaying && reloadinput != previousReloadInput && GunList[currentgun].currentclip < GunList[currentgun].clipsize && GunList[currentgun].reserveammo > 0)
+        {
+            Reload();
+        }
+
+        previousReloadInput = reloadinput;
+
     }
     private void Reload()
     {
 
         currentGunGO.GetComponentInChildren<Animation>().clip = GunList[currentgun].ReloadAnim;
         currentGunGO.GetComponentInChildren<Animation>().Play();
-        if (GunList[currentgun].reserveammo >= GunList[currentgun].clipsize)
+        int bulletneeded = GunList[currentgun].clipsize - GunList[currentgun].currentclip;
+        if (GunList[currentgun].reserveammo >= bulletneeded)
         {
             GunList[currentgun].currentclip = GunList[currentgun].clipsize;
-            GunList[currentgun].reserveammo -= GunList[currentgun].clipsize;
+            GunList[currentgun].reserveammo -= bulletneeded;
         }
         else
         {
