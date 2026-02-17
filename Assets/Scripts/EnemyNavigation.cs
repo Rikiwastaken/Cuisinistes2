@@ -64,6 +64,19 @@ public class EnemyNavigation : MonoBehaviour
     public int dropratepercent;
     public GameObject AmmoBoxPrefab;
 
+    [Header("Sound")]
+
+    public List<AudioClip> AttackSound;
+
+    public List<AudioClip> Idlesound;
+
+    public List<AudioClip> DamageSound;
+
+    public List<AudioClip> DeathSound;
+
+    private float nextIdleSoundUpdateTime;
+    public float timebetweenidlesound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -173,6 +186,15 @@ public class EnemyNavigation : MonoBehaviour
 
         }
 
+        // Idle Sounds
+
+        if (Time.time >= nextIdleSoundUpdateTime && Idlesound.Count > 0)
+        {
+            nextDestinationUpdateTime = Time.time + timebetweenidlesound;
+
+            SoundManager.instance.PlaySFXFromList(Idlesound, 0.05f, transform);
+        }
+
     }
 
     private bool HasLineOfSight()
@@ -245,9 +267,9 @@ public class EnemyNavigation : MonoBehaviour
         bulletscript.InitializeBullet(direction, Gun.bulletspeed, 1, Gun.damage, Gun.recoil);
 
 
-        if (Gun.ShootSFX.Count > 0)
+        if (AttackSound.Count > 0)
         {
-            SoundManager.instance.PlaySFXFromList(Gun.ShootSFX, 0.05f, transform);
+            SoundManager.instance.PlaySFXFromList(AttackSound, 0.05f, transform);
         }
     }
 
