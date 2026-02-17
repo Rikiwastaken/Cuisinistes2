@@ -17,16 +17,41 @@ public class AmmoBoxScript : MonoBehaviour
     public float clipratio;
     public List<GameObject> ammoboxmodel;
 
+    public float healthRestoredByMedkit;
+
+    public float armorgained;
+
     [Header("LocalSettings")]
     public int ammotype;
+    public bool isMedKit;
+    public bool isArmor;
+
 
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        if (player == null)
+        {
+            player = MovementController.instance.transform;
+        }
+
         if (Vector3.Distance(transform.position, player.position) < rangeforpickup)
         {
-            player.GetComponent<ShootScript>().GunList[ammotype].reserveammo += (int)(player.GetComponent<ShootScript>().GunList[ammotype].clipsize * clipratio);
-            SoundManager.instance.PlaySFXFromList(player.GetComponent<ShootScript>().GunList[ammotype].ReloadSFX, 0.05f, transform);
+            if (isMedKit)
+            {
+                player.GetComponent<HealthScript>().HP = Mathf.Min(player.GetComponent<HealthScript>().MaxHealth, player.GetComponent<HealthScript>().HP + healthRestoredByMedkit);
+            }
+            else if (isArmor)
+            {
+
+            }
+            else
+            {
+                player.GetComponent<ShootScript>().GunList[ammotype].reserveammo += (int)(player.GetComponent<ShootScript>().GunList[ammotype].clipsize * clipratio);
+                SoundManager.instance.PlaySFXFromList(player.GetComponent<ShootScript>().GunList[ammotype].ReloadSFX, 0.05f, transform);
+            }
+
             Destroy(gameObject);
             ShootScript.instance.InitializeAmmoText();
         }

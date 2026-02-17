@@ -61,8 +61,13 @@ public class EnemyNavigation : MonoBehaviour
 
 
     [Header("drop")]
-    public int dropratepercent;
+    public int globaldroprate;
+    public int ammodropratepercent;
+    public int armordroprate;
+    public int healtkitdroprate;
     public GameObject AmmoBoxPrefab;
+    public GameObject HealthKitPrefab;
+    public GameObject ArmorKitPrefab;
 
     [Header("Sound")]
 
@@ -277,11 +282,27 @@ public class EnemyNavigation : MonoBehaviour
     public void TriggerDrop()
     {
         int randomvalue = UnityEngine.Random.Range(0, 100);
-        if (randomvalue <= dropratepercent)
+        if (randomvalue <= globaldroprate)
         {
-            GameObject newammobox = Instantiate(AmmoBoxPrefab);
-            newammobox.transform.position = transform.position + new Vector3(0, 0.5f, 0);
-            newammobox.GetComponent<AmmoBoxScript>().InitializeAmmoBox();
+
+            int droptablerandomvalue = UnityEngine.Random.Range(0, ammodropratepercent + armordroprate + healtkitdroprate);
+            if (droptablerandomvalue <= ammodropratepercent)
+            {
+                GameObject newammobox = Instantiate(AmmoBoxPrefab);
+                newammobox.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                newammobox.GetComponent<AmmoBoxScript>().InitializeAmmoBox();
+            }
+            else if (droptablerandomvalue <= armordroprate)
+            {
+                GameObject newarmor = Instantiate(ArmorKitPrefab);
+                newarmor.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            }
+            else
+            {
+                GameObject newhealthkit = Instantiate(HealthKitPrefab);
+                newhealthkit.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            }
+
         }
     }
     public void PlayDeathAnim(bool immediate = false)

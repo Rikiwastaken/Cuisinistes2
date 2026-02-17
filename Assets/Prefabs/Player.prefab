@@ -1111,9 +1111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4712cd2a7abbfd84ca941d73c71f0d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  HP: 100
-  MaxHealth: 100
+  HP: 200
+  MaxHealth: 200
+  currentarmor: 0
+  maxarmor: 100
   invframes: 0.1
+  timebeforeregen: 5
+  regenpersecond: 3
 --- !u!1 &5711423724976651647
 GameObject:
   m_ObjectHideFlags: 0
