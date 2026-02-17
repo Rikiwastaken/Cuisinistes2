@@ -66,7 +66,7 @@ public class HealthScript : MonoBehaviour
 
     }
 
-    private void UpdateTexts()
+    public void UpdateTexts()
     {
         movementController.HPTMP.text = "HP : " + (int)HP;
         if (currentarmor > 0)

@@ -192,18 +192,20 @@ public class EnemyNavigation : MonoBehaviour
                         nextShootTime = Time.time + Gun.GunCD;
                     }
                 }
-                else
-                {
-                    if (sqrDistToPlayer <= minrangeformelee * minrangeformelee && HasLineOfSight())
-                    {
-                        isinmelee = true;
-                        Animation.clip = Attack;
-                        Animation.Play();
-                    }
-                }
+
             }
+
+
+            if (!Shoots && sqrDistToPlayer <= minrangeformelee * minrangeformelee && HasLineOfSight() && !isinmelee)
+            {
+                isinmelee = true;
+                Animation.clip = Attack;
+                Animation.Play();
+            }
+
             if (isinmelee && (!Animation.isPlaying || Animation.clip != Attack))
             {
+                Debug.Log("finisfhing attack");
                 isinmelee = false;
                 if (sqrDistToPlayer <= minrangeformelee * minrangeformelee)
                 {
@@ -255,8 +257,12 @@ public class EnemyNavigation : MonoBehaviour
             {
                 var lookPos = player.position - transform.position;
                 lookPos.y = 0;
-                var rotation = Quaternion.LookRotation(lookPos);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+                if (lookPos != Vector3.zero)
+                {
+                    var rotation = Quaternion.LookRotation(lookPos);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+                }
+
             }
 
 

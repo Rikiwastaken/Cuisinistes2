@@ -182,7 +182,7 @@ MonoBehaviour:
     ReserveAmmoTMP: {fileID: 0}
     CurrentClipTMP: {fileID: 0}
   freezetimeaftershooting: 0.6
-  minrangeformelee: 3
+  minrangeformelee: 5
   meleedamage: 15
   durationbeforedespawn: 10
   globaldroprate: 60

@@ -254,11 +254,9 @@ public class ShootScript : MonoBehaviour
             projectileDestination = ray.GetPoint(100);
         }
 
-        Vector3 Worldspawn = currentGunGO.transform.position + GunList[currentgun].wheretospawnbullet;
+        Vector3 direction = (projectileDestination - currentGunGO.transform.position).normalized;
 
-        Vector3 direction = projectileDestination - Worldspawn;
-
-        GameObject newbullet = Instantiate(GunList[currentgun].Bulletprefab, Worldspawn, Quaternion.identity);
+        GameObject newbullet = Instantiate(GunList[currentgun].Bulletprefab);
         newbullet.transform.parent = currentGunGO.transform;
         newbullet.transform.localPosition = GunList[currentgun].wheretospawnbullet;
         newbullet.transform.forward = currentGunGO.transform.forward;
@@ -305,15 +303,14 @@ public class ShootScript : MonoBehaviour
         }
 
         // Spawn position for bullets
-        Vector3 worldSpawn = currentGunGO.transform.position + GunList[currentgun].wheretospawnbullet;
-        Vector3 baseDirection = (projectileDestination - worldSpawn).normalized;
+        Vector3 baseDirection = (projectileDestination - currentGunGO.transform.position).normalized;
 
         // Fire multiple pellets
         for (int i = 0; i < pelletCount; i++)
         {
             Vector3 spreadDirection = GetSpreadDirection(baseDirection, spreadAngle);
 
-            GameObject newBullet = Instantiate(GunList[currentgun].Bulletprefab, worldSpawn, Quaternion.identity);
+            GameObject newBullet = Instantiate(GunList[currentgun].Bulletprefab, Vector3.zero, Quaternion.identity);
             newBullet.transform.parent = currentGunGO.transform;
             newBullet.transform.localPosition = GunList[currentgun].wheretospawnbullet;
             newBullet.transform.forward = spreadDirection;

@@ -41,10 +41,12 @@ public class AmmoBoxScript : MonoBehaviour
             if (isMedKit)
             {
                 player.GetComponent<HealthScript>().HP = Mathf.Min(player.GetComponent<HealthScript>().MaxHealth, player.GetComponent<HealthScript>().HP + healthRestoredByMedkit);
+                player.GetComponent<HealthScript>().UpdateTexts();
             }
             else if (isArmor)
             {
-
+                player.GetComponent<HealthScript>().currentarmor = Mathf.Min(player.GetComponent<HealthScript>().maxarmor, player.GetComponent<HealthScript>().currentarmor + armorgained);
+                player.GetComponent<HealthScript>().UpdateTexts();
             }
             else
             {
