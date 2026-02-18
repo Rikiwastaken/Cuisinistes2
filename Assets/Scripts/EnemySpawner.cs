@@ -7,6 +7,8 @@ using UnityEngine.AI;
 public class EnemySpawner : MonoBehaviour
 {
 
+    [Header("Enemy Spawn")]
+
     public static EnemySpawner instance;
 
     public List<GameObject> enemyprefabList;
@@ -26,11 +28,26 @@ public class EnemySpawner : MonoBehaviour
 
     public Transform EnemyHolder;
 
+
+    [Header("Loot Spawn")]
+
+    public List<GameObject> pickups;
+    private List<GameObject> spawnedpickups = new List<GameObject>();
+    public Transform lootholder;
+    public int maxpickuptospawn;
+
+
+
+    private Transform player;
     private void Awake()
     {
         instance = this;
     }
 
+    private void Start()
+    {
+        player = MovementController.instance.transform;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -42,6 +59,7 @@ public class EnemySpawner : MonoBehaviour
         {
             durationBetweenEnemySpawncnt = (int)(durationBetweenEnemySpawn / Time.deltaTime);
             StartCoroutine(spawnEnemies());
+            StartCoroutine(SpawnPickups());
         }
     }
 
@@ -77,7 +95,7 @@ public class EnemySpawner : MonoBehaviour
         {
             safeguard++;
 
-            if (TryGetSpawnPosition(out Vector3 newpos))
+            if (TryGetSpawnPosition(out Vector3 newpos, minplayerrangewheretospawn, maxplayerrangewheretospawn))
             {
                 if (newpos != Vector3.zero)
                 {
@@ -130,8 +148,64 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
+    private IEnumerator SpawnPickups()
+    {
 
-    bool TryGetSpawnPosition(out Vector3 result)
+
+        int safeguard = 0;
+        int lootsizelist = spawnedpickups.Count;
+
+
+        while (safeguard < 100 && lootsizelist < maxpickuptospawn)
+        {
+            safeguard++;
+
+            if (TryGetSpawnPosition(out Vector3 newpos, maxplayerrangewheretospawn, maxplayerrangewheretospawn * 2))
+            {
+                if (newpos != Vector3.zero)
+                {
+
+                    int randomID = UnityEngine.Random.Range(0, pickups.Count + player.GetComponent<ShootScript>().GunList.Count);
+                    GameObject newloot = null;
+                    if (randomID < player.GetComponent<ShootScript>().GunList.Count)
+                    {
+                        newloot = Instantiate(pickups[0]);
+                        newloot.GetComponent<AmmoBoxScript>().ammotype = randomID;
+                    }
+                    else
+                    {
+                        Debug.Log("spawning ID : " + (randomID - player.GetComponent<ShootScript>().GunList.Count));
+                        newloot = Instantiate(pickups[randomID - player.GetComponent<ShootScript>().GunList.Count]);
+                    }
+
+
+                    spawnedpickups.Add(newloot);
+                    newloot.transform.parent = lootholder;
+
+                    newloot.transform.position = newpos;
+
+                }
+            }
+
+
+
+
+
+
+
+            lootsizelist = spawnedpickups.Count;
+            if (lootsizelist >= maxpickuptospawn)
+            {
+                safeguard = 100;
+            }
+        }
+
+        yield return null;
+
+    }
+
+
+    bool TryGetSpawnPosition(out Vector3 result, float minrange, float maxrange)
     {
         Vector3 playerPos = MovementController.instance.transform.position;
         Camera cam = Camera.main;
@@ -142,14 +216,14 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < 10; i++) // max 10 attempts per frame
         {
-            float distance = Random.Range(minplayerrangewheretospawn, maxplayerrangewheretospawn);
+            float distance = Random.Range(minrange, maxrange);
             float angle = Random.Range(0f, 360f);
 
             Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
             Vector3 candidate = playerPos + MovementController.instance.transform.forward * 10f + dir * distance;
 
 
-            if (Vector3.Distance(candidate, playerPos) < minplayerrangewheretospawn)
+            if (Vector3.Distance(candidate, playerPos) < minrange)
                 continue;
 
             if (NavMesh.SamplePosition(candidate, out NavMeshHit hit, 2f, NavMesh.AllAreas))

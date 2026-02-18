@@ -206,5 +206,9 @@ public class MovementController : MonoBehaviour
         {
             touchingground = false;
         }
+        if (touchingground)
+        {
+            rb.AddForce(new Vector3(0, -2f, 0), ForceMode.VelocityChange);
+        }
     }
 }
