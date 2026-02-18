@@ -23,6 +23,8 @@ public class HealthScript : MonoBehaviour
 
     private SoundManager soundManager;
 
+    private EnemySpawner spawner;
+
     public float timebeforeregen;
 
     private float timetillregenstarts;
@@ -37,6 +39,7 @@ public class HealthScript : MonoBehaviour
         HP = MaxHealth;
         isplayer = GetComponent<MovementController>() != null;
         soundManager = SoundManager.instance;
+        spawner = EnemySpawner.instance;
         if (isplayer)
         {
             movementController = GetComponent<MovementController>();
@@ -138,6 +141,7 @@ public class HealthScript : MonoBehaviour
                     }
                     enemyNavigation.PlayDeathAnim();
                     enemyNavigation.TriggerDrop();
+                    spawner.KillEnemy();
                 }
                 else
                 {

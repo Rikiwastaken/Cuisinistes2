@@ -10,6 +10,7 @@ public class MovementController : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI HPTMP;
+    public TextMeshProUGUI WaveTMP;
 
     [Header("Movement")]
     public Transform CameraTransform;
