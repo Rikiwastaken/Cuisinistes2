@@ -22,11 +22,17 @@ public class AmmoBoxScript : MonoBehaviour
     public float armorgained;
     public AudioClip SFXToPlay;
 
+    private UpgradeScript upgradeScript;
+
     [Header("LocalSettings")]
     public int ammotype;
     public bool isMedKit;
     public bool isArmor;
 
+    private void Start()
+    {
+        upgradeScript = UpgradeScript.instance;
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -41,16 +47,19 @@ public class AmmoBoxScript : MonoBehaviour
         {
             if (isMedKit)
             {
+                healthRestoredByMedkit *= Mathf.Pow(1f + upgradeScript.DropPowerPerLevel, upgradeScript.DropPowerLevel);
                 player.GetComponent<HealthScript>().HP = Mathf.Min(player.GetComponent<HealthScript>().MaxHealth, player.GetComponent<HealthScript>().HP + healthRestoredByMedkit);
                 player.GetComponent<HealthScript>().UpdateTexts();
             }
             else if (isArmor)
             {
+                armorgained *= Mathf.Pow(1f + upgradeScript.DropPowerPerLevel, upgradeScript.DropPowerLevel);
                 player.GetComponent<HealthScript>().currentarmor = Mathf.Min(player.GetComponent<HealthScript>().maxarmor, player.GetComponent<HealthScript>().currentarmor + armorgained);
                 player.GetComponent<HealthScript>().UpdateTexts();
             }
             else
             {
+                clipratio *= Mathf.Pow(1f + upgradeScript.DropPowerPerLevel, upgradeScript.DropPowerLevel);
                 player.GetComponent<ShootScript>().GunList[ammotype].reserveammo += (int)(player.GetComponent<ShootScript>().GunList[ammotype].clipsize * clipratio);
 
             }

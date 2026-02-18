@@ -47,6 +47,8 @@ public class MovementController : MonoBehaviour
 
     private bool previoustouchingground;
 
+    private UpgradeScript UpgradeScript;
+
     private void OnTriggerStay(Collider other)
     {
         if (LayerMask.NameToLayer("Ground") == other.gameObject.layer && justjumpedcounter <= 0)
@@ -80,12 +82,19 @@ public class MovementController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         MoveAction = InputSystem.actions.FindAction("Move");
         JumpAction = InputSystem.actions.FindAction("Jump");
+        UpgradeScript = GetComponent<UpgradeScript>();
         StartPos = transform.position;
     }
 
 
     void Update()
     {
+        //bonus
+        if (UpgradeScript.gettingbonus)
+        {
+            return;
+        }
+
 
         // movement;
 

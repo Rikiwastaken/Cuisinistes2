@@ -33,6 +33,8 @@ public class HealthScript : MonoBehaviour
 
     public Volume HurtPostProcessing;
 
+    private UpgradeScript UpgradeScript;
+
     private void Start()
     {
 
@@ -43,10 +45,13 @@ public class HealthScript : MonoBehaviour
         if (isplayer)
         {
             movementController = GetComponent<MovementController>();
+            UpgradeScript = GetComponent<UpgradeScript>();
             UpdateTexts();
         }
         else
         {
+            UpgradeScript = UpgradeScript.instance;
+            movementController = MovementController.instance;
             enemyNavigation = GetComponent<EnemyNavigation>();
         }
 
@@ -54,6 +59,11 @@ public class HealthScript : MonoBehaviour
 
     private void Update()
     {
+        //bonus
+        if (UpgradeScript.gettingbonus)
+        {
+            return;
+        }
         if (invframecounter > 0)
         {
             invframecounter--;
@@ -97,6 +107,28 @@ public class HealthScript : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+
+        if (isplayer)
+        {
+            //damagereduction
+            damage *= Mathf.Pow(1f - UpgradeScript.DamageReductionPerLevel, UpgradeScript.DamageReductionLevel);
+        }
+        else
+        {
+            //crit chance
+
+            int randomvalue = UnityEngine.Random.Range(0, 100);
+
+            if (randomvalue < 100f * (UpgradeScript.basecritchance + UpgradeScript.CritChancePerLevel * UpgradeScript.CritChanceLevel))
+            {
+                damage *= UpgradeScript.basecritmultiplier * Mathf.Pow(1f + UpgradeScript.CritDamagePerLevel, UpgradeScript.CritDamageLevel);
+            }
+
+            //lifesteal
+            movementController.GetComponent<HealthScript>().GainHP(damage * UpgradeScript.LifeStealPerLevel * UpgradeScript.LifeStealLevel);
+        }
+
+
         if (invframecounter == 0)
         {
             if (currentarmor > 0)
@@ -158,5 +190,13 @@ public class HealthScript : MonoBehaviour
             }
         }
 
+    }
+
+    public void GainHP(float Gain)
+    {
+
+        HP = Mathf.Min(HP + Gain, MaxHealth);
+        ManageHurtPostProcessing();
+        UpdateTexts();
     }
 }
