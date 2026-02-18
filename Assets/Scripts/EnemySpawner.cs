@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,7 +37,18 @@ public class EnemySpawner : MonoBehaviour
     public Transform lootholder;
     public int maxpickuptospawn;
 
+    [Serializable]
+    public class WaveClass
+    {
+        public int numberofenemies;
+        public float damagemultiplier;
+        public float healthmultiplier;
+    }
 
+    [Header("Wave Variables")]
+    public List<WaveClass> waves;
+
+    public int currentwave;
 
     private Transform player;
     private void Awake()
@@ -47,6 +59,9 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         player = MovementController.instance.transform;
+        currentwave = 0;
+        totalenemyonthemap = waves[currentwave].numberofenemies;
+        player.GetComponent<MovementController>().WaveTMP.text = "Wave " + (currentwave + 1) + "\nRemaining: " + totalenemyonthemap;
     }
     // Update is called once per frame
     void Update()
@@ -63,6 +78,22 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+
+    public void KillEnemy()
+    {
+        totalenemyonthemap--;
+        if (totalenemyonthemap <= 0)
+        {
+
+            if (currentwave < waves.Count - 1)
+            {
+                currentwave++;
+                Debug.Log("now wave : " + currentwave);
+                totalenemyonthemap = waves[currentwave].numberofenemies;
+            }
+        }
+        player.GetComponent<MovementController>().WaveTMP.text = "Wave " + (currentwave + 1) + "\nRemaining: " + totalenemyonthemap;
+    }
 
     private IEnumerator spawnEnemies()
     {
@@ -90,7 +121,6 @@ public class EnemySpawner : MonoBehaviour
         int safeguard = 0;
         int spawnenemylistsize = SpawnedEnemylist.Count;
 
-
         while (safeguard < 100 && spawnenemylistsize < totalenemyonthemap)
         {
             safeguard++;
@@ -107,7 +137,9 @@ public class EnemySpawner : MonoBehaviour
                         newenemy = EnemiesToRecycle[0];
                         EnemiesToRecycle.Remove(newenemy);
                         newenemy.SetActive(true);
-                        newenemy.GetComponent<HealthScript>().HP = newenemy.GetComponent<HealthScript>().MaxHealth;
+
+                        newenemy.GetComponentInChildren<Animation>().clip = newenemy.GetComponent<EnemyNavigation>().Idle;
+                        newenemy.GetComponentInChildren<Animation>().Play();
                         newenemy.GetComponent<EnemyNavigation>().engagedPlayer = false;
                         newenemy.GetComponent<BoxCollider>().enabled = true;
                         newenemy.GetComponent<NavMeshAgent>().enabled = true;
@@ -119,6 +151,18 @@ public class EnemySpawner : MonoBehaviour
                         newenemy = Instantiate(enemyprefabList[randomID]);
                     }
 
+                    if (waves[currentwave].damagemultiplier > 0)
+                    {
+                        newenemy.GetComponent<EnemyNavigation>().Gun.damage *= waves[currentwave].damagemultiplier;
+                        newenemy.GetComponent<EnemyNavigation>().meleedamage *= waves[currentwave].damagemultiplier;
+                    }
+
+                    if (waves[currentwave].healthmultiplier > 0)
+                    {
+                        newenemy.GetComponent<HealthScript>().MaxHealth *= waves[currentwave].healthmultiplier;
+                    }
+
+                    newenemy.GetComponent<HealthScript>().HP = newenemy.GetComponent<HealthScript>().MaxHealth;
                     SpawnedEnemylist.Add(newenemy);
                     NavMeshAgent agent = newenemy.GetComponent<NavMeshAgent>();
                     newenemy.transform.parent = EnemyHolder;
@@ -216,8 +260,8 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < 10; i++) // max 10 attempts per frame
         {
-            float distance = Random.Range(minrange, maxrange);
-            float angle = Random.Range(0f, 360f);
+            float distance = UnityEngine.Random.Range(minrange, maxrange);
+            float angle = UnityEngine.Random.Range(0f, 360f);
 
             Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
             Vector3 candidate = playerPos + MovementController.instance.transform.forward * 10f + dir * distance;

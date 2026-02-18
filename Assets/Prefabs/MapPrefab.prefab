@@ -112,6 +112,20 @@ MonoBehaviour:
   - {fileID: 8594776281252626752, guid: ed7f82ff0dc1f3c40828049ab0098768, type: 3}
   lootholder: {fileID: 0}
   maxpickuptospawn: 10
+  waves:
+  - numberofenemies: 1
+    damagemultiplier: 0
+    healthmultiplier: 0
+  - numberofenemies: 3
+    damagemultiplier: 0
+    healthmultiplier: 0
+  - numberofenemies: 5
+    damagemultiplier: 0
+    healthmultiplier: 0
+  - numberofenemies: 10
+    damagemultiplier: 0
+    healthmultiplier: 0
+  currentwave: 0
 --- !u!1 &8891014499535020207
 GameObject:
   m_ObjectHideFlags: 0

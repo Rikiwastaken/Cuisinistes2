@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class ShootScript : MonoBehaviour
     [Serializable]
     public class GunClass
     {
+        public string name;
         public GameObject GunModel;
         public Vector3 GunPosition;
         public Vector3 GunRotation;
@@ -32,7 +34,7 @@ public class ShootScript : MonoBehaviour
         public AnimationClip ReloadAnim;
         public List<AudioClip> ShootSFX;
         public List<AudioClip> ReloadSFX;
-
+        public bool unlocked;
         public TextMeshProUGUI ReserveAmmoTMP;
         public TextMeshProUGUI CurrentClipTMP;
 
@@ -44,9 +46,10 @@ public class ShootScript : MonoBehaviour
 
     [Header("GunVariables")]
     public List<GunClass> GunList;
+
     private int currentgun;
     public GameObject currentGunGO;
-    private int GunCoolDown;
+    private bool GunCoolDown;
     public List<AudioClip> EmptyCliPSFX;
     private float previousscroll;
     private InputAction WeaponChangeAction;
@@ -67,6 +70,7 @@ public class ShootScript : MonoBehaviour
         shootAction = InputSystem.actions.FindAction("Shoot");
         WeaponChangeAction = InputSystem.actions.FindAction("ChangeWeapon");
         ReloadAction = InputSystem.actions.FindAction("Reload");
+        UnlockWeapon(0);
         ChangeGun(0);
         InitializeAmmoText();
     }
@@ -77,13 +81,9 @@ public class ShootScript : MonoBehaviour
     void Update()
     {
         //shoot
-        if (GunCoolDown > 0)
-        {
-            GunCoolDown--;
-        }
         if (shootAction.ReadValue<float>() != 0)
         {
-            if (GunCoolDown == 0 && (currentGunGO.GetComponentInChildren<Animation>().clip != GunList[currentgun].ReloadAnim) || !currentGunGO.GetComponentInChildren<Animation>().isPlaying)
+            if (!GunCoolDown && (currentGunGO.GetComponentInChildren<Animation>().clip != GunList[currentgun].ReloadAnim) || !currentGunGO.GetComponentInChildren<Animation>().isPlaying)
             {
                 if (GunList[currentgun].currentclip > 0)
                 {
@@ -105,7 +105,7 @@ public class ShootScript : MonoBehaviour
                 }
                 else if (previousshoot == 0)
                 {
-                    GunCoolDown = (int)(Mathf.Max(GunList[currentgun].GunCD / Time.deltaTime, GunList[currentgun].ShootAnim.length / Time.deltaTime));
+                    StartCoroutine(GunCD(GunList[currentgun]));
                     previousshoot = 1;
                     if (EmptyCliPSFX.Count > 0)
                     {
@@ -135,25 +135,51 @@ public class ShootScript : MonoBehaviour
         {
             if (weaponchangeval > 1)
             {
-                if (currentgun < GunList.Count - 1)
+                int newvalue = -1;
+                for (int i = currentgun + 1; i < GunList.Count; i++)
                 {
-                    currentgun++;
+                    if (GunList[i].unlocked)
+                    {
+                        newvalue = i;
+                        break;
+                    }
                 }
-                else
+                if (newvalue < 0)
                 {
-                    currentgun = 0;
+                    for (int i = 0; i < currentgun + 1; i++)
+                    {
+                        if (GunList[i].unlocked)
+                        {
+                            newvalue = i;
+                            break;
+                        }
+                    }
                 }
+                currentgun = newvalue;
             }
             else
             {
-                if (currentgun > 0)
+                int newvalue = -1;
+                for (int i = currentgun - 1; i >= 0; i--)
                 {
-                    currentgun--;
+                    if (GunList[i].unlocked)
+                    {
+                        newvalue = i;
+                        break;
+                    }
                 }
-                else
+                if (newvalue < 0)
                 {
-                    currentgun = GunList.Count - 1;
+                    for (int i = GunList.Count - 1; i >= currentgun; i--)
+                    {
+                        if (GunList[i].unlocked)
+                        {
+                            newvalue = i;
+                            break;
+                        }
+                    }
                 }
+                currentgun = newvalue;
             }
             ChangeGun(currentgun);
         }
@@ -171,6 +197,21 @@ public class ShootScript : MonoBehaviour
 
         previousReloadInput = reloadinput;
 
+    }
+
+
+    private IEnumerator GunCD(GunClass Gun)
+    {
+        GunCoolDown = true;
+        yield return new WaitForSeconds(Mathf.Max(Gun.GunCD / Time.deltaTime, Gun.ShootAnim.length / Time.deltaTime));
+        GunCoolDown = false;
+    }
+
+
+    public void UnlockWeapon(int i)
+    {
+        GunList[i].unlocked = true;
+        InitializeAmmoText();
     }
 
     private void UpdateSelectedSprite()
@@ -194,7 +235,7 @@ public class ShootScript : MonoBehaviour
         }
         currentGunGO = Instantiate(activegunclass.GunModel);
         currentGunGO.transform.parent = MainCamera;
-        currentGunGO.transform.localPosition = activegunclass.GunPosition;
+        currentGunGO.transform.localPosition = activegunclass.GunPosition + new Vector3(0, -1, 0);
         currentGunGO.transform.localScale = activegunclass.GunScale;
         currentGunGO.transform.localRotation = Quaternion.Euler(activegunclass.GunRotation);
         SetLayerAllChildren(currentGunGO.transform, LayerMask.NameToLayer("Weapons"));
@@ -228,6 +269,24 @@ public class ShootScript : MonoBehaviour
     {
         foreach (GunClass gunClass in GunList)
         {
+            if (!gunClass.unlocked)
+            {
+                if (gunClass.CurrentClipTMP.transform.parent.gameObject.activeSelf)
+                {
+                    gunClass.CurrentClipTMP.transform.parent.gameObject.SetActive(false);
+                }
+
+            }
+            else
+            {
+                if (!gunClass.CurrentClipTMP.transform.parent.gameObject.activeSelf)
+                {
+                    gunClass.CurrentClipTMP.transform.parent.gameObject.SetActive(true);
+                }
+            }
+        }
+        foreach (GunClass gunClass in GunList)
+        {
             gunClass.CurrentClipTMP.text = gunClass.currentclip + "/" + gunClass.clipsize;
             gunClass.ReserveAmmoTMP.text = gunClass.reserveammo + "";
         }
@@ -235,7 +294,7 @@ public class ShootScript : MonoBehaviour
 
     private void Shoot()
     {
-        GunCoolDown = (int)(GunList[currentgun].GunCD / Time.deltaTime);
+        StartCoroutine(GunCD(GunList[currentgun]));
         currentGunGO.GetComponentInChildren<Animation>().clip = GunList[currentgun].ShootAnim;
         currentGunGO.GetComponentInChildren<Animation>().Play();
         Vector3 ScreenCentreCoordinates = new Vector3(0.5f, 0.5f, 0f);
@@ -281,7 +340,7 @@ public class ShootScript : MonoBehaviour
         float spreadAngle = 10f;
 
         // Set gun cooldown
-        GunCoolDown = (int)(GunList[currentgun].GunCD / Time.deltaTime);
+        StartCoroutine(GunCD(GunList[currentgun]));
 
         // Play shooting animation
         Animation gunAnimation = currentGunGO.GetComponentInChildren<Animation>();
