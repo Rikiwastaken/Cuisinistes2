@@ -58,6 +58,15 @@ public class ShootScript : MonoBehaviour
     public List<Image> SelectedSprite;
     private GameObject RayGunLaser;
 
+    [Header("Melee")]
+    public GameObject MeleeGO;
+    private InputAction MeleeAction;
+    public Animation MeleeAnim;
+    public float meleedamage;
+    public float meleerange;
+    private float previousmeleevalue;
+
+
 
     private void Awake()
     {
@@ -71,6 +80,7 @@ public class ShootScript : MonoBehaviour
         shootAction = InputSystem.actions.FindAction("Shoot");
         WeaponChangeAction = InputSystem.actions.FindAction("ChangeWeapon");
         ReloadAction = InputSystem.actions.FindAction("Reload");
+        MeleeAction = InputSystem.actions.FindAction("Melee");
         UnlockWeapon(0);
         ChangeGun(0);
         InitializeAmmoText();
@@ -84,7 +94,7 @@ public class ShootScript : MonoBehaviour
         //shoot
         if (shootAction.ReadValue<float>() != 0)
         {
-            if (!GunCoolDown && (currentGunGO.GetComponentInChildren<Animation>().clip != GunList[currentgun].ReloadAnim) || !currentGunGO.GetComponentInChildren<Animation>().isPlaying)
+            if (!GunCoolDown && (currentGunGO.GetComponentInChildren<Animation>().clip != GunList[currentgun].ReloadAnim || !currentGunGO.GetComponentInChildren<Animation>().isPlaying))
             {
                 if (GunList[currentgun].currentclip > 0)
                 {
@@ -202,6 +212,21 @@ public class ShootScript : MonoBehaviour
 
         previousReloadInput = reloadinput;
 
+
+        //melee
+        float meleevalue = MeleeAction.ReadValue<float>();
+        if (meleevalue != 0 && meleevalue != previousmeleevalue && !MeleeAnim.isPlaying)
+        {
+            MeleeAnim.Play();
+            foreach (GameObject enemy in EnemySpawner.instance.SpawnedEnemylist)
+            {
+                if (enemy != null && enemy.activeSelf && Vector3.Distance(transform.position, enemy.transform.position) <= meleerange)
+                {
+                    enemy.GetComponent<HealthScript>().TakeDamage(meleedamage);
+                }
+            }
+        }
+        previousmeleevalue = meleevalue;
     }
 
 
@@ -252,7 +277,7 @@ public class ShootScript : MonoBehaviour
         UpdateSelectedSprite();
         if (currentgun == 3)
         {
-            GunList[currentgun].Bulletprefab = currentGunGO.transform.GetChild(1).gameObject;
+            RayGunLaser = currentGunGO.transform.GetChild(1).gameObject;
         }
     }
     private void Reload()
@@ -352,12 +377,12 @@ public class ShootScript : MonoBehaviour
         StartCoroutine(GunCD(GunList[currentgun]));
         currentGunGO.GetComponentInChildren<Animation>().clip = GunList[currentgun].ShootAnim;
         currentGunGO.GetComponentInChildren<Animation>().Play();
-        if (!GunList[currentgun].Bulletprefab.GetComponent<LaserScript>().gameObject.activeSelf)
+        if (!RayGunLaser.GetComponent<LaserScript>().gameObject.activeSelf)
         {
-            GunList[currentgun].Bulletprefab.GetComponent<LaserScript>().gameObject.SetActive(true);
+            RayGunLaser.GetComponent<LaserScript>().gameObject.SetActive(true);
         }
-        GunList[currentgun].Bulletprefab.GetComponent<LaserScript>().ResetList();
-        GunList[currentgun].Bulletprefab.GetComponent<LaserScript>().Damage = GunList[currentgun].damage;
+        RayGunLaser.GetComponent<LaserScript>().ResetList();
+        RayGunLaser.GetComponent<LaserScript>().Damage = GunList[currentgun].damage;
 
         //if (GunList[currentgun].ShootSFX.Count > 0)
         //{

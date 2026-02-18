@@ -54,7 +54,7 @@ public class AmmoBoxScript : MonoBehaviour
                 player.GetComponent<ShootScript>().GunList[ammotype].reserveammo += (int)(player.GetComponent<ShootScript>().GunList[ammotype].clipsize * clipratio);
 
             }
-            SoundManager.instance.PlaySFX(SFXToPlay, 0.05f, transform);
+            SoundManager.instance.PlaySFX(SFXToPlay, 0.05f, player);
 
             Destroy(gameObject);
             ShootScript.instance.InitializeAmmoText();
