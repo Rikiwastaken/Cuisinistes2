@@ -34,6 +34,7 @@ public class ShootScript : MonoBehaviour
         public AnimationClip ReloadAnim;
         public List<AudioClip> ShootSFX;
         public List<AudioClip> ReloadSFX;
+        public List<AudioClip> EmptyClipSFX;
         public bool unlocked;
         public TextMeshProUGUI ReserveAmmoTMP;
         public TextMeshProUGUI CurrentClipTMP;
@@ -50,7 +51,6 @@ public class ShootScript : MonoBehaviour
     private int currentgun;
     public GameObject currentGunGO;
     private bool GunCoolDown;
-    public List<AudioClip> EmptyCliPSFX;
     private float previousscroll;
     private InputAction WeaponChangeAction;
     private InputAction ReloadAction;
@@ -138,19 +138,29 @@ public class ShootScript : MonoBehaviour
                 {
                     StartCoroutine(GunCD(GunList[currentgun]));
                     previousshoot = 1;
-                    if (EmptyCliPSFX.Count > 0)
+                    if (GunList[currentgun].EmptyClipSFX.Count > 0)
                     {
 
-                        SoundManager.instance.PlaySFXFromList(EmptyCliPSFX, 0.05f, transform);
+                        SoundManager.instance.PlaySFXFromList(GunList[currentgun].EmptyClipSFX, 0.05f, transform);
                     }
                 }
-
+                if (GunList[currentgun].reserveammo == 0 && GunList[currentgun].currentclip == 0)
+                {
+                    if (currentGunGO != null && currentGunGO.GetComponent<AudioSource>() != null && currentGunGO.GetComponent<AudioSource>().isPlaying)
+                    {
+                        currentGunGO.GetComponent<AudioSource>().Stop();
+                    }
+                }
 
             }
         }
         else
         {
             previousshoot = 0;
+            if (currentGunGO != null && currentGunGO.GetComponent<AudioSource>() != null && currentGunGO.GetComponent<AudioSource>().isPlaying)
+            {
+                currentGunGO.GetComponent<AudioSource>().Stop();
+            }
         }
 
         //make gun appear
@@ -314,7 +324,10 @@ public class ShootScript : MonoBehaviour
     }
     private void Reload()
     {
-
+        if (currentGunGO != null && currentGunGO.GetComponent<AudioSource>() != null && currentGunGO.GetComponent<AudioSource>().isPlaying)
+        {
+            currentGunGO.GetComponent<AudioSource>().Stop();
+        }
         currentGunGO.GetComponentInChildren<Animation>().clip = GunList[currentgun].ReloadAnim;
         currentGunGO.GetComponentInChildren<Animation>().Play();
         int bulletneeded = (int)GunList[currentgun].clipsize - GunList[currentgun].currentclip;
@@ -416,10 +429,10 @@ public class ShootScript : MonoBehaviour
         RayGunLaser.GetComponent<LaserScript>().ResetList();
         RayGunLaser.GetComponent<LaserScript>().Damage = GunList[currentgun].damage;
 
-        //if (GunList[currentgun].ShootSFX.Count > 0)
-        //{
-        //    SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
-        //}
+        if (!currentGunGO.GetComponent<AudioSource>().isPlaying)
+        {
+            currentGunGO.GetComponent<AudioSource>().Play();
+        }
 
 
     }

@@ -1882,7 +1882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   MainCamera: {fileID: 1023333629102334493}
   GunList:
-  - name: 
+  - name: HandGun
     GunModel: {fileID: 2962789918115722720, guid: 46ed370b18d9cdb42a216c5eac4e86e3, type: 3}
     GunPosition: {x: 0.5, y: -0.3, z: 0.8}
     GunRotation: {x: 0, y: 180, z: 0}
@@ -1906,10 +1906,14 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 4947b9ab81226014f85ea4014ec3956f, type: 3}
     - {fileID: 8300000, guid: 9f5e40d9fad3bff4b8d8cda33e51859a, type: 3}
     - {fileID: 8300000, guid: a45951d43b6248c41aecf18472351f6f, type: 3}
+    EmptyClipSFX:
+    - {fileID: 8300000, guid: 942e349fb322e714680f7ec1f6c54e99, type: 3}
+    - {fileID: 8300000, guid: daed41aee47af994684bb393be2175eb, type: 3}
+    - {fileID: 8300000, guid: f33d83386a328cc4fb182c5143e00f5e, type: 3}
     unlocked: 0
     ReserveAmmoTMP: {fileID: 1372136017296284525}
     CurrentClipTMP: {fileID: 883676527848524228}
-  - name: 
+  - name: AR
     GunModel: {fileID: 2962789918115722720, guid: 14ccddb7d9b62ea46b4edb6a2baea2c8, type: 3}
     GunPosition: {x: 0.45, y: -0.4, z: 0.9}
     GunRotation: {x: 0, y: 0, z: 0}
@@ -1933,10 +1937,14 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 7402d30d952436d439f2050280509825, type: 3}
     ReloadSFX:
     - {fileID: 8300000, guid: 2e7f547d815233b46a9678af7b5ad44b, type: 3}
+    EmptyClipSFX:
+    - {fileID: 8300000, guid: 942e349fb322e714680f7ec1f6c54e99, type: 3}
+    - {fileID: 8300000, guid: daed41aee47af994684bb393be2175eb, type: 3}
+    - {fileID: 8300000, guid: f33d83386a328cc4fb182c5143e00f5e, type: 3}
     unlocked: 0
     ReserveAmmoTMP: {fileID: 4393277931692648783}
     CurrentClipTMP: {fileID: 6072489959606445292}
-  - name: 
+  - name: Shotgun
     GunModel: {fileID: 2962789918115722720, guid: b0595aa90a4db0048b1d20153b432564, type: 3}
     GunPosition: {x: 0.5, y: -0.3, z: 0.925}
     GunRotation: {x: 0, y: 0, z: 0}
@@ -1958,6 +1966,10 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 75abf3bfc498ca548992000a1da988b0, type: 3}
     ReloadSFX:
     - {fileID: 8300000, guid: 5cf151f8037726042b831bae0e77c614, type: 3}
+    EmptyClipSFX:
+    - {fileID: 8300000, guid: d3712131c97902a4d93f83e5ef87cd20, type: 3}
+    - {fileID: 8300000, guid: f9cb3aea7df17214a8205e1092561aca, type: 3}
+    - {fileID: 8300000, guid: 75abf3bfc498ca548992000a1da988b0, type: 3}
     unlocked: 0
     ReserveAmmoTMP: {fileID: 8704634350139425386}
     CurrentClipTMP: {fileID: 3541501672061897883}
@@ -1978,19 +1990,15 @@ MonoBehaviour:
     ShootAnim: {fileID: -4933792886422124266, guid: b4293a21df77d3b42950e0a22bea3487, type: 3}
     ReloadAnim: {fileID: -3556574136720864731, guid: b4293a21df77d3b42950e0a22bea3487, type: 3}
     ShootSFX:
-    - {fileID: 8300000, guid: d3712131c97902a4d93f83e5ef87cd20, type: 3}
-    - {fileID: 8300000, guid: f9cb3aea7df17214a8205e1092561aca, type: 3}
-    - {fileID: 8300000, guid: 75abf3bfc498ca548992000a1da988b0, type: 3}
+    - {fileID: 8300000, guid: d94aff00cce18cd49800bfc9bbd37741, type: 3}
     ReloadSFX:
-    - {fileID: 8300000, guid: 5cf151f8037726042b831bae0e77c614, type: 3}
+    - {fileID: 8300000, guid: 1319ac9c6e3d6174c84fc42bca25d546, type: 3}
+    EmptyClipSFX:
+    - {fileID: 8300000, guid: 19e146b0e7bbe694e9f5c0e951883b7f, type: 3}
     unlocked: 0
     ReserveAmmoTMP: {fileID: 5430971095608841784}
     CurrentClipTMP: {fileID: 5252066288197166554}
   currentGunGO: {fileID: 0}
-  EmptyCliPSFX:
-  - {fileID: 8300000, guid: 942e349fb322e714680f7ec1f6c54e99, type: 3}
-  - {fileID: 8300000, guid: daed41aee47af994684bb393be2175eb, type: 3}
-  - {fileID: 8300000, guid: f33d83386a328cc4fb182c5143e00f5e, type: 3}
   SelectedSprite:
   - {fileID: 8947843186332617607}
   - {fileID: 8138921958792954857}
@@ -1999,7 +2007,7 @@ MonoBehaviour:
   MeleeGO: {fileID: 4562096993099686849}
   MeleeAnim: {fileID: 2677585899570315050}
   meleedamage: 10
-  meleerange: 2
+  meleerange: 3
 --- !u!114 &484629754530822652
 MonoBehaviour:
   m_ObjectHideFlags: 0
