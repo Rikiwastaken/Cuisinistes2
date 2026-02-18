@@ -250,6 +250,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
+      propertyPath: meleerange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
+      propertyPath: meleedamage
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

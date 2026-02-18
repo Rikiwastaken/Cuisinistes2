@@ -137,6 +137,12 @@ public class EnemyNavigation : MonoBehaviour
             return;
         }
 
+
+        if (EnemySpawner.instance.totalenemyonthemap <= 2)
+        {
+            engagedPlayer = true;
+        }
+
         float sqrDistToPlayer = (player.position - transform.position).sqrMagnitude;
 
         if (Time.time >= nextDestinationUpdateTime)
@@ -385,7 +391,7 @@ public class EnemyNavigation : MonoBehaviour
         {
             return;
         }
-        else if (Mathf.Abs(agent.velocity.magnitude) >= 0.01f)
+        else if (Mathf.Abs(agent.velocity.magnitude) >= 0f)
         {
             if (Animation.clip != Run)
             {
