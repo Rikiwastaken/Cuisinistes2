@@ -5,6 +5,7 @@
 - [Hound](https://backrooms-wiki.wikidot.com/entity-8)
 - [Neighbourhood Watch](https://backrooms-wiki.wikidot.com/entity-96)
 - [Curabitur Bird](https://backrooms-wiki.wikidot.com/entity-37)
+- [Hermit](https://backrooms-wiki.wikidot.com/entity-83)
 
 ## Possible
 
@@ -15,6 +16,5 @@
 - [Shocker Ghoul](https://backrooms-wiki.wikidot.com/entity-66)
 - [Partygoer =)](https://backrooms-wiki.wikidot.com/entity-67)
 - [Wanderer](https://backrooms-wiki.wikidot.com/entity-79)
-- [Hermit](https://backrooms-wiki.wikidot.com/entity-83)
 - [Steel](https://backrooms-wiki.wikidot.com/entity-90)
 - [The Game Master](https://backrooms-wiki.wikidot.com/entity-99)
