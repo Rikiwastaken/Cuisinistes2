@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   rangefordrag: 4
-  rangeforpickup: 0.5
-  dragspeed: 3
-  rotationpersecond: 50
+  rangeforpickup: 1
+  dragspeed: 5
+  rotationpersecond: 75
   clipratio: 2
   ammoboxmodel:
   - {fileID: 2279905322872454474}
@@ -58,6 +58,7 @@ MonoBehaviour:
   - {fileID: 8059363559180063956}
   healthRestoredByMedkit: 0
   armorgained: 0
+  SFXToPlay: {fileID: 8300000, guid: 189e91d4dd096f5478143bc1a24cbad9, type: 3}
   ammotype: 0
   isMedKit: 0
   isArmor: 0

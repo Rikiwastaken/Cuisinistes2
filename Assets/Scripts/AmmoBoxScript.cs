@@ -20,6 +20,7 @@ public class AmmoBoxScript : MonoBehaviour
     public float healthRestoredByMedkit;
 
     public float armorgained;
+    public AudioClip SFXToPlay;
 
     [Header("LocalSettings")]
     public int ammotype;
@@ -51,8 +52,9 @@ public class AmmoBoxScript : MonoBehaviour
             else
             {
                 player.GetComponent<ShootScript>().GunList[ammotype].reserveammo += (int)(player.GetComponent<ShootScript>().GunList[ammotype].clipsize * clipratio);
-                SoundManager.instance.PlaySFXFromList(player.GetComponent<ShootScript>().GunList[ammotype].ReloadSFX, 0.05f, transform);
+
             }
+            SoundManager.instance.PlaySFX(SFXToPlay, 0.05f, transform);
 
             Destroy(gameObject);
             ShootScript.instance.InitializeAmmoText();
