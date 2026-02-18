@@ -4,12 +4,12 @@
 - [Bacteria](https://backrooms-escape-together.fandom.com/wiki/Bacteria_(Entity))
 - [Hound](https://backrooms-wiki.wikidot.com/entity-8)
 - [Neighbourhood Watch](https://backrooms-wiki.wikidot.com/entity-96)
+- [Curabitur Bird](https://backrooms-wiki.wikidot.com/entity-37)
 
 ## Possible
 
 - [Plague Goblin](https://backrooms-wiki.wikidot.com/entity-25)
 - [Cannibal Cuisine](https://backrooms-wiki.wikidot.com/entity-36) (item shop)
-- [Curabitur Bird](https://backrooms-wiki.wikidot.com/entity-37)
 - [Corpus Vitis](https://backrooms-wiki.wikidot.com/entity-49)
 - [Snagsturt](https://backrooms-wiki.wikidot.com/entity-59)
 - [Shocker Ghoul](https://backrooms-wiki.wikidot.com/entity-66)
