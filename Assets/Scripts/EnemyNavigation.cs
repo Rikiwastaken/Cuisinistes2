@@ -73,6 +73,7 @@ public class EnemyNavigation : MonoBehaviour
     public GameObject AmmoBoxPrefab;
     public GameObject HealthKitPrefab;
     public GameObject ArmorKitPrefab;
+    private UpgradeScript upgradeScript;
 
     [Header("Sound")]
 
@@ -90,6 +91,7 @@ public class EnemyNavigation : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        upgradeScript = UpgradeScript.instance;
         agent = GetComponent<NavMeshAgent>();
         agent.speed = movingspeed;
         sqrAgroRange = AgroRange * AgroRange;
@@ -113,6 +115,13 @@ public class EnemyNavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //bonus
+        if (upgradeScript.gettingbonus)
+        {
+            return;
+        }
+
         if (ded)
         {
             if (agent.enabled)
@@ -277,6 +286,11 @@ public class EnemyNavigation : MonoBehaviour
 
     private void LateUpdate()
     {
+        //bonus
+        if (upgradeScript.gettingbonus)
+        {
+            return;
+        }
         if (engagedPlayer)
         {
             if (!ded)
@@ -339,8 +353,22 @@ public class EnemyNavigation : MonoBehaviour
 
     public void TriggerDrop()
     {
+
+
+        int freeupgradeRandomValue = UnityEngine.Random.Range(0, 100);
+
+        if (freeupgradeRandomValue < 100f * Mathf.Max(0f, upgradeScript.FreeUpgradeChanceLevel * upgradeScript.FreeUpgradePerLevel) * Mathf.Pow(1f + upgradeScript.FreeUpgradePerLevel, upgradeScript.FreeUpgradeChanceLevel))
+        {
+            upgradeScript.InitializeNewBonuses();
+        }
+
+
+
         int randomvalue = UnityEngine.Random.Range(0, 100);
-        if (randomvalue <= globaldroprate)
+
+        float truedroprate = globaldroprate * Mathf.Pow(1f + upgradeScript.DropRatePerLevel, upgradeScript.DropRateLevel);
+
+        if (truedroprate > 100f)
         {
 
             int droptablerandomvalue = UnityEngine.Random.Range(0, ammodropratepercent + armordroprate + healtkitdroprate);
@@ -361,7 +389,58 @@ public class EnemyNavigation : MonoBehaviour
                 newhealthkit.transform.position = transform.position + new Vector3(0, 0.5f, 0);
             }
 
+
+            if (randomvalue <= truedroprate - 100)
+            {
+
+                droptablerandomvalue = UnityEngine.Random.Range(0, ammodropratepercent + armordroprate + healtkitdroprate);
+                if (droptablerandomvalue <= ammodropratepercent)
+                {
+                    GameObject newammobox = Instantiate(AmmoBoxPrefab);
+                    newammobox.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                    newammobox.GetComponent<AmmoBoxScript>().InitializeAmmoBox();
+                }
+                else if (droptablerandomvalue <= armordroprate)
+                {
+                    GameObject newarmor = Instantiate(ArmorKitPrefab);
+                    newarmor.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                }
+                else
+                {
+                    GameObject newhealthkit = Instantiate(HealthKitPrefab);
+                    newhealthkit.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                }
+
+            }
+
         }
+        else
+        {
+            if (randomvalue <= truedroprate)
+            {
+
+                int droptablerandomvalue = UnityEngine.Random.Range(0, ammodropratepercent + armordroprate + healtkitdroprate);
+                if (droptablerandomvalue <= ammodropratepercent)
+                {
+                    GameObject newammobox = Instantiate(AmmoBoxPrefab);
+                    newammobox.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                    newammobox.GetComponent<AmmoBoxScript>().InitializeAmmoBox();
+                }
+                else if (droptablerandomvalue <= armordroprate)
+                {
+                    GameObject newarmor = Instantiate(ArmorKitPrefab);
+                    newarmor.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                }
+                else
+                {
+                    GameObject newhealthkit = Instantiate(HealthKitPrefab);
+                    newhealthkit.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+                }
+
+            }
+        }
+
+
     }
     public void PlayDeathAnim(bool immediate = false)
     {

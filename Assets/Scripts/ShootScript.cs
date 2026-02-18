@@ -27,13 +27,14 @@ public class ShootScript : MonoBehaviour
         public float bulletspeed;
         public float GunCD;
         public int currentclip;
-        public int clipsize;
+        public float clipsize;
         public int reserveammo;
         public Vector3 wheretospawnbullet;
         public AnimationClip ShootAnim;
         public AnimationClip ReloadAnim;
         public List<AudioClip> ShootSFX;
         public List<AudioClip> ReloadSFX;
+        public List<AudioClip> EmptyClipSFX;
         public bool unlocked;
         public TextMeshProUGUI ReserveAmmoTMP;
         public TextMeshProUGUI CurrentClipTMP;
@@ -50,7 +51,6 @@ public class ShootScript : MonoBehaviour
     private int currentgun;
     public GameObject currentGunGO;
     private bool GunCoolDown;
-    public List<AudioClip> EmptyCliPSFX;
     private float previousscroll;
     private InputAction WeaponChangeAction;
     private InputAction ReloadAction;
@@ -66,7 +66,9 @@ public class ShootScript : MonoBehaviour
     public float meleerange;
     private float previousmeleevalue;
 
+    private UpgradeScript upgradeScript;
 
+    private bool awaitfirstweapon = true;
 
     private void Awake()
     {
@@ -77,12 +79,11 @@ public class ShootScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        upgradeScript = GetComponent<UpgradeScript>();
         shootAction = InputSystem.actions.FindAction("Shoot");
         WeaponChangeAction = InputSystem.actions.FindAction("ChangeWeapon");
         ReloadAction = InputSystem.actions.FindAction("Reload");
         MeleeAction = InputSystem.actions.FindAction("Melee");
-        UnlockWeapon(0);
-        ChangeGun(0);
         InitializeAmmoText();
     }
 
@@ -91,6 +92,18 @@ public class ShootScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //bonus
+        if (upgradeScript.gettingbonus)
+        {
+            return;
+        }
+
+        if (awaitfirstweapon)
+        {
+            Getfirstgun();
+            awaitfirstweapon = false;
+        }
+
         //shoot
         if (shootAction.ReadValue<float>() != 0)
         {
@@ -110,9 +123,12 @@ public class ShootScript : MonoBehaviour
                     {
                         Shoot();
                     }
-
-                    GunList[currentgun].currentclip--;
-                    GunList[currentgun].CurrentClipTMP.text = GunList[currentgun].currentclip + "/" + GunList[currentgun].clipsize;
+                    int randomchancetosavebullet = UnityEngine.Random.Range(0, 100);
+                    if (randomchancetosavebullet > upgradeScript.AmmoSaveChanceLevel * upgradeScript.AmmoSavePerLevel)
+                    {
+                        GunList[currentgun].currentclip--;
+                    }
+                    GunList[currentgun].CurrentClipTMP.text = GunList[currentgun].currentclip + "/" + (int)GunList[currentgun].clipsize;
                 }
                 else if (GunList[currentgun].reserveammo > 0)
                 {
@@ -122,19 +138,29 @@ public class ShootScript : MonoBehaviour
                 {
                     StartCoroutine(GunCD(GunList[currentgun]));
                     previousshoot = 1;
-                    if (EmptyCliPSFX.Count > 0)
+                    if (GunList[currentgun].EmptyClipSFX.Count > 0)
                     {
 
-                        SoundManager.instance.PlaySFXFromList(EmptyCliPSFX, 0.05f, transform);
+                        SoundManager.instance.PlaySFXFromList(GunList[currentgun].EmptyClipSFX, 0.05f, transform);
                     }
                 }
-
+                if (GunList[currentgun].reserveammo == 0 && GunList[currentgun].currentclip == 0)
+                {
+                    if (currentGunGO != null && currentGunGO.GetComponent<AudioSource>() != null && currentGunGO.GetComponent<AudioSource>().isPlaying)
+                    {
+                        currentGunGO.GetComponent<AudioSource>().Stop();
+                    }
+                }
 
             }
         }
         else
         {
             previousshoot = 0;
+            if (currentGunGO != null && currentGunGO.GetComponent<AudioSource>() != null && currentGunGO.GetComponent<AudioSource>().isPlaying)
+            {
+                currentGunGO.GetComponent<AudioSource>().Stop();
+            }
         }
 
         //make gun appear
@@ -205,7 +231,7 @@ public class ShootScript : MonoBehaviour
 
         float reloadinput = ReloadAction.ReadValue<float>();
 
-        if (reloadinput != 0 && !currentGunGO.GetComponentInChildren<Animation>().isPlaying && reloadinput != previousReloadInput && GunList[currentgun].currentclip < GunList[currentgun].clipsize && GunList[currentgun].reserveammo > 0)
+        if (reloadinput != 0 && !currentGunGO.GetComponentInChildren<Animation>().isPlaying && reloadinput != previousReloadInput && GunList[currentgun].currentclip < (int)GunList[currentgun].clipsize && GunList[currentgun].reserveammo > 0)
         {
             Reload();
         }
@@ -218,7 +244,12 @@ public class ShootScript : MonoBehaviour
         if (meleevalue != 0 && meleevalue != previousmeleevalue && !MeleeAnim.isPlaying)
         {
             MeleeAnim.Play();
+            List<GameObject> enemylist = new List<GameObject>();
             foreach (GameObject enemy in EnemySpawner.instance.SpawnedEnemylist)
+            {
+                enemylist.Add(enemy);
+            }
+            foreach (GameObject enemy in enemylist)
             {
                 if (enemy != null && enemy.activeSelf && Vector3.Distance(transform.position, enemy.transform.position) <= meleerange)
                 {
@@ -241,6 +272,17 @@ public class ShootScript : MonoBehaviour
         }
     }
 
+    public void Getfirstgun()
+    {
+        for (int i = 0; i < GunList.Count; i++)
+        {
+            if (GunList[i].unlocked)
+            {
+                ChangeGun(i);
+                break;
+            }
+        }
+    }
 
     public void UnlockWeapon(int i)
     {
@@ -282,13 +324,16 @@ public class ShootScript : MonoBehaviour
     }
     private void Reload()
     {
-
+        if (currentGunGO != null && currentGunGO.GetComponent<AudioSource>() != null && currentGunGO.GetComponent<AudioSource>().isPlaying)
+        {
+            currentGunGO.GetComponent<AudioSource>().Stop();
+        }
         currentGunGO.GetComponentInChildren<Animation>().clip = GunList[currentgun].ReloadAnim;
         currentGunGO.GetComponentInChildren<Animation>().Play();
-        int bulletneeded = GunList[currentgun].clipsize - GunList[currentgun].currentclip;
+        int bulletneeded = (int)GunList[currentgun].clipsize - GunList[currentgun].currentclip;
         if (GunList[currentgun].reserveammo >= bulletneeded)
         {
-            GunList[currentgun].currentclip = GunList[currentgun].clipsize;
+            GunList[currentgun].currentclip = (int)GunList[currentgun].clipsize;
             GunList[currentgun].reserveammo -= bulletneeded;
         }
         else
@@ -296,7 +341,7 @@ public class ShootScript : MonoBehaviour
             GunList[currentgun].currentclip = GunList[currentgun].reserveammo;
             GunList[currentgun].reserveammo = 0;
         }
-        GunList[currentgun].CurrentClipTMP.text = GunList[currentgun].currentclip + "/" + GunList[currentgun].clipsize;
+        GunList[currentgun].CurrentClipTMP.text = GunList[currentgun].currentclip + "/" + (int)GunList[currentgun].clipsize;
         GunList[currentgun].ReserveAmmoTMP.text = GunList[currentgun].reserveammo + "";
         if (GunList[currentgun].ReloadSFX.Count > 0)
         {
@@ -384,10 +429,10 @@ public class ShootScript : MonoBehaviour
         RayGunLaser.GetComponent<LaserScript>().ResetList();
         RayGunLaser.GetComponent<LaserScript>().Damage = GunList[currentgun].damage;
 
-        //if (GunList[currentgun].ShootSFX.Count > 0)
-        //{
-        //    SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
-        //}
+        if (!currentGunGO.GetComponent<AudioSource>().isPlaying)
+        {
+            currentGunGO.GetComponent<AudioSource>().Play();
+        }
 
 
     }

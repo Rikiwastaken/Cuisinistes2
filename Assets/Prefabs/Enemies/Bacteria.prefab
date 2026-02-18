@@ -195,10 +195,15 @@ MonoBehaviour:
   AmmoBoxPrefab: {fileID: 8594776281252626752, guid: a328dada7dd3de44f9168da23e4ef451, type: 3}
   HealthKitPrefab: {fileID: 8594776281252626752, guid: b3692803d71aabd4d8fa9ac0d81873e8, type: 3}
   ArmorKitPrefab: {fileID: 8594776281252626752, guid: ed7f82ff0dc1f3c40828049ab0098768, type: 3}
-  AttackSound: []
+  AttackSound:
+  - {fileID: 8300000, guid: 1bfd7abc112a2c44c81864debac2f954, type: 3}
+  - {fileID: 8300000, guid: c0083eff63060ea4098a228b6315ca06, type: 3}
+  - {fileID: 8300000, guid: b1ae977e725cba440ba898a85d142aa9, type: 3}
   Idlesound: []
-  DamageSound: []
-  DeathSound: []
+  DamageSound:
+  - {fileID: 8300000, guid: f84fd094c80f9a94eb8f3e2d7741e082, type: 3}
+  DeathSound:
+  - {fileID: 8300000, guid: c79813d898e8f5f4a9e5b5a2e04834fd, type: 3}
   timebetweenidlesound: 0
 --- !u!114 &3247550930479452848
 MonoBehaviour:
