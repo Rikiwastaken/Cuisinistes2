@@ -49,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
     public List<WaveClass> waves;
 
     public int currentwave;
-
+    public bool waittingforupdate;
     private Transform player;
     private void Awake()
     {

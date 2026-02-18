@@ -250,30 +250,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: GunList.Array.data[2].ShootSFX.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: 'GunList.Array.data[2].ShootSFX.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: d3712131c97902a4d93f83e5ef87cd20, type: 3}
-    - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: 'GunList.Array.data[2].ShootSFX.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: f9cb3aea7df17214a8205e1092561aca, type: 3}
-    - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: 'GunList.Array.data[2].ShootSFX.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 75abf3bfc498ca548992000a1da988b0, type: 3}
-    - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: 'GunList.Array.data[2].ShootSFX.Array.data[3]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 7402d30d952436d439f2050280509825, type: 3}
-    - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: 'GunList.Array.data[2].ReloadSFX.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 5cf151f8037726042b831bae0e77c614, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -56,6 +56,7 @@ public class ShootScript : MonoBehaviour
     private InputAction ReloadAction;
     private float previousReloadInput;
     public List<Image> SelectedSprite;
+    private GameObject RayGunLaser;
 
 
     private void Awake()
@@ -90,6 +91,10 @@ public class ShootScript : MonoBehaviour
                     if (currentgun == 2)
                     {
                         ShootShotgun();
+                    }
+                    else if (currentgun == 3)
+                    {
+                        ShootRayGun();
                     }
                     else
                     {
@@ -203,8 +208,12 @@ public class ShootScript : MonoBehaviour
     private IEnumerator GunCD(GunClass Gun)
     {
         GunCoolDown = true;
-        yield return new WaitForSeconds(Mathf.Max(Gun.GunCD / Time.deltaTime, Gun.ShootAnim.length / Time.deltaTime));
+        yield return new WaitForSeconds(Gun.GunCD);
         GunCoolDown = false;
+        if (currentGunGO.GetComponentInChildren<LaserScript>() != null)
+        {
+            currentGunGO.GetComponentInChildren<LaserScript>().gameObject.SetActive(false);
+        }
     }
 
 
@@ -212,6 +221,7 @@ public class ShootScript : MonoBehaviour
     {
         GunList[i].unlocked = true;
         InitializeAmmoText();
+
     }
 
     private void UpdateSelectedSprite()
@@ -240,6 +250,10 @@ public class ShootScript : MonoBehaviour
         currentGunGO.transform.localRotation = Quaternion.Euler(activegunclass.GunRotation);
         SetLayerAllChildren(currentGunGO.transform, LayerMask.NameToLayer("Weapons"));
         UpdateSelectedSprite();
+        if (currentgun == 3)
+        {
+            GunList[currentgun].Bulletprefab = currentGunGO.transform.GetChild(1).gameObject;
+        }
     }
     private void Reload()
     {
@@ -329,6 +343,26 @@ public class ShootScript : MonoBehaviour
         {
             SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
         }
+
+
+    }
+
+    private void ShootRayGun()
+    {
+        StartCoroutine(GunCD(GunList[currentgun]));
+        currentGunGO.GetComponentInChildren<Animation>().clip = GunList[currentgun].ShootAnim;
+        currentGunGO.GetComponentInChildren<Animation>().Play();
+        if (!GunList[currentgun].Bulletprefab.GetComponent<LaserScript>().gameObject.activeSelf)
+        {
+            GunList[currentgun].Bulletprefab.GetComponent<LaserScript>().gameObject.SetActive(true);
+        }
+        GunList[currentgun].Bulletprefab.GetComponent<LaserScript>().ResetList();
+        GunList[currentgun].Bulletprefab.GetComponent<LaserScript>().Damage = GunList[currentgun].damage;
+
+        //if (GunList[currentgun].ShootSFX.Count > 0)
+        //{
+        //    SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
+        //}
 
 
     }
