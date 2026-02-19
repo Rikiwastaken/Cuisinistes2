@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TitleText : MonoBehaviour
 {
@@ -74,7 +73,12 @@ public class TitleText : MonoBehaviour
         textMeshPro.text = "ThankS FoR PlayinG";
         soundManager.PlaySFX(MainTextClip, 0.05f, transform);
         yield return new WaitForSeconds(timeforfinaltext * 4);
-        SceneManager.LoadScene("MainMenu");
+        textMeshPro.text = "BuT it NeveR EndS";
+        soundManager.PlaySFX(MainTextClip, 0.05f, transform);
+        yield return new WaitForSeconds(timeforfinaltext * 4);
+        transform.position = MovementController.instance.basepos;
+        EnemySpawner.instance.endless = true;
+        EnemySpawner.instance.InitializeNewEndlessWave();
     }
 
 

@@ -65,8 +65,10 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Boss;
 
     private GameObject BossInstance;
-    private bool won;
+    public bool won;
     private bool showedvictory;
+    public bool endless;
+    private WaveClass lastwave;
 
     private void Awake()
     {
@@ -123,7 +125,17 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
-
+    public void InitializeNewEndlessWave()
+    {
+        WaveClass newwave = new WaveClass();
+        newwave.bonusperwave = 1;
+        newwave.numberofenemies = (int)((lastwave.numberofenemies + waveenemyadding) * waveenemymultiplier);
+        newwave.damagemultiplier = lastwave.damagemultiplier * difficultyincreaseperround;
+        newwave.healthmultiplier = lastwave.healthmultiplier * difficultyincreaseperround;
+        lastwave = newwave;
+        won = false;
+        BossInstance = null;
+    }
 
     public void KillEnemy()
     {
@@ -140,14 +152,21 @@ public class EnemySpawner : MonoBehaviour
             totalenemyonthemap--;
             if (totalenemyonthemap <= 0)
             {
-
-                if (currentwave < waves.Count - 1)
+                if (endless)
+                {
+                    InitializeNewEndlessWave();
+                    totalenemyonthemap = lastwave.numberofenemies;
+                    currentwave++;
+                    player.GetComponent<MovementController>().WaveTMP.text = "Wave " + (currentwave + 1) + "\nRemaining: " + totalenemyonthemap;
+                }
+                else if (currentwave < waves.Count - 1)
                 {
                     remainingbonustogive = waves[currentwave].bonusperwave - 1;
                     currentwave++;
                     upgradeScript.InitializeNewBonuses();
                     Debug.Log("now wave : " + currentwave);
                     totalenemyonthemap = waves[currentwave].numberofenemies;
+                    lastwave = waves[currentwave];
                     player.GetComponent<MovementController>().WaveTMP.text = "Wave " + (currentwave + 1) + "\nRemaining: " + totalenemyonthemap;
                 }
                 else
@@ -233,21 +252,32 @@ public class EnemySpawner : MonoBehaviour
                         newenemy = Instantiate(enemyprefabList[randomID]);
                     }
 
-                    if (waves[currentwave].damagemultiplier <= 1)
-                    {
-                        waves[currentwave].damagemultiplier = 1;
-                    }
 
-                    if (waves[currentwave].healthmultiplier <= 1)
-                    {
-                        waves[currentwave].healthmultiplier = 1;
-                    }
 
                     newenemy.GetComponentInChildren<Animation>().clip = newenemy.GetComponent<EnemyNavigation>().Idle;
                     newenemy.GetComponentInChildren<Animation>().Play();
-                    newenemy.GetComponent<HealthScript>().MaxHealth *= waves[currentwave].healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
-                    newenemy.GetComponent<EnemyNavigation>().Gun.damage *= waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
-                    newenemy.GetComponent<EnemyNavigation>().meleedamage *= waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                    if (endless)
+                    {
+                        newenemy.GetComponent<HealthScript>().MaxHealth *= lastwave.healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<EnemyNavigation>().Gun.damage *= lastwave.damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<EnemyNavigation>().meleedamage *= lastwave.damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                    }
+                    else
+                    {
+                        if (waves[currentwave].damagemultiplier <= 1)
+                        {
+                            waves[currentwave].damagemultiplier = 1;
+                        }
+
+                        if (waves[currentwave].healthmultiplier <= 1)
+                        {
+                            waves[currentwave].healthmultiplier = 1;
+                        }
+                        newenemy.GetComponent<HealthScript>().MaxHealth *= waves[currentwave].healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<EnemyNavigation>().Gun.damage *= waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<EnemyNavigation>().meleedamage *= waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                    }
+
 
                     newenemy.GetComponent<HealthScript>().HP = newenemy.GetComponent<HealthScript>().MaxHealth;
                     SpawnedEnemylist.Add(newenemy);

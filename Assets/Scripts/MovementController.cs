@@ -23,7 +23,7 @@ public class MovementController : MonoBehaviour
     public Vector3 StartPos;
     private int delaybetweenfootstepscnt;
     public float delaybetweenfootsteps;
-    private Vector3 basepos;
+    public Vector3 basepos;
 
     [Header("Jump")]
     private InputAction JumpAction;
