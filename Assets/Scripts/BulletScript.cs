@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletScript : MonoBehaviour
@@ -9,11 +10,18 @@ public class BulletScript : MonoBehaviour
     public float Damage;
     public float Recoil;
 
+    public bool ishandgun;
+    public List<GameObject> hitbyhandgun = new List<GameObject>();
+
     private int duration;
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.transform.GetComponent<BulletScript>() != null)
+        {
+            return;
+        }
+        if (hitbyhandgun != null && hitbyhandgun.Count > 0 && hitbyhandgun.Contains(other.gameObject))
         {
             return;
         }
@@ -57,8 +65,19 @@ public class BulletScript : MonoBehaviour
             //collision.GetComponent<Rigidbody>().AddForce(Direction * Recoil, ForceMode.Impulse);
         }
 
+        if (ishandgun)
+        {
+            hitbyhandgun.Add(collision);
+            if (hitbyhandgun.Count > 2)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
-        Destroy(gameObject);
     }
 
     public void InitializeBullet(Vector3 direction, float speed, int emiter, float damage, float recoil)

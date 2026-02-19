@@ -1930,13 +1930,13 @@ MonoBehaviour:
     GunRotation: {x: 0, y: 180, z: 0}
     GunScale: {x: 1, y: 1, z: 1}
     Bulletprefab: {fileID: 9034123730837891189, guid: edc69ef06ae621944823d093ed181627, type: 3}
-    damage: 5
+    damage: 6
     recoil: 1
     bulletspeed: 20
-    GunCD: 0.5
-    currentclip: 8
-    clipsize: 8
-    reserveammo: 16
+    GunCD: 0.4
+    currentclip: 12
+    clipsize: 12
+    reserveammo: 24
     wheretospawnbullet: {x: 0, y: 0.25, z: 0}
     ShootAnim: {fileID: 9003156271695032890, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
     ReloadAnim: {fileID: -4891696003755285387, guid: 2915d3d8dcde82c67a8a1913b0ef2d75, type: 3}
@@ -1961,13 +1961,13 @@ MonoBehaviour:
     GunRotation: {x: 0, y: 0, z: 0}
     GunScale: {x: 1, y: 1, z: 1}
     Bulletprefab: {fileID: 9034123730837891189, guid: 08701053fd0a3fb438781149f1a62f8a, type: 3}
-    damage: 2
+    damage: 1.5
     recoil: 0
-    bulletspeed: 20
-    GunCD: 0.2
-    currentclip: 30
-    clipsize: 30
-    reserveammo: 30
+    bulletspeed: 30
+    GunCD: 0.15
+    currentclip: 40
+    clipsize: 40
+    reserveammo: 40
     wheretospawnbullet: {x: 0, y: 0.2, z: 0.2}
     ShootAnim: {fileID: -4575775917281549716, guid: 3167744210a8563bea28f4fcb0348983, type: 3}
     ReloadAnim: {fileID: -6317932003601483521, guid: 3167744210a8563bea28f4fcb0348983, type: 3}
@@ -1994,7 +1994,7 @@ MonoBehaviour:
     Bulletprefab: {fileID: 8148637872722096646, guid: 9b7ce436f33846f4e91b8d6167bbe38a, type: 3}
     damage: 1.5
     recoil: 0
-    bulletspeed: 20
+    bulletspeed: 30
     GunCD: 1
     currentclip: 6
     clipsize: 6
@@ -2009,9 +2009,8 @@ MonoBehaviour:
     ReloadSFX:
     - {fileID: 8300000, guid: 5cf151f8037726042b831bae0e77c614, type: 3}
     EmptyClipSFX:
-    - {fileID: 8300000, guid: d3712131c97902a4d93f83e5ef87cd20, type: 3}
-    - {fileID: 8300000, guid: f9cb3aea7df17214a8205e1092561aca, type: 3}
-    - {fileID: 8300000, guid: 75abf3bfc498ca548992000a1da988b0, type: 3}
+    - {fileID: 8300000, guid: 702a411d8348e6344875d6161867f145, type: 3}
+    - {fileID: 8300000, guid: b28710117dab55c44a4091fa06fde3ab, type: 3}
     unlocked: 0
     ReserveAmmoTMP: {fileID: 8704634350139425386}
     CurrentClipTMP: {fileID: 3541501672061897883}

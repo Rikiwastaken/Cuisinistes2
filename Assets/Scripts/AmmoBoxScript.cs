@@ -48,19 +48,19 @@ public class AmmoBoxScript : MonoBehaviour
             if (isMedKit)
             {
                 healthRestoredByMedkit *= Mathf.Pow(1f + upgradeScript.DropPowerPerLevel, upgradeScript.DropPowerLevel);
-                player.GetComponent<HealthScript>().HP = Mathf.Min(player.GetComponent<HealthScript>().MaxHealth, player.GetComponent<HealthScript>().HP + healthRestoredByMedkit);
+                player.GetComponent<HealthScript>().HP = (int)Mathf.Min(player.GetComponent<HealthScript>().MaxHealth, player.GetComponent<HealthScript>().HP + healthRestoredByMedkit);
                 player.GetComponent<HealthScript>().UpdateTexts();
             }
             else if (isArmor)
             {
                 armorgained *= Mathf.Pow(1f + upgradeScript.DropPowerPerLevel, upgradeScript.DropPowerLevel);
-                player.GetComponent<HealthScript>().currentarmor = Mathf.Min(player.GetComponent<HealthScript>().maxarmor, player.GetComponent<HealthScript>().currentarmor + armorgained);
+                player.GetComponent<HealthScript>().currentarmor = (int)Mathf.Min(player.GetComponent<HealthScript>().maxarmor, player.GetComponent<HealthScript>().currentarmor + armorgained);
                 player.GetComponent<HealthScript>().UpdateTexts();
             }
             else
             {
                 clipratio *= Mathf.Pow(1f + upgradeScript.DropPowerPerLevel, upgradeScript.DropPowerLevel);
-                player.GetComponent<ShootScript>().GunList[ammotype].reserveammo += (int)(player.GetComponent<ShootScript>().GunList[ammotype].clipsize * clipratio);
+                player.GetComponent<ShootScript>().GunList[ammotype].reserveammo = (int)(player.GetComponent<ShootScript>().GunList[ammotype].reserveammo + player.GetComponent<ShootScript>().GunList[ammotype].clipsize * clipratio);
 
             }
             SoundManager.instance.PlaySFX(SFXToPlay, 0.05f, player);

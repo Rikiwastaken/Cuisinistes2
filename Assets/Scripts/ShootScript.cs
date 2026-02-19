@@ -377,8 +377,8 @@ public class ShootScript : MonoBehaviour
         }
         foreach (GunClass gunClass in GunList)
         {
-            gunClass.CurrentClipTMP.text = gunClass.currentclip + "/" + gunClass.clipsize;
-            gunClass.ReserveAmmoTMP.text = gunClass.reserveammo + "";
+            gunClass.CurrentClipTMP.text = (int)gunClass.currentclip + "/" + (int)gunClass.clipsize;
+            gunClass.ReserveAmmoTMP.text = (int)gunClass.reserveammo + "";
         }
     }
 

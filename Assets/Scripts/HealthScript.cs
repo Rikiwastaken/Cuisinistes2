@@ -40,8 +40,16 @@ public class HealthScript : MonoBehaviour
     private void Start()
     {
 
-        HP = scaledMaxHealth;
+
         isplayer = GetComponent<MovementController>() != null;
+        if (!isplayer)
+        {
+            HP = scaledMaxHealth;
+        }
+        else
+        {
+            HP = MaxHealth;
+        }
         soundManager = SoundManager.instance;
         spawner = EnemySpawner.instance;
         if (isplayer)
@@ -162,7 +170,7 @@ public class HealthScript : MonoBehaviour
                 ManageHurtPostProcessing();
                 UpdateTexts();
                 invframecounter = (int)(invframes / Time.fixedDeltaTime);
-                if (HP <= 0)
+                if ((int)HP <= 0)
                 {
                     GetComponent<TitleText>().StartGameOverText();
                     return;

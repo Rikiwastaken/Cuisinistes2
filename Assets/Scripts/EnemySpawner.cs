@@ -334,6 +334,7 @@ public class EnemySpawner : MonoBehaviour
                     {
                         newloot = Instantiate(pickups[0]);
                         newloot.GetComponent<AmmoBoxScript>().ammotype = randomID;
+                        newloot.GetComponent<AmmoBoxScript>().ammoboxmodel[randomID].SetActive(true);
                     }
                     else
                     {
