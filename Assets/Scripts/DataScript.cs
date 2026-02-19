@@ -14,6 +14,8 @@ public class DataScript : MonoBehaviour
         public float MusicVol;
         public float SFXVol;
         public float sensibility;
+        public int resolution;
+        public bool fullscreen;
     }
 
     public OptionsClass Options;
@@ -35,12 +37,30 @@ public class DataScript : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "FirstScene")
         {
             SceneManager.activeSceneChanged += SceneChange;
-            SceneManager.LoadScene("TestScene");
+            SceneManager.LoadScene("MainMenu");
         }
 
         LoadOptions();
     }
 
+    private void setResolution()
+    {
+        switch (Options.resolution)
+        {
+            case 0:
+                Screen.SetResolution(1920, 1080, Options.fullscreen);
+                break;
+            case 1:
+                Screen.SetResolution(1600, 900, Options.fullscreen);
+                break;
+            case 2:
+                Screen.SetResolution(1280, 720, Options.fullscreen);
+                break;
+            case 3:
+                Screen.SetResolution(960, 540, Options.fullscreen);
+                break;
+        }
+    }
 
     private void Update()
     {
@@ -53,6 +73,8 @@ public class DataScript : MonoBehaviour
             Options.SFXVol = 1.000001f;
             Options.Mastervol = 1.000001f;
             Options.sensibility = 0.000001f;
+            Options.resolution = 0;
+            Options.fullscreen = true;
         }
 
     }
@@ -83,8 +105,11 @@ public class DataScript : MonoBehaviour
             Options.SFXVol = 1.000001f;
             Options.Mastervol = 1.000001f;
             Options.sensibility = 1.000001f;
+            Options.resolution = 0;
+            Options.fullscreen = true;
         }
         SoundManager.instance.ChangeVolume();
+        setResolution();
     }
 
     public void SaveOptions()
@@ -115,6 +140,7 @@ public class DataScript : MonoBehaviour
         if (SoundManager.instance != null)
         {
             SoundManager.instance.ChangeVolume();
+            setResolution();
         }
 
     }
