@@ -35,10 +35,12 @@ public class HealthScript : MonoBehaviour
 
     private UpgradeScript UpgradeScript;
 
+    public float scaledMaxHealth;
+
     private void Start()
     {
 
-        HP = MaxHealth;
+        HP = scaledMaxHealth;
         isplayer = GetComponent<MovementController>() != null;
         soundManager = SoundManager.instance;
         spawner = EnemySpawner.instance;

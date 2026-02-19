@@ -225,7 +225,7 @@ MonoBehaviour:
   waveenemymultiplier: 1.1
   waveenemyadding: 3
   maxwaves: 20
-  difficultyincreaseperround: 0.03
+  difficultyincreaseperround: 0.05
   Arena: {fileID: 690179246324211211}
   Boss: {fileID: 2686418178066650683, guid: 1a68b21ec9567304b92f3450a920e3dd, type: 3}
   won: 0

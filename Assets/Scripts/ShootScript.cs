@@ -95,6 +95,8 @@ public class ShootScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         //bonus
         if (upgradeScript.gettingbonus || healthScript.HP <= 0)
         {

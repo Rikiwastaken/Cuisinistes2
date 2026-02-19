@@ -259,9 +259,9 @@ public class EnemySpawner : MonoBehaviour
                     newenemy.GetComponentInChildren<Animation>().Play();
                     if (endless)
                     {
-                        newenemy.GetComponent<HealthScript>().MaxHealth *= lastwave.healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
-                        newenemy.GetComponent<EnemyNavigation>().Gun.damage *= lastwave.damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
-                        newenemy.GetComponent<EnemyNavigation>().meleedamage *= lastwave.damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<HealthScript>().scaledMaxHealth = newenemy.GetComponent<HealthScript>().MaxHealth * lastwave.healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<EnemyNavigation>().scaledgundamage = newenemy.GetComponent<EnemyNavigation>().Gun.damage * lastwave.damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<EnemyNavigation>().scaledmeleedamage = newenemy.GetComponent<EnemyNavigation>().meleedamage * lastwave.damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
                     }
                     else
                     {
@@ -274,13 +274,13 @@ public class EnemySpawner : MonoBehaviour
                         {
                             waves[currentwave].healthmultiplier = 1;
                         }
-                        newenemy.GetComponent<HealthScript>().MaxHealth *= waves[currentwave].healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
-                        newenemy.GetComponent<EnemyNavigation>().Gun.damage *= waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
-                        newenemy.GetComponent<EnemyNavigation>().meleedamage *= waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<HealthScript>().scaledMaxHealth = newenemy.GetComponent<HealthScript>().MaxHealth * waves[currentwave].healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<EnemyNavigation>().scaledgundamage = newenemy.GetComponent<EnemyNavigation>().Gun.damage * waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<EnemyNavigation>().scaledmeleedamage = newenemy.GetComponent<EnemyNavigation>().meleedamage * waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
                     }
 
 
-                    newenemy.GetComponent<HealthScript>().HP = newenemy.GetComponent<HealthScript>().MaxHealth;
+                    newenemy.GetComponent<HealthScript>().HP = newenemy.GetComponent<HealthScript>().scaledMaxHealth;
                     SpawnedEnemylist.Add(newenemy);
                     NavMeshAgent agent = newenemy.GetComponent<NavMeshAgent>();
                     newenemy.transform.parent = EnemyHolder;

@@ -60,6 +60,7 @@ public class DataScript : MonoBehaviour
                 Screen.SetResolution(960, 540, Options.fullscreen);
                 break;
         }
+        Screen.fullScreen = Options.fullscreen;
     }
 
     private void Update()

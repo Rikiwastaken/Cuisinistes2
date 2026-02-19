@@ -755,7 +755,7 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 20
   m_Range: 50
   m_SpotAngle: 78.818184
   m_InnerSpotAngle: 36.16037
@@ -2071,6 +2071,7 @@ MonoBehaviour:
   timebeforeregen: 5
   regenpersecond: 0.015
   HurtPostProcessing: {fileID: 5918058980218838677}
+  scaledMaxHealth: 0
 --- !u!114 &1016399097814881051
 MonoBehaviour:
   m_ObjectHideFlags: 0

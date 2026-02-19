@@ -89,6 +89,9 @@ public class EnemyNavigation : MonoBehaviour
     private float nextIdleSoundUpdateTime;
     public float timebetweenidlesound;
 
+    public float scaledgundamage;
+    public float scaledmeleedamage;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -226,7 +229,7 @@ public class EnemyNavigation : MonoBehaviour
                 isinmelee = false;
                 if (sqrDistToPlayer <= minrangeformelee * minrangeformelee)
                 {
-                    player.GetComponent<HealthScript>().TakeDamage(meleedamage);
+                    player.GetComponent<HealthScript>().TakeDamage(scaledmeleedamage);
                 }
             }
         }
@@ -346,7 +349,7 @@ public class EnemyNavigation : MonoBehaviour
         newbullet.transform.forward = transform.forward;
         BulletScript bulletscript = newbullet.GetComponentInChildren<BulletScript>();
 
-        bulletscript.InitializeBullet(direction, Gun.bulletspeed, 1, Gun.damage, Gun.recoil);
+        bulletscript.InitializeBullet(direction, Gun.bulletspeed, 1, scaledgundamage, Gun.recoil);
 
 
         if (AttackSound.Count > 0)

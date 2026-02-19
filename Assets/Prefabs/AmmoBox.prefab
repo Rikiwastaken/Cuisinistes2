@@ -52,7 +52,7 @@ MonoBehaviour:
   rangeforpickup: 1
   dragspeed: 5
   rotationpersecond: 75
-  clipratio: 2
+  clipratio: 3
   ammoboxmodel:
   - {fileID: 2279905322872454474}
   - {fileID: 4086152097839478293}

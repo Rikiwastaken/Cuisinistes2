@@ -16,6 +16,7 @@ public class MainMenuScript : MonoBehaviour
     public Slider SFXSlider;
     public Slider SensitivitySlider;
     public TMP_Dropdown resolutionDropdown;
+    public Toggle FullScreenTOggle;
     public bool allowchange;
 
 
@@ -78,6 +79,7 @@ public class MainMenuScript : MonoBehaviour
         SFXSlider.value = options.SFXVol;
         SensitivitySlider.value = options.sensibility;
         resolutionDropdown.value = options.resolution;
+        FullScreenTOggle.enabled = options.fullscreen;
         allowchange = true;
     }
 
@@ -89,6 +91,7 @@ public class MainMenuScript : MonoBehaviour
             options.MusicVol = MusicSlider.value;
             options.SFXVol = SFXSlider.value;
             options.sensibility = SensitivitySlider.value;
+            options.fullscreen = FullScreenTOggle.enabled;
             dataScript.SaveOptions();
         }
 

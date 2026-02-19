@@ -60,6 +60,8 @@ public class MovementController : MonoBehaviour
 
     private HealthScript healthScript;
 
+    private float previouscursorlockstate;
+
     private void OnTriggerStay(Collider other)
     {
         if (LayerMask.NameToLayer("Ground") == other.gameObject.layer && justjumpedcounter <= 0)
@@ -106,11 +108,19 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
-        if (unlockcursor.ReadValue<float>() != 0)
+        if (unlockcursor.ReadValue<float>() != 0 && previouscursorlockstate != unlockcursor.ReadValue<float>())
         {
-            Cursor.lockState = CursorLockMode.None;
-        }
+            if (Cursor.lockState != CursorLockMode.None)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
 
+        }
+        previouscursorlockstate = unlockcursor.ReadValue<float>();
 
         //bonus
         if (UpgradeScript.gettingbonus || healthScript.HP <= 0)
