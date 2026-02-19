@@ -17,6 +17,23 @@ public class MainMenuScript : MonoBehaviour
     public Slider SensitivitySlider;
     public TMP_Dropdown resolutionDropdown;
     public bool allowchange;
+
+
+    public AudioClip ButtonSound;
+
+    public AudioClip BackSound;
+
+    private SoundManager soundManager;
+    public void PlayButtonSound()
+    {
+        soundManager.PlaySFX(ButtonSound, 0.05f, transform);
+    }
+
+    public void PlayBackSound()
+    {
+        soundManager.PlaySFX(BackSound, 0.05f, transform);
+    }
+
     public void QuitApp()
     {
         Application.Quit();
@@ -46,9 +63,11 @@ public class MainMenuScript : MonoBehaviour
         }
         else
         {
+            soundManager = SoundManager.instance;
             dataScript = DataScript.instance;
             options = dataScript.Options;
         }
+
     }
 
     public void InitializeSliders()
