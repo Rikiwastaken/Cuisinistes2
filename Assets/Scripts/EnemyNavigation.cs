@@ -174,26 +174,14 @@ public class EnemyNavigation : MonoBehaviour
                 agent.SetDestination(player.position);
             }
         }
-        ManageAnimation();
 
 
 
-
-        if (freezetimeaftershootingcounter > 0)
+        if (agent.isStopped != !checkifnaviationisavailable())
         {
-            freezetimeaftershootingcounter--;
-            if (!agent.isStopped)
-            {
-                agent.isStopped = true;
-            }
+            agent.isStopped = !checkifnaviationisavailable();
         }
-        else
-        {
-            if (agent.isStopped)
-            {
-                agent.isStopped = false;
-            }
-        }
+
         if (engagedPlayer)
         {
             if (Time.time >= nextShootTime)
@@ -244,6 +232,8 @@ public class EnemyNavigation : MonoBehaviour
         {
             Canvas.LookAt(player);
         }
+
+        ManageAnimation();
 
     }
 
@@ -492,6 +482,29 @@ public class EnemyNavigation : MonoBehaviour
                 Animation.Play();
             }
         }
+    }
+
+    private bool checkifnaviationisavailable()
+    {
+        if (Animation.isPlaying && (Animation.clip == Attack || Animation.clip == Die))
+        {
+            return false;
+        }
+
+        if (!Shoots && Vector3.Distance(transform.position, player.position) <= minrangeformelee * 0.9f)
+        {
+            return false;
+        }
+
+        if (Shoots && Vector3.Distance(transform.position, player.position) <= mindistbeforefiring && HasLineOfSight())
+        {
+            return false;
+        }
+        if (freezetimeaftershootingcounter > 0)
+        {
+            return false;
+        }
+        return true;
     }
 
     void OnDrawGizmosSelected()

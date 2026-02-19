@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   engagedPlayer: 0
   AgroRange: 20
-  movingspeed: 10
+  movingspeed: 9
   delaybetweendestinatinationchecks: 0.3
   mindistbeforefiring: 0
   debug: 1
@@ -181,11 +181,12 @@ MonoBehaviour:
     ReloadAnim: {fileID: 0}
     ShootSFX: []
     ReloadSFX: []
+    EmptyClipSFX: []
     unlocked: 0
     ReserveAmmoTMP: {fileID: 0}
     CurrentClipTMP: {fileID: 0}
   freezetimeaftershooting: 0.6
-  minrangeformelee: 5
+  minrangeformelee: 4
   meleedamage: 15
   durationbeforedespawn: 10
   globaldroprate: 35
@@ -221,8 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4712cd2a7abbfd84ca941d73c71f0d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthScript
-  HP: 50
-  MaxHealth: 20
+  HP: 35
+  MaxHealth: 25
   currentarmor: 0
   maxarmor: 0
   invframes: 0

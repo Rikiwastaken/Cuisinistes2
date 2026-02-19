@@ -186,6 +186,7 @@ public class EnemySpawner : MonoBehaviour
                     {
                         waves[currentwave].healthmultiplier = 1;
                     }
+
                     newenemy.GetComponentInChildren<Animation>().clip = newenemy.GetComponent<EnemyNavigation>().Idle;
                     newenemy.GetComponentInChildren<Animation>().Play();
                     newenemy.GetComponent<HealthScript>().MaxHealth *= waves[currentwave].healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
@@ -196,6 +197,7 @@ public class EnemySpawner : MonoBehaviour
                     SpawnedEnemylist.Add(newenemy);
                     NavMeshAgent agent = newenemy.GetComponent<NavMeshAgent>();
                     newenemy.transform.parent = EnemyHolder;
+                    newenemy.GetComponentInChildren<Animation>().transform.localRotation = Quaternion.identity;
 
                     agent.enabled = false;
                     newenemy.transform.position = newpos;

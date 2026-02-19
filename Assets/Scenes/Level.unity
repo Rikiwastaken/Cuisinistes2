@@ -246,10 +246,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3645080107017587285, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
+      propertyPath: FirstTextClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a1c691531d66d04cb71b1b189ccbb1a, type: 3}
+    - target: {fileID: 3645080107017587285, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
+      propertyPath: SecondTextClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a1c691531d66d04cb71b1b189ccbb1a, type: 3}
     - target: {fileID: 5494120214791191734, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
+      propertyPath: meleerange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588349807223317872, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
+      propertyPath: 'Maps.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1101958947}
+    - target: {fileID: 7588349807223317872, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
+      propertyPath: 'Maps.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1112053100}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -343,6 +363,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1101958947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 211728251549776866, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
+  m_PrefabInstance: {fileID: 5410009684767491623}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1112053100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 211728251549776866, guid: 8b8ab3dbe9723b348a851268fb02fce4, type: 3}
+  m_PrefabInstance: {fileID: 1454351275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1172993732
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +542,10 @@ PrefabInstance:
     - target: {fileID: 211728251549776866, guid: 8b8ab3dbe9723b348a851268fb02fce4, type: 3}
       propertyPath: m_Name
       value: GaragePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 211728251549776866, guid: 8b8ab3dbe9723b348a851268fb02fce4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2818514293851467102, guid: 8b8ab3dbe9723b348a851268fb02fce4, type: 3}
       propertyPath: lootholder

@@ -52,6 +52,10 @@ public class MovementController : MonoBehaviour
 
     private UpgradeScript UpgradeScript;
 
+    [Header("MapSelection")]
+
+    public List<GameObject> Maps;
+
     private void OnTriggerStay(Collider other)
     {
         if (LayerMask.NameToLayer("Ground") == other.gameObject.layer && justjumpedcounter <= 0)
@@ -77,6 +81,9 @@ public class MovementController : MonoBehaviour
     {
         instance = this;
         Cursor.lockState = CursorLockMode.Locked;
+
+        Maps[UnityEngine.Random.Range(0, Maps.Count)].SetActive(true);
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
