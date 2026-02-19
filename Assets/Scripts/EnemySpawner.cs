@@ -43,6 +43,7 @@ public class EnemySpawner : MonoBehaviour
         public int numberofenemies;
         public float damagemultiplier;
         public float healthmultiplier;
+        public int bonusperwave;
     }
 
     [Header("Wave Variables")]
@@ -50,8 +51,14 @@ public class EnemySpawner : MonoBehaviour
 
     public int currentwave;
     private Transform player;
+    public float waveenemymultiplier;
+    public int waveenemyadding;
+    public int maxwaves;
+    public float difficultyincreaseperround;
 
     private UpgradeScript upgradeScript;
+
+    private int remainingbonustogive;
 
     private void Awake()
     {
@@ -74,6 +81,13 @@ public class EnemySpawner : MonoBehaviour
         {
             return;
         }
+
+        if (remainingbonustogive > 0)
+        {
+            remainingbonustogive--;
+            upgradeScript.InitializeNewBonuses();
+        }
+
         if (durationBetweenEnemySpawncnt > 0)
         {
             durationBetweenEnemySpawncnt--;
@@ -87,6 +101,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
 
+
     public void KillEnemy()
     {
         totalenemyonthemap--;
@@ -95,6 +110,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (currentwave < waves.Count - 1)
             {
+                remainingbonustogive = waves[currentwave].bonusperwave - 1;
                 currentwave++;
                 upgradeScript.InitializeNewBonuses();
                 Debug.Log("now wave : " + currentwave);
@@ -310,5 +326,51 @@ public class EnemySpawner : MonoBehaviour
         result = Vector3.zero;
         return false;
     }
+
+
+    private float CalculateNumberofEnemies(int iterations)
+    {
+        if (iterations <= 0)
+        {
+            return 1f;
+        }
+        else
+        {
+            return waveenemyadding + CalculateNumberofEnemies(iterations - 1) * waveenemymultiplier;
+        }
+    }
+
+
+#if UNITY_EDITOR
+    [ContextMenu("Calculate Waves")]
+    void CalculateWaves()
+    {
+        List<WaveClass> newwaves = new List<WaveClass>();
+        for (int i = 0; i < maxwaves; i++)
+        {
+            WaveClass wave = new WaveClass();
+            wave.healthmultiplier = Mathf.Pow(1f + difficultyincreaseperround, i);
+            wave.damagemultiplier = Mathf.Pow(1f + difficultyincreaseperround, i);
+            if (i % 2 == 0)
+            {
+                wave.bonusperwave = 2;
+            }
+            else if (i == 0)
+            {
+                wave.bonusperwave = 3;
+            }
+            else
+            {
+                wave.bonusperwave = 1;
+            }
+            wave.numberofenemies = (int)CalculateNumberofEnemies(i);
+            newwaves.Add(wave);
+        }
+        waves = newwaves;
+    }
+
+
+
+#endif
 
 }
