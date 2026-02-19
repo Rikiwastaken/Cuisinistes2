@@ -60,6 +60,14 @@ public class EnemySpawner : MonoBehaviour
 
     private int remainingbonustogive;
 
+    public GameObject Arena;
+
+    public GameObject Boss;
+
+    private GameObject BossInstance;
+    private bool won;
+    private bool showedvictory;
+
     private void Awake()
     {
         instance = this;
@@ -76,49 +84,97 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //bonus
-        if (upgradeScript.gettingbonus)
+        if (won)
         {
-            return;
-        }
-
-        if (remainingbonustogive > 0)
-        {
-            Debug.Log("spawning additionnal bonus : " + currentwave);
-            remainingbonustogive--;
-            upgradeScript.InitializeNewBonuses();
-        }
-
-        if (durationBetweenEnemySpawncnt > 0)
-        {
-            durationBetweenEnemySpawncnt--;
+            if (!showedvictory)
+            {
+                showedvictory = true;
+                TitleText.instance.StartVictoryText();
+            }
         }
         else
         {
-            durationBetweenEnemySpawncnt = (int)(durationBetweenEnemySpawn / Time.deltaTime);
-            StartCoroutine(spawnEnemies());
-            StartCoroutine(SpawnPickups());
+            //bonus
+            if (upgradeScript.gettingbonus)
+            {
+                return;
+            }
+
+
+
+            if (remainingbonustogive > 0)
+            {
+                Debug.Log("spawning additionnal bonus : " + currentwave);
+                remainingbonustogive--;
+                upgradeScript.InitializeNewBonuses();
+            }
+
+            if (durationBetweenEnemySpawncnt > 0)
+            {
+                durationBetweenEnemySpawncnt--;
+            }
+            else
+            {
+                durationBetweenEnemySpawncnt = (int)(durationBetweenEnemySpawn / Time.deltaTime);
+                StartCoroutine(spawnEnemies());
+                StartCoroutine(SpawnPickups());
+            }
         }
+
     }
 
 
 
     public void KillEnemy()
     {
-        totalenemyonthemap--;
-        if (totalenemyonthemap <= 0)
+        if (BossInstance != null)
         {
-
-            if (currentwave < waves.Count - 1)
+            if (BossInstance.GetComponent<HealthScript>().HP <= 0)
             {
-                remainingbonustogive = waves[currentwave].bonusperwave - 1;
-                currentwave++;
-                upgradeScript.InitializeNewBonuses();
-                Debug.Log("now wave : " + currentwave);
-                totalenemyonthemap = waves[currentwave].numberofenemies;
+                won = true;
             }
+
         }
-        player.GetComponent<MovementController>().WaveTMP.text = "Wave " + (currentwave + 1) + "\nRemaining: " + totalenemyonthemap;
+        else
+        {
+            totalenemyonthemap--;
+            if (totalenemyonthemap <= 0)
+            {
+
+                if (currentwave < waves.Count - 1)
+                {
+                    remainingbonustogive = waves[currentwave].bonusperwave - 1;
+                    currentwave++;
+                    upgradeScript.InitializeNewBonuses();
+                    Debug.Log("now wave : " + currentwave);
+                    totalenemyonthemap = waves[currentwave].numberofenemies;
+                    player.GetComponent<MovementController>().WaveTMP.text = "Wave " + (currentwave + 1) + "\nRemaining: " + totalenemyonthemap;
+                }
+                else
+                {
+                    player.transform.position = Arena.transform.position + new Vector3(-10, 3, 0);
+                    BossInstance = Instantiate(Boss);
+                    NavMeshAgent agent = BossInstance.GetComponent<NavMeshAgent>();
+                    BossInstance.transform.parent = EnemyHolder;
+                    BossInstance.GetComponentInChildren<Animation>().transform.localRotation = Quaternion.identity;
+
+
+                    NavMesh.SamplePosition(Arena.transform.position, out NavMeshHit hit, 2f, NavMesh.AllAreas);
+                    Vector3 spawnPos = hit.position;
+                    agent.enabled = false;
+                    BossInstance.transform.position = spawnPos;
+                    agent.enabled = true;
+                    agent.Warp(Arena.transform.position);
+                    player.GetComponent<MovementController>().WaveTMP.text = "Last Wave\n Purify it.";
+                }
+            }
+            else
+            {
+                player.GetComponent<MovementController>().WaveTMP.text = "Wave " + (currentwave + 1) + "\nRemaining: " + totalenemyonthemap;
+            }
+
+        }
+
     }
 
     private IEnumerator spawnEnemies()
