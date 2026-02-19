@@ -153,17 +153,18 @@ public class HealthScript : MonoBehaviour
 
             if (isplayer)
             {
-                if (HP <= 0)
-                {
-                    GetComponent<TitleText>().StartGameOverText();
-                    return;
-                }
+
                 timetillregenstarts = Time.time + timebeforeregen;
 
                 soundManager.PlaySFXFromList(movementController.playerDamageSounds, 0.05f, movementController.transform);
                 ManageHurtPostProcessing();
                 UpdateTexts();
                 invframecounter = (int)(invframes / Time.fixedDeltaTime);
+                if (HP <= 0)
+                {
+                    GetComponent<TitleText>().StartGameOverText();
+                    return;
+                }
             }
             else
             {

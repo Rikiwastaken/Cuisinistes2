@@ -396,7 +396,7 @@ public class UpgradeScript : MonoBehaviour
             case 3: //raygun
                 if (RaygunUpgradeLevel == 0)
                 {
-                    description = "Unlocks the Assault Rifle";
+                    description = "Unlocks the Raygun";
                 }
                 else
                 {
@@ -405,30 +405,30 @@ public class UpgradeScript : MonoBehaviour
                 }
                 break;
             case 4: //damage reduction
-                description = "Damage Reduction : " + (int)((Mathf.Pow(1f - DamageReductionPerLevel, DamageReductionLevel) - 1f) * 100) + "% > " + (int)((Mathf.Pow(1f - DamageReductionPerLevel, DamageReductionLevel + 1) - 1f) * 100) + "%";
+                description = "Damage Reduction : " + (int)((Mathf.Pow(1f + DamageReductionPerLevel, DamageReductionLevel) - 1f) * 100) + "% > " + (int)((Mathf.Pow(1f + DamageReductionPerLevel, DamageReductionLevel + 1) - 1f) * 100) + "%";
 
                 break;
             case 5: //global damage
-                description = "Damage Bonus : " + (Mathf.Pow(1f + GlobalDamagePerLevel, GlobalDamageLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + GlobalDamagePerLevel, GlobalDamageLevel + 1) * 100 - 100) + "%";
+                description = "Damage Bonus : " + (int)(Mathf.Pow(1f + GlobalDamagePerLevel, GlobalDamageLevel) * 100 - 100) + "% > " + (int)(Mathf.Pow(1f + GlobalDamagePerLevel, GlobalDamageLevel + 1) * 100 - 100) + "%";
                 break;
             case 6://speed
-                description = "Speed Bonus : " + (Mathf.Pow(1f + RunSpeedPerLevel, RunSpeedLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + RunSpeedPerLevel, RunSpeedLevel + 1) * 100 - 100) + "%";
+                description = "Speed Bonus : " + (int)(Mathf.Pow(1f + RunSpeedPerLevel, RunSpeedLevel) * 100 - 100) + "% > " + (int)(Mathf.Pow(1f + RunSpeedPerLevel, RunSpeedLevel + 1) * 100 - 100) + "%";
                 break;
             case 7: //mag size
-                description = "Magazine size Bonus : " + (Mathf.Pow(1f + MagSizePerLevel, MagSizeLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + MagSizePerLevel, MagSizeLevel + 1) * 100 - 100) + "%";
+                description = "Magazine size Bonus : " + (int)(Mathf.Pow(1f + MagSizePerLevel, MagSizeLevel) * 100 - 100) + "% > " + (int)(Mathf.Pow(1f + MagSizePerLevel, MagSizeLevel + 1) * 100 - 100) + "%";
 
                 break;
             case 8: //drop rate
-                description = "Drop Rate Bonus : " + (Mathf.Pow(1f + DropRatePerLevel, DropRateLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + DropRatePerLevel, DropRateLevel + 1) * 100 - 100) + "%";
+                description = "Drop Rate Bonus : " + (int)(Mathf.Pow(1f + DropRatePerLevel, DropRateLevel) * 100 - 100) + "% > " + (int)(Mathf.Pow(1f + DropRatePerLevel, DropRateLevel + 1) * 100 - 100) + "%";
                 break;
             case 9: //jump height
-                description = "Jump Bonus : " + (Mathf.Pow(1f + JumpHeightPerLevel, JumpHeightLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + JumpHeightPerLevel, JumpHeightLevel + 1) * 100 - 100) + "%";
+                description = "Jump Bonus : " + (int)(Mathf.Pow(1f + JumpHeightPerLevel, JumpHeightLevel) * 100 - 100) + "% > " + (int)(Mathf.Pow(1f + JumpHeightPerLevel, JumpHeightLevel + 1) * 100 - 100) + "%";
                 break;
             case 10: //max hp
-                description = "Max HP Bonus : " + (Mathf.Pow(1f + MaxHPPerLevel, MaxHPLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + MaxHPPerLevel, MaxHPLevel + 1) * 100 - 100) + "%";
+                description = "Max HP Bonus : " + (int)(Mathf.Pow(1f + MaxHPPerLevel, MaxHPLevel) * 100 - 100) + "% > " + (int)(Mathf.Pow(1f + MaxHPPerLevel, MaxHPLevel + 1) * 100 - 100) + "%";
                 break;
             case 11: //regen
-                description = "HP Regen per second : " + (Mathf.Pow(1f + RegenPerLevel, RegenLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + RegenPerLevel, RegenLevel + 1) * 100 - 100) + "%";
+                description = "HP Regen per second : " + (int)((1f + GetComponent<HealthScript>().regenpersecond) * 100 - 100) + "% > " + (int)((1f + GetComponent<HealthScript>().regenpersecond) * 100f * RegenPerLevel - 100f) + "%";
                 break;
             case 12: //life steal
                 description = "Life Steal : " + LifeStealPerLevel * LifeStealLevel * 100 + "% > " + LifeStealPerLevel * (LifeStealLevel + 1) * 100 + "%";
@@ -449,10 +449,10 @@ public class UpgradeScript : MonoBehaviour
                 description = "Melee damage Bonus : " + (int)ShootScript.meleedamage + " > " + (int)(ShootScript.meleedamage * (1f + MeleeDamagePerLevel));
                 break;
             case 18: //drop power
-                description = "Drop Power : " + ((Mathf.Pow(1f + DropPowerPerLevel, DropPowerLevel) - 1f) * 100) + "% > " + ((Mathf.Pow(1f + DropPowerPerLevel, DropPowerLevel + 1) - 1f) * 100);
+                description = "Drop Power : " + (int)((Mathf.Pow(1f + DropPowerPerLevel, DropPowerLevel) - 1f) * 100) + "% > " + (int)((Mathf.Pow(1f + DropPowerPerLevel, DropPowerLevel + 1) - 1f) * 100);
                 break;
             case 19: //difficulty
-                description = "Difficulty Increase : " + ((Mathf.Pow(1f + DifficultyPerLevel, DifficultyLevel) - 1f) * 100) + "% > " + ((Mathf.Pow(1f + DifficultyPerLevel, DifficultyLevel + 1) - 1f) * 100);
+                description = "Difficulty Increase : " + (int)((Mathf.Pow(1f + DifficultyPerLevel, DifficultyLevel) - 1f) * 100) + "% > " + (int)((Mathf.Pow(1f + DifficultyPerLevel, DifficultyLevel + 1) - 1f) * 100);
                 break;
 
         }

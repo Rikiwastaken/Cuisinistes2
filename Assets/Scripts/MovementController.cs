@@ -8,6 +8,8 @@ public class MovementController : MonoBehaviour
 
     public static MovementController instance;
 
+    private InputAction unlockcursor;
+
     [Header("UI")]
     public TextMeshProUGUI HPTMP;
     public TextMeshProUGUI WaveTMP;
@@ -94,6 +96,7 @@ public class MovementController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         MoveAction = InputSystem.actions.FindAction("Move");
         JumpAction = InputSystem.actions.FindAction("Jump");
+        unlockcursor = InputSystem.actions.FindAction("UnlockCursor");
         UpgradeScript = GetComponent<UpgradeScript>();
         StartPos = transform.position;
         basepos = transform.position;
@@ -103,6 +106,12 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
+        if (unlockcursor.ReadValue<float>() != 0)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+
         //bonus
         if (UpgradeScript.gettingbonus || healthScript.HP <= 0)
         {

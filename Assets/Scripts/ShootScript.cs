@@ -65,6 +65,7 @@ public class ShootScript : MonoBehaviour
     public float meleedamage;
     public float meleerange;
     private float previousmeleevalue;
+    public AudioClip meleeSFX;
 
     private UpgradeScript upgradeScript;
 
@@ -246,6 +247,7 @@ public class ShootScript : MonoBehaviour
         if (meleevalue != 0 && meleevalue != previousmeleevalue && !MeleeAnim.isPlaying)
         {
             MeleeAnim.Play();
+            SoundManager.instance.PlaySFX(meleeSFX, 0.05f, transform);
             List<GameObject> enemylist = new List<GameObject>();
             foreach (GameObject enemy in EnemySpawner.instance.SpawnedEnemylist)
             {
@@ -255,7 +257,6 @@ public class ShootScript : MonoBehaviour
             {
                 if (enemy != null && enemy.activeSelf && Vector3.Distance(transform.position, enemy.transform.position) <= meleerange)
                 {
-                    Debug.Log(enemy.name + " took damage : " + meleedamage);
                     enemy.GetComponent<HealthScript>().TakeDamage(meleedamage);
                 }
             }

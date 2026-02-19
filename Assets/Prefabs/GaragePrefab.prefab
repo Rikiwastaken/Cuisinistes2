@@ -119,86 +119,86 @@ MonoBehaviour:
     healthmultiplier: 1
     bonusperwave: 2
   - numberofenemies: 4
-    damagemultiplier: 1.05
-    healthmultiplier: 1.05
+    damagemultiplier: 1.03
+    healthmultiplier: 1.03
     bonusperwave: 1
   - numberofenemies: 7
-    damagemultiplier: 1.1024998
-    healthmultiplier: 1.1024998
+    damagemultiplier: 1.0609
+    healthmultiplier: 1.0609
     bonusperwave: 2
   - numberofenemies: 11
-    damagemultiplier: 1.1576248
-    healthmultiplier: 1.1576248
+    damagemultiplier: 1.092727
+    healthmultiplier: 1.092727
     bonusperwave: 1
   - numberofenemies: 15
-    damagemultiplier: 1.2155061
-    healthmultiplier: 1.2155061
+    damagemultiplier: 1.1255087
+    healthmultiplier: 1.1255087
     bonusperwave: 2
   - numberofenemies: 19
-    damagemultiplier: 1.2762812
-    healthmultiplier: 1.2762812
+    damagemultiplier: 1.1592739
+    healthmultiplier: 1.1592739
     bonusperwave: 1
   - numberofenemies: 24
-    damagemultiplier: 1.3400953
-    healthmultiplier: 1.3400953
+    damagemultiplier: 1.1940521
+    healthmultiplier: 1.1940521
     bonusperwave: 2
   - numberofenemies: 30
-    damagemultiplier: 1.4071
-    healthmultiplier: 1.4071
+    damagemultiplier: 1.2298737
+    healthmultiplier: 1.2298737
     bonusperwave: 1
   - numberofenemies: 36
-    damagemultiplier: 1.4774549
-    healthmultiplier: 1.4774549
+    damagemultiplier: 1.2667698
+    healthmultiplier: 1.2667698
     bonusperwave: 2
   - numberofenemies: 43
-    damagemultiplier: 1.5513276
-    healthmultiplier: 1.5513276
+    damagemultiplier: 1.3047729
+    healthmultiplier: 1.3047729
     bonusperwave: 1
   - numberofenemies: 50
-    damagemultiplier: 1.6288939
-    healthmultiplier: 1.6288939
+    damagemultiplier: 1.343916
+    healthmultiplier: 1.343916
     bonusperwave: 2
   - numberofenemies: 58
-    damagemultiplier: 1.7103385
-    healthmultiplier: 1.7103385
+    damagemultiplier: 1.3842335
+    healthmultiplier: 1.3842335
     bonusperwave: 1
   - numberofenemies: 67
-    damagemultiplier: 1.7958554
-    healthmultiplier: 1.7958554
+    damagemultiplier: 1.4257604
+    healthmultiplier: 1.4257604
     bonusperwave: 2
   - numberofenemies: 77
-    damagemultiplier: 1.885648
-    healthmultiplier: 1.885648
+    damagemultiplier: 1.4685332
+    healthmultiplier: 1.4685332
     bonusperwave: 1
   - numberofenemies: 87
-    damagemultiplier: 1.9799303
-    healthmultiplier: 1.9799303
+    damagemultiplier: 1.5125891
+    healthmultiplier: 1.5125891
     bonusperwave: 2
   - numberofenemies: 99
-    damagemultiplier: 2.0789268
-    healthmultiplier: 2.0789268
+    damagemultiplier: 1.5579667
+    healthmultiplier: 1.5579667
     bonusperwave: 1
   - numberofenemies: 112
-    damagemultiplier: 2.182873
-    healthmultiplier: 2.182873
+    damagemultiplier: 1.6047057
+    healthmultiplier: 1.6047057
     bonusperwave: 2
   - numberofenemies: 126
-    damagemultiplier: 2.2920165
-    healthmultiplier: 2.2920165
+    damagemultiplier: 1.6528468
+    healthmultiplier: 1.6528468
     bonusperwave: 1
   - numberofenemies: 142
-    damagemultiplier: 2.4066172
-    healthmultiplier: 2.4066172
+    damagemultiplier: 1.7024322
+    healthmultiplier: 1.7024322
     bonusperwave: 2
   - numberofenemies: 159
-    damagemultiplier: 2.526948
-    healthmultiplier: 2.526948
+    damagemultiplier: 1.7535051
+    healthmultiplier: 1.7535051
     bonusperwave: 1
   currentwave: 0
   waveenemymultiplier: 1.1
   waveenemyadding: 3
   maxwaves: 20
-  difficultyincreaseperround: 0.05
+  difficultyincreaseperround: 0.03
   Arena: {fileID: 1795512181470878127}
   Boss: {fileID: 2686418178066650683, guid: 1a68b21ec9567304b92f3450a920e3dd, type: 3}
   won: 0

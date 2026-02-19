@@ -2050,6 +2050,7 @@ MonoBehaviour:
   MeleeAnim: {fileID: 2677585899570315050}
   meleedamage: 10
   meleerange: 5
+  meleeSFX: {fileID: 8300000, guid: 365240d69ba49494085b21cd79fe2d7d, type: 3}
 --- !u!114 &484629754530822652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2087,7 +2088,7 @@ MonoBehaviour:
     upgradeName: Handgun
     UpgradeSprite: {fileID: 21300000, guid: 8bf53941e7b2cfa4b97c94e69ad035bf, type: 3}
   - upgradeID: 1
-    upgradeName: AR
+    upgradeName: Assault Rifle
     UpgradeSprite: {fileID: 21300000, guid: 74e7af4a8ab01014daf5a5633f889dff, type: 3}
   - upgradeID: 2
     upgradeName: Shotgun
