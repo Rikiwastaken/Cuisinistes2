@@ -246,21 +246,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3645080107017587285, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: FirstTextClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8a1c691531d66d04cb71b1b189ccbb1a, type: 3}
-    - target: {fileID: 3645080107017587285, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: SecondTextClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8a1c691531d66d04cb71b1b189ccbb1a, type: 3}
     - target: {fileID: 5494120214791191734, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5965313205236535340, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
-      propertyPath: meleerange
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7588349807223317872, guid: 290b4737eb6853b4dbd459f1afc06912, type: 3}
       propertyPath: 'Maps.Array.data[0]'
