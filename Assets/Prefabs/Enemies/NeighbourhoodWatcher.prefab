@@ -181,6 +181,7 @@ MonoBehaviour:
     ReloadAnim: {fileID: 0}
     ShootSFX: []
     ReloadSFX: []
+    EmptyClipSFX: []
     unlocked: 0
     ReserveAmmoTMP: {fileID: 0}
     CurrentClipTMP: {fileID: 0}
@@ -195,10 +196,14 @@ MonoBehaviour:
   AmmoBoxPrefab: {fileID: 8594776281252626752, guid: a328dada7dd3de44f9168da23e4ef451, type: 3}
   HealthKitPrefab: {fileID: 8594776281252626752, guid: b3692803d71aabd4d8fa9ac0d81873e8, type: 3}
   ArmorKitPrefab: {fileID: 8594776281252626752, guid: ed7f82ff0dc1f3c40828049ab0098768, type: 3}
-  AttackSound: []
+  AttackSound:
+  - {fileID: 8300000, guid: a9c1d508362093048bd7f631a13d8451, type: 3}
+  - {fileID: 8300000, guid: 13095baa0a603684c974079a01f1f05c, type: 3}
+  - {fileID: 8300000, guid: 022c2ac7a6e51d148b9871eb78b45fb6, type: 3}
   Idlesound: []
   DamageSound: []
-  DeathSound: []
+  DeathSound:
+  - {fileID: 8300000, guid: 588a0f0bb109fe248bc1a1c81a6761f7, type: 3}
   timebetweenidlesound: 0
 --- !u!114 &3247550930479452848
 MonoBehaviour:
