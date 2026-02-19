@@ -517,6 +517,10 @@ PrefabInstance:
       propertyPath: lootholder
       value: 
       objectReference: {fileID: 982368231}
+    - target: {fileID: 2818514293851467102, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
+      propertyPath: EnemyHolder
+      value: 
+      objectReference: {fileID: 1172993733}
     - target: {fileID: 8993208008032642761, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

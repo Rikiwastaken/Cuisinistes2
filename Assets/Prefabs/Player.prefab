@@ -2167,6 +2167,8 @@ MonoBehaviour:
   CardHolder: {fileID: 8315139850262425009}
   gettingbonus: 0
   timebeforeconfirm: 1
+  distancetotarget: 1000
+  basepos: 300
 --- !u!1 &5711423724976651647
 GameObject:
   m_ObjectHideFlags: 0

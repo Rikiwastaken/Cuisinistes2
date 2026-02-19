@@ -107,6 +107,9 @@ public class UpgradeScript : MonoBehaviour
         instance = this;
     }
 
+    public int distancetotarget;
+    public int basepos;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -121,7 +124,22 @@ public class UpgradeScript : MonoBehaviour
     {
         if (gettingbonus)
         {
-            Time.timeScale = 0f;
+            if (Time.timeScale > 0)
+            {
+                float newtimescale = Time.timeScale - 1f / 30f;
+                if (newtimescale < 0)
+                {
+                    newtimescale = 0;
+                }
+                Time.timeScale = newtimescale;
+            }
+            if (NorthCard.UpgradeCard.transform.localPosition.y > basepos)
+            {
+                NorthCard.UpgradeCard.transform.localPosition += new Vector3(0f, -distancetotarget / 30, 0f);
+            }
+
+
+
             Vector2 moveactionvalue = MoveAction.ReadValue<Vector2>();
             if (moveactionvalue.y > 0f)
             {
@@ -138,6 +156,12 @@ public class UpgradeScript : MonoBehaviour
                 gettingbonus = false;
                 Time.timeScale = 1f;
                 CardHolder.SetActive(false);
+            }
+
+
+            if (SouthCard.UpgradeCard.transform.localPosition.y < -basepos)
+            {
+                SouthCard.UpgradeCard.transform.localPosition += new Vector3(0f, distancetotarget / 30, 0f);
             }
 
             if (moveactionvalue.y < 0f)
@@ -157,6 +181,12 @@ public class UpgradeScript : MonoBehaviour
                 CardHolder.SetActive(false);
             }
 
+
+            if (EastCard.UpgradeCard.transform.localPosition.x > basepos)
+            {
+                EastCard.UpgradeCard.transform.localPosition += new Vector3(-distancetotarget / 30, 0f, 0f);
+            }
+
             if (moveactionvalue.x > 0f)
             {
                 maintainingEast++;
@@ -173,6 +203,12 @@ public class UpgradeScript : MonoBehaviour
                 Time.timeScale = 1f;
                 CardHolder.SetActive(false);
             }
+
+            if (WestCard.UpgradeCard.transform.localPosition.x < -basepos)
+            {
+                WestCard.UpgradeCard.transform.localPosition += new Vector3(distancetotarget / 30, 0f, 0f);
+            }
+
 
             if (moveactionvalue.x < 0f)
             {
@@ -312,18 +348,24 @@ public class UpgradeScript : MonoBehaviour
         int northID = 0;
         currentNorthUpgrade = northID;
         InitializeUpgradeCard(NorthCard, currentNorthUpgrade);
+        NorthCard.UpgradeCard.transform.localPosition = new Vector3(0f, basepos + distancetotarget, 0f);
+
 
         int southID = 1;
         currentSouthUpgrade = southID;
         InitializeUpgradeCard(SouthCard, currentSouthUpgrade);
+        SouthCard.UpgradeCard.transform.localPosition = new Vector3(0f, -basepos - distancetotarget, 0f);
 
         int eastID = 2;
         currentEastUpgrade = eastID;
         InitializeUpgradeCard(EastCard, currentEastUpgrade);
+        EastCard.UpgradeCard.transform.localPosition = new Vector3(basepos + distancetotarget, 0f, 0f);
 
         int westID = 3;
         currentWestUpgrade = westID;
         InitializeUpgradeCard(WestCard, currentWestUpgrade);
+        WestCard.UpgradeCard.transform.localPosition = new Vector3(-basepos - distancetotarget, 0f, 0f);
+
 
         gettingbonus = true;
         CardHolder.SetActive(true);
@@ -341,21 +383,25 @@ public class UpgradeScript : MonoBehaviour
         currentNorthUpgrade = potentialupgrades[northID];
         potentialupgrades.RemoveAt(northID);
         InitializeUpgradeCard(NorthCard, currentNorthUpgrade);
+        NorthCard.UpgradeCard.transform.localPosition = new Vector3(0f, basepos + distancetotarget, 0f);
 
         int southID = UnityEngine.Random.Range(0, potentialupgrades.Count);
         currentSouthUpgrade = potentialupgrades[southID];
         potentialupgrades.RemoveAt(southID);
         InitializeUpgradeCard(SouthCard, currentSouthUpgrade);
+        SouthCard.UpgradeCard.transform.localPosition = new Vector3(0f, -basepos - distancetotarget, 0f);
 
         int eastID = UnityEngine.Random.Range(0, potentialupgrades.Count);
         currentEastUpgrade = potentialupgrades[eastID];
         potentialupgrades.RemoveAt(eastID);
         InitializeUpgradeCard(EastCard, currentEastUpgrade);
+        EastCard.UpgradeCard.transform.localPosition = new Vector3(basepos + distancetotarget, 0f, 0f);
 
         int westID = UnityEngine.Random.Range(0, potentialupgrades.Count);
         currentWestUpgrade = potentialupgrades[westID];
         potentialupgrades.RemoveAt(westID);
         InitializeUpgradeCard(WestCard, currentWestUpgrade);
+        WestCard.UpgradeCard.transform.localPosition = new Vector3(-basepos - distancetotarget, 0f, 0f);
 
         gettingbonus = true;
         CardHolder.SetActive(true);
