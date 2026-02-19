@@ -84,6 +84,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (remainingbonustogive > 0)
         {
+            Debug.Log("spawning additionnal bonus : " + currentwave);
             remainingbonustogive--;
             upgradeScript.InitializeNewBonuses();
         }

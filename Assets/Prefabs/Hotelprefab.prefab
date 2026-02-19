@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 5886878782515911745}
   - component: {fileID: 2818514293851467102}
   m_Layer: 0
-  m_Name: MapPrefab
+  m_Name: Hotelprefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8993208008032642761
 Transform:
   m_ObjectHideFlags: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
   waveenemymultiplier: 1.1
   waveenemyadding: 3
   maxwaves: 20
-  difficultyincreaseperround: 0.1
+  difficultyincreaseperround: 0.03
 --- !u!1 &8891014499535020207
 GameObject:
   m_ObjectHideFlags: 0

@@ -2026,7 +2026,7 @@ MonoBehaviour:
   maxarmor: 100
   invframes: 0.1
   timebeforeregen: 5
-  regenpersecond: 3
+  regenpersecond: 0.015
   HurtPostProcessing: {fileID: 5918058980218838677}
 --- !u!114 &1016399097814881051
 MonoBehaviour:
