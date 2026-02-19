@@ -23,6 +23,7 @@ public class MovementController : MonoBehaviour
     public Vector3 StartPos;
     private int delaybetweenfootstepscnt;
     public float delaybetweenfootsteps;
+    private Vector3 basepos;
 
     [Header("Jump")]
     private InputAction JumpAction;
@@ -46,6 +47,8 @@ public class MovementController : MonoBehaviour
     public List<AudioClip> playerDamageSounds;
 
     private bool previoustouchingground;
+
+    private bool textshown;
 
     private UpgradeScript UpgradeScript;
 
@@ -84,6 +87,7 @@ public class MovementController : MonoBehaviour
         JumpAction = InputSystem.actions.FindAction("Jump");
         UpgradeScript = GetComponent<UpgradeScript>();
         StartPos = transform.position;
+        basepos = transform.position;
     }
 
 
@@ -95,6 +99,16 @@ public class MovementController : MonoBehaviour
             return;
         }
 
+        if (!textshown)
+        {
+            textshown = true;
+            GetComponent<TitleText>().StartTitleText();
+        }
+
+        if (Mathf.Abs(transform.position.y - basepos.y) >= 30)
+        {
+            transform.position = basepos;
+        }
 
         // movement;
 

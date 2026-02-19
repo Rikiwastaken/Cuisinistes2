@@ -164,9 +164,9 @@ public class EnemySpawner : MonoBehaviour
                         EnemiesToRecycle.Remove(newenemy);
                         newenemy.SetActive(true);
 
-                        newenemy.GetComponentInChildren<Animation>().clip = newenemy.GetComponent<EnemyNavigation>().Idle;
-                        newenemy.GetComponentInChildren<Animation>().Play();
+
                         newenemy.GetComponent<EnemyNavigation>().engagedPlayer = false;
+                        newenemy.GetComponent<EnemyNavigation>().ded = false;
                         newenemy.GetComponent<BoxCollider>().enabled = true;
                         newenemy.GetComponent<NavMeshAgent>().enabled = true;
                         newenemy.GetComponent<EnemyNavigation>().Lifebar.fillAmount = 1f;
@@ -186,6 +186,8 @@ public class EnemySpawner : MonoBehaviour
                     {
                         waves[currentwave].healthmultiplier = 1;
                     }
+                    newenemy.GetComponentInChildren<Animation>().clip = newenemy.GetComponent<EnemyNavigation>().Idle;
+                    newenemy.GetComponentInChildren<Animation>().Play();
                     newenemy.GetComponent<HealthScript>().MaxHealth *= waves[currentwave].healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
                     newenemy.GetComponent<EnemyNavigation>().Gun.damage *= waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
                     newenemy.GetComponent<EnemyNavigation>().meleedamage *= waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
@@ -246,7 +248,6 @@ public class EnemySpawner : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("spawning ID : " + (randomID - player.GetComponent<ShootScript>().GunList.Count));
                         newloot = Instantiate(pickups[randomID - player.GetComponent<ShootScript>().GunList.Count]);
                     }
 

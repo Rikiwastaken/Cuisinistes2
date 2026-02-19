@@ -181,6 +181,7 @@ MonoBehaviour:
     ReloadAnim: {fileID: 0}
     ShootSFX: []
     ReloadSFX: []
+    EmptyClipSFX: []
     unlocked: 0
     ReserveAmmoTMP: {fileID: 0}
     CurrentClipTMP: {fileID: 0}
@@ -195,10 +196,18 @@ MonoBehaviour:
   AmmoBoxPrefab: {fileID: 8594776281252626752, guid: a328dada7dd3de44f9168da23e4ef451, type: 3}
   HealthKitPrefab: {fileID: 8594776281252626752, guid: b3692803d71aabd4d8fa9ac0d81873e8, type: 3}
   ArmorKitPrefab: {fileID: 8594776281252626752, guid: ed7f82ff0dc1f3c40828049ab0098768, type: 3}
-  AttackSound: []
+  AttackSound:
+  - {fileID: 8300000, guid: fd9e074dcc8a32a41ace868f9b738ecc, type: 3}
+  - {fileID: 8300000, guid: 061051ea337456a41a755ea3edf130df, type: 3}
+  - {fileID: 8300000, guid: caaa23f63e3297446a0ed38b8a11fda1, type: 3}
   Idlesound: []
-  DamageSound: []
-  DeathSound: []
+  DamageSound:
+  - {fileID: 8300000, guid: 0fb6b5935225ae743bfa9e0e7e248a78, type: 3}
+  - {fileID: 8300000, guid: 112efa488462c3141a8c7d81c050cf8f, type: 3}
+  DeathSound:
+  - {fileID: 8300000, guid: b5856ce6d30875c40b3f9f40c0fb0394, type: 3}
+  - {fileID: 8300000, guid: f005099acd6e8b34ca435ab25427fafe, type: 3}
+  - {fileID: 8300000, guid: fdcf892790f7e944da5f71312b85d7b7, type: 3}
   timebetweenidlesound: 0
 --- !u!114 &3247550930479452848
 MonoBehaviour:
