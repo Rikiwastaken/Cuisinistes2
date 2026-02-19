@@ -131,7 +131,7 @@ public class EnemySpawner : MonoBehaviour
         WaveClass newwave = new WaveClass();
         newwave.bonusperwave = 1;
         newwave.numberofenemies = (int)((lastwave.numberofenemies + waveenemyadding) * waveenemymultiplier);
-        newwave.damagemultiplier = lastwave.damagemultiplier * difficultyincreaseperround * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+        newwave.damagemultiplier = lastwave.damagemultiplier * difficultyincreaseperround / 1.5f * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel / 1.5f, upgradeScript.DifficultyLevel);
         newwave.healthmultiplier = lastwave.healthmultiplier * difficultyincreaseperround * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
         lastwave = newwave;
         won = false;
@@ -177,7 +177,7 @@ public class EnemySpawner : MonoBehaviour
                     NavMeshAgent agent = BossInstance.GetComponent<NavMeshAgent>();
                     BossInstance.transform.parent = EnemyHolder;
                     BossInstance.GetComponentInChildren<Animation>().transform.localRotation = Quaternion.identity;
-
+                    BossInstance.GetComponent<HealthScript>().scaledMaxHealth = BossInstance.GetComponent<HealthScript>().MaxHealth;
 
                     NavMesh.SamplePosition(Arena.transform.position, out NavMeshHit hit, 2f, NavMesh.AllAreas);
                     Vector3 spawnPos = hit.position;
@@ -259,7 +259,7 @@ public class EnemySpawner : MonoBehaviour
                     newenemy.GetComponentInChildren<Animation>().Play();
                     if (endless)
                     {
-                        newenemy.GetComponent<HealthScript>().scaledMaxHealth = newenemy.GetComponent<HealthScript>().MaxHealth * lastwave.healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<HealthScript>().scaledMaxHealth = newenemy.GetComponent<HealthScript>().MaxHealth * lastwave.healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel / 1.5f, upgradeScript.DifficultyLevel);
                         newenemy.GetComponent<EnemyNavigation>().scaledgundamage = newenemy.GetComponent<EnemyNavigation>().Gun.damage * lastwave.damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
                         newenemy.GetComponent<EnemyNavigation>().scaledmeleedamage = newenemy.GetComponent<EnemyNavigation>().meleedamage * lastwave.damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
                     }
@@ -274,7 +274,7 @@ public class EnemySpawner : MonoBehaviour
                         {
                             waves[currentwave].healthmultiplier = 1;
                         }
-                        newenemy.GetComponent<HealthScript>().scaledMaxHealth = newenemy.GetComponent<HealthScript>().MaxHealth * waves[currentwave].healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+                        newenemy.GetComponent<HealthScript>().scaledMaxHealth = newenemy.GetComponent<HealthScript>().MaxHealth * waves[currentwave].healthmultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel / 1.5f, upgradeScript.DifficultyLevel);
                         newenemy.GetComponent<EnemyNavigation>().scaledgundamage = newenemy.GetComponent<EnemyNavigation>().Gun.damage * waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
                         newenemy.GetComponent<EnemyNavigation>().scaledmeleedamage = newenemy.GetComponent<EnemyNavigation>().meleedamage * waves[currentwave].damagemultiplier * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
                     }
@@ -441,7 +441,7 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < maxwaves; i++)
         {
             WaveClass wave = new WaveClass();
-            wave.healthmultiplier = Mathf.Pow(1f + difficultyincreaseperround, i);
+            wave.healthmultiplier = Mathf.Pow(1f + difficultyincreaseperround / 1.5f, i);
             wave.damagemultiplier = Mathf.Pow(1f + difficultyincreaseperround, i);
             if (i % 2 == 0)
             {

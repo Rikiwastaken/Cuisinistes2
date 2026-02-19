@@ -157,6 +157,7 @@ MonoBehaviour:
   Run: {fileID: 4085343174865685899, guid: af56d02a7f9616f3680a2ef7cda3b717, type: 3}
   Attack: {fileID: -5488763363113305952, guid: af56d02a7f9616f3680a2ef7cda3b717, type: 3}
   Die: {fileID: -8552002475577850440, guid: af56d02a7f9616f3680a2ef7cda3b717, type: 3}
+  BossMeleeAnim: {fileID: 0}
   Canvas: {fileID: 7183150399480153850}
   Lifebar: {fileID: 2492216953354984197}
   ded: 0
@@ -171,7 +172,7 @@ MonoBehaviour:
     Bulletprefab: {fileID: 273267796892247371, guid: 95186d09905e4104ca59472ba59a3872, type: 3}
     damage: 20
     recoil: 0
-    bulletspeed: 3
+    bulletspeed: 6
     GunCD: 4
     currentclip: 0
     clipsize: 0
@@ -208,6 +209,8 @@ MonoBehaviour:
   DeathSound:
   - {fileID: 8300000, guid: 588a0f0bb109fe248bc1a1c81a6761f7, type: 3}
   timebetweenidlesound: 0
+  scaledgundamage: 0
+  scaledmeleedamage: 0
 --- !u!114 &3247550930479452848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +231,7 @@ MonoBehaviour:
   timebeforeregen: 0
   regenpersecond: 0
   HurtPostProcessing: {fileID: 0}
+  scaledMaxHealth: 0
 --- !u!65 &2550037940614220385
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -368,7 +368,7 @@ public class UpgradeScript : MonoBehaviour
                 else
                 {
                     description = "damage : " + (int)ShootScript.GunList[0].damage + " > " + (int)(ShootScript.GunList[0].damage * (1f + GunIncreasePerLevel));
-                    description += "Fire Rate : " + (float)((int)(ShootScript.GunList[0].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[0].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
+                    description += "\nFire Rate : " + (float)((int)(ShootScript.GunList[0].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[0].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
                 }
                 break;
             case 1: //ar
@@ -379,7 +379,7 @@ public class UpgradeScript : MonoBehaviour
                 else
                 {
                     description = "damage : " + (int)ShootScript.GunList[1].damage + " > " + (int)(ShootScript.GunList[1].damage * (1f + GunIncreasePerLevel));
-                    description += "Fire Rate : " + (float)((int)(ShootScript.GunList[1].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[1].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
+                    description += "\nFire Rate : " + (float)((int)(ShootScript.GunList[1].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[1].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
                 }
                 break;
             case 2: //shotgun
@@ -390,7 +390,7 @@ public class UpgradeScript : MonoBehaviour
                 else
                 {
                     description = "damage : " + (int)ShootScript.GunList[2].damage + "x9 > " + (int)(ShootScript.GunList[2].damage * (1f + GunIncreasePerLevel)) + "x9";
-                    description += "Fire Rate : " + (float)((int)(ShootScript.GunList[2].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[2].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
+                    description += "\nFire Rate : " + (float)((int)(ShootScript.GunList[2].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[2].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
                 }
                 break;
             case 3: //raygun
@@ -401,7 +401,7 @@ public class UpgradeScript : MonoBehaviour
                 else
                 {
                     description = "damage : " + (int)ShootScript.GunList[3].damage + " > " + (int)(ShootScript.GunList[1].damage * (1f + GunIncreasePerLevel));
-                    description += "Fire Rate : " + (float)((int)(ShootScript.GunList[3].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[3].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
+                    description += "\nFire Rate : " + (float)((int)(ShootScript.GunList[3].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[3].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
                 }
                 break;
             case 4: //damage reduction

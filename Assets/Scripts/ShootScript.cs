@@ -56,6 +56,7 @@ public class ShootScript : MonoBehaviour
     private InputAction ReloadAction;
     private float previousReloadInput;
     public List<Image> SelectedSprite;
+    public List<Image> Weaponsprites;
     private GameObject RayGunLaser;
 
     [Header("Melee")]
@@ -306,6 +307,25 @@ public class ShootScript : MonoBehaviour
 
         SelectedSprite[currentgun].gameObject.SetActive(true);
 
+        for (int i = 0; i < GunList.Count; i++)
+        {
+            Image WeaponSprite = Weaponsprites[i];
+            Color newcolor = Color.grey;
+            if (!GunList[i].unlocked)
+            {
+                newcolor.a = 0.5f;
+            }
+            else
+            {
+                newcolor = Color.white;
+            }
+            if (WeaponSprite.color != newcolor)
+            {
+                WeaponSprite.color = newcolor;
+            }
+
+        }
+
     }
     private void ChangeGun(int newGunID)
     {
@@ -357,24 +377,6 @@ public class ShootScript : MonoBehaviour
 
     public void InitializeAmmoText()
     {
-        foreach (GunClass gunClass in GunList)
-        {
-            if (!gunClass.unlocked)
-            {
-                if (gunClass.CurrentClipTMP.transform.parent.gameObject.activeSelf)
-                {
-                    gunClass.CurrentClipTMP.transform.parent.gameObject.SetActive(false);
-                }
-
-            }
-            else
-            {
-                if (!gunClass.CurrentClipTMP.transform.parent.gameObject.activeSelf)
-                {
-                    gunClass.CurrentClipTMP.transform.parent.gameObject.SetActive(true);
-                }
-            }
-        }
         foreach (GunClass gunClass in GunList)
         {
             gunClass.CurrentClipTMP.text = (int)gunClass.currentclip + "/" + (int)gunClass.clipsize;
