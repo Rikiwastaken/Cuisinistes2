@@ -124,7 +124,7 @@ public class ShootScript : MonoBehaviour
                         Shoot();
                     }
                     int randomchancetosavebullet = UnityEngine.Random.Range(0, 100);
-                    if (randomchancetosavebullet > upgradeScript.AmmoSaveChanceLevel * upgradeScript.AmmoSavePerLevel)
+                    if (randomchancetosavebullet > 100f * upgradeScript.AmmoSaveChanceLevel * upgradeScript.AmmoSavePerLevel)
                     {
                         GunList[currentgun].currentclip--;
                     }

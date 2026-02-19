@@ -347,7 +347,7 @@ public class EnemyNavigation : MonoBehaviour
 
         int freeupgradeRandomValue = UnityEngine.Random.Range(0, 100);
 
-        if (freeupgradeRandomValue < 100f * Mathf.Max(0f, upgradeScript.FreeUpgradeChanceLevel * upgradeScript.FreeUpgradePerLevel) * Mathf.Pow(1f + upgradeScript.FreeUpgradePerLevel, upgradeScript.FreeUpgradeChanceLevel))
+        if (freeupgradeRandomValue < 100f * (1f - Mathf.Pow(1f + upgradeScript.FreeUpgradePerLevel, upgradeScript.FreeUpgradeChanceLevel)))
         {
             upgradeScript.InitializeNewBonuses();
         }

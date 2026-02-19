@@ -130,8 +130,8 @@ public class EnemySpawner : MonoBehaviour
         WaveClass newwave = new WaveClass();
         newwave.bonusperwave = 1;
         newwave.numberofenemies = (int)((lastwave.numberofenemies + waveenemyadding) * waveenemymultiplier);
-        newwave.damagemultiplier = lastwave.damagemultiplier * difficultyincreaseperround;
-        newwave.healthmultiplier = lastwave.healthmultiplier * difficultyincreaseperround;
+        newwave.damagemultiplier = lastwave.damagemultiplier * difficultyincreaseperround * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+        newwave.healthmultiplier = lastwave.healthmultiplier * difficultyincreaseperround * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
         lastwave = newwave;
         won = false;
         BossInstance = null;

@@ -26,6 +26,7 @@ public class UpgradeScript : MonoBehaviour
         public GameObject UpgradeCard;
         public TextMeshProUGUI upgradeName;
         public TextMeshProUGUI upgradeLevel;
+        public TextMeshProUGUI Description;
         public Image UpgradeImage;
         public Image CompletionCircle;
     }
@@ -305,7 +306,7 @@ public class UpgradeScript : MonoBehaviour
                 MagSizeLevel++;
                 foreach (GunClass gun in ShootScript.GunList)
                 {
-                    gun.clipsize *= (1f + MagSizeLevel);
+                    gun.clipsize *= (1f + MagSizePerLevel);
                 }
                 ShootScript.InitializeAmmoText();
                 break;
@@ -322,8 +323,8 @@ public class UpgradeScript : MonoBehaviour
                 break;
             case 11: //regen
                 RegenLevel++;
-                GetComponent<HealthScript>().regenpersecond *= (1f + MaxHPPerLevel);
-                GetComponent<HealthScript>().regenpersecond /= (1f + MaxHPPerLevel);
+                GetComponent<HealthScript>().regenpersecond *= (1f + RegenPerLevel);
+                GetComponent<HealthScript>().regenpersecond /= (1f + RegenPerLevel);
                 break;
             case 12: //life steal
                 LifeStealLevel++;
@@ -352,6 +353,110 @@ public class UpgradeScript : MonoBehaviour
                 break;
 
         }
+    }
+
+    public string GetUpgradeDescription(int upgradeID)
+    {
+        string description = "";
+        switch (upgradeID)
+        {
+            case 0: //handgun
+                if (HandGunUpgradeLevel == 0)
+                {
+                    description = "Unlocks the Handgun";
+                }
+                else
+                {
+                    description = "damage : " + (int)ShootScript.GunList[0].damage + " > " + (int)(ShootScript.GunList[0].damage * (1f + GunIncreasePerLevel));
+                    description += "Fire Rate : " + (float)((int)(ShootScript.GunList[0].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[0].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
+                }
+                break;
+            case 1: //ar
+                if (ARUpgradeLevel == 0)
+                {
+                    description = "Unlocks the Assault Rifle";
+                }
+                else
+                {
+                    description = "damage : " + (int)ShootScript.GunList[1].damage + " > " + (int)(ShootScript.GunList[1].damage * (1f + GunIncreasePerLevel));
+                    description += "Fire Rate : " + (float)((int)(ShootScript.GunList[1].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[1].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
+                }
+                break;
+            case 2: //shotgun
+                if (ShotgunUpgradeLevel == 0)
+                {
+                    description = "Unlocks the Shotgun";
+                }
+                else
+                {
+                    description = "damage : " + (int)ShootScript.GunList[2].damage + "x9 > " + (int)(ShootScript.GunList[2].damage * (1f + GunIncreasePerLevel)) + "x9";
+                    description += "Fire Rate : " + (float)((int)(ShootScript.GunList[2].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[2].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
+                }
+                break;
+            case 3: //raygun
+                if (RaygunUpgradeLevel == 0)
+                {
+                    description = "Unlocks the Assault Rifle";
+                }
+                else
+                {
+                    description = "damage : " + (int)ShootScript.GunList[3].damage + " > " + (int)(ShootScript.GunList[1].damage * (1f + GunIncreasePerLevel));
+                    description += "Fire Rate : " + (float)((int)(ShootScript.GunList[3].GunCD * 100) / 100f) + " > " + (float)((int)(ShootScript.GunList[3].GunCD * (1f + GunIncreasePerLevel) * 100f) / 100f);
+                }
+                break;
+            case 4: //damage reduction
+                description = "Damage Reduction : " + (int)((Mathf.Pow(1f - DamageReductionPerLevel, DamageReductionLevel) - 1f) * 100) + "% > " + (int)((Mathf.Pow(1f - DamageReductionPerLevel, DamageReductionLevel + 1) - 1f) * 100) + "%";
+
+                break;
+            case 5: //global damage
+                description = "Damage Bonus : " + (Mathf.Pow(1f + GlobalDamagePerLevel, GlobalDamageLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + GlobalDamagePerLevel, GlobalDamageLevel + 1) * 100 - 100) + "%";
+                break;
+            case 6://speed
+                description = "Speed Bonus : " + (Mathf.Pow(1f + RunSpeedPerLevel, RunSpeedLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + RunSpeedPerLevel, RunSpeedLevel + 1) * 100 - 100) + "%";
+                break;
+            case 7: //mag size
+                description = "Magazine size Bonus : " + (Mathf.Pow(1f + MagSizePerLevel, MagSizeLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + MagSizePerLevel, MagSizeLevel + 1) * 100 - 100) + "%";
+
+                break;
+            case 8: //drop rate
+                description = "Drop Rate Bonus : " + (Mathf.Pow(1f + DropRatePerLevel, DropRateLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + DropRatePerLevel, DropRateLevel + 1) * 100 - 100) + "%";
+                break;
+            case 9: //jump height
+                description = "Jump Bonus : " + (Mathf.Pow(1f + JumpHeightPerLevel, JumpHeightLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + JumpHeightPerLevel, JumpHeightLevel + 1) * 100 - 100) + "%";
+                break;
+            case 10: //max hp
+                description = "Max HP Bonus : " + (Mathf.Pow(1f + MaxHPPerLevel, MaxHPLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + MaxHPPerLevel, MaxHPLevel + 1) * 100 - 100) + "%";
+                break;
+            case 11: //regen
+                description = "HP Regen per second : " + (Mathf.Pow(1f + RegenPerLevel, RegenLevel) * 100 - 100) + "% > " + (Mathf.Pow(1f + RegenPerLevel, RegenLevel + 1) * 100 - 100) + "%";
+                break;
+            case 12: //life steal
+                description = "Life Steal : " + LifeStealPerLevel * LifeStealLevel * 100 + "% > " + LifeStealPerLevel * (LifeStealLevel + 1) * 100 + "%";
+                break;
+            case 13: //crit chance
+                description = "Critical Chance : " + (basecritchance + CritChancePerLevel * CritChanceLevel) * 100 + "% > " + (basecritchance + CritChancePerLevel * (CritChanceLevel + 1)) * 100 + "%";
+                break;
+            case 14: //crit damage
+                description = "Critical Damage : " + (basecritmultiplier * Mathf.Pow(1f + CritDamagePerLevel, CritDamageLevel)) * 100 + "% > " + (basecritmultiplier * Mathf.Pow(1f + CritDamagePerLevel, 1 + CritDamageLevel)) * 100 + "%";
+                break;
+            case 15: //Free upgrade chance
+                description = "Free Upgrade Chance : " + 100 * (Mathf.Pow(1f + FreeUpgradePerLevel, FreeUpgradeChanceLevel) - 1f) + "% > " + 100 * (Mathf.Pow(1f + FreeUpgradePerLevel, 1 + FreeUpgradeChanceLevel) - 1f) + "%";
+                break;
+            case 16: //ammo save chance
+                description = "No ammo consumption Chance : " + (100 * AmmoSaveChanceLevel * AmmoSavePerLevel) + "% > " + (100 * (1 + AmmoSaveChanceLevel) * AmmoSavePerLevel) + "%";
+                break;
+            case 17: //melee damage
+                description = "Melee damage Bonus : " + (int)ShootScript.meleedamage + " > " + (int)(ShootScript.meleedamage * (1f + MeleeDamagePerLevel));
+                break;
+            case 18: //drop power
+                description = "Drop Power : " + ((Mathf.Pow(1f + DropPowerPerLevel, DropPowerLevel) - 1f) * 100) + "% > " + ((Mathf.Pow(1f + DropPowerPerLevel, DropPowerLevel + 1) - 1f) * 100);
+                break;
+            case 19: //difficulty
+                description = "Difficulty Increase : " + ((Mathf.Pow(1f + DifficultyPerLevel, DifficultyLevel) - 1f) * 100) + "% > " + ((Mathf.Pow(1f + DifficultyPerLevel, DifficultyLevel + 1) - 1f) * 100);
+                break;
+
+        }
+        return description;
     }
 
     public void InitializeWeaponChoice()
@@ -430,6 +535,7 @@ public class UpgradeScript : MonoBehaviour
         card.upgradeName.text = upgrade.upgradeName;
         card.upgradeLevel.text = "Level " + (GetUpgradeLevel(upgradeID) + 1);
         card.UpgradeImage.sprite = upgrade.UpgradeSprite;
+        card.Description.text = GetUpgradeDescription(upgradeID);
         card.CompletionCircle.fillAmount = 0;
     }
 
