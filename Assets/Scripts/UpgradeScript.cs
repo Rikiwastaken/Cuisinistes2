@@ -102,6 +102,12 @@ public class UpgradeScript : MonoBehaviour
     public float timebeforeconfirm;
     private int framestoconfirm;
 
+    [Header("SFX")]
+
+    public AudioClip bonusappeared;
+    public AudioClip bonustaken;
+    private SoundManager soundmanager;
+
     private void Awake()
     {
         instance = this;
@@ -116,6 +122,7 @@ public class UpgradeScript : MonoBehaviour
         ShootScript = GetComponent<ShootScript>();
         MoveAction = InputSystem.actions.FindAction("Move");
         framestoconfirm = (int)(timebeforeconfirm * 60);
+        soundmanager = SoundManager.instance;
         InitializeWeaponChoice();
 
     }
@@ -126,7 +133,7 @@ public class UpgradeScript : MonoBehaviour
         {
             if (Time.timeScale > 0)
             {
-                float newtimescale = Time.timeScale - 1f / 30f;
+                float newtimescale = Time.timeScale - 1f / 60f;
                 if (newtimescale < 0)
                 {
                     newtimescale = 0;
@@ -156,6 +163,7 @@ public class UpgradeScript : MonoBehaviour
                 gettingbonus = false;
                 Time.timeScale = 1f;
                 CardHolder.SetActive(false);
+                soundmanager.PlaySFX(bonustaken, 0.06f, ShootScript.transform);
             }
 
 
@@ -179,6 +187,7 @@ public class UpgradeScript : MonoBehaviour
                 gettingbonus = false;
                 Time.timeScale = 1f;
                 CardHolder.SetActive(false);
+                soundmanager.PlaySFX(bonustaken, 0.06f, ShootScript.transform);
             }
 
 
@@ -202,6 +211,7 @@ public class UpgradeScript : MonoBehaviour
                 gettingbonus = false;
                 Time.timeScale = 1f;
                 CardHolder.SetActive(false);
+                soundmanager.PlaySFX(bonustaken, 0.06f, ShootScript.transform);
             }
 
             if (WestCard.UpgradeCard.transform.localPosition.x < -basepos)
@@ -225,6 +235,7 @@ public class UpgradeScript : MonoBehaviour
                 gettingbonus = false;
                 Time.timeScale = 1f;
                 CardHolder.SetActive(false);
+                soundmanager.PlaySFX(bonustaken, 0.06f, ShootScript.transform);
             }
         }
 
@@ -307,12 +318,12 @@ public class UpgradeScript : MonoBehaviour
                 break;
             case 10: //max hp
                 MaxHPLevel++;
-                GetComponent<HealthScript>().MaxHealth *= MaxHPPerLevel;
+                GetComponent<HealthScript>().MaxHealth *= (1f + MaxHPPerLevel);
                 break;
             case 11: //regen
                 RegenLevel++;
-                GetComponent<HealthScript>().regenpersecond *= MaxHPPerLevel;
-                GetComponent<HealthScript>().regenpersecond /= MaxHPPerLevel;
+                GetComponent<HealthScript>().regenpersecond *= (1f + MaxHPPerLevel);
+                GetComponent<HealthScript>().regenpersecond /= (1f + MaxHPPerLevel);
                 break;
             case 12: //life steal
                 LifeStealLevel++;
@@ -331,7 +342,7 @@ public class UpgradeScript : MonoBehaviour
                 break;
             case 17: //melee damage
                 MeleeDamageLevel++;
-                ShootScript.meleedamage *= MeleeDamagePerLevel;
+                ShootScript.meleedamage *= (1f + MeleeDamagePerLevel);
                 break;
             case 18: //drop power
                 DropPowerLevel++;
@@ -366,6 +377,7 @@ public class UpgradeScript : MonoBehaviour
         InitializeUpgradeCard(WestCard, currentWestUpgrade);
         WestCard.UpgradeCard.transform.localPosition = new Vector3(-basepos - distancetotarget, 0f, 0f);
 
+        soundmanager.PlaySFX(bonusappeared, 0.06f, ShootScript.transform);
 
         gettingbonus = true;
         CardHolder.SetActive(true);
@@ -381,6 +393,7 @@ public class UpgradeScript : MonoBehaviour
 
         int northID = UnityEngine.Random.Range(0, potentialupgrades.Count);
         currentNorthUpgrade = potentialupgrades[northID];
+        maintainingNorth = 0;
         potentialupgrades.RemoveAt(northID);
         InitializeUpgradeCard(NorthCard, currentNorthUpgrade);
         NorthCard.UpgradeCard.transform.localPosition = new Vector3(0f, basepos + distancetotarget, 0f);
@@ -388,23 +401,27 @@ public class UpgradeScript : MonoBehaviour
         int southID = UnityEngine.Random.Range(0, potentialupgrades.Count);
         currentSouthUpgrade = potentialupgrades[southID];
         potentialupgrades.RemoveAt(southID);
+        maintainingSouth = 0;
         InitializeUpgradeCard(SouthCard, currentSouthUpgrade);
         SouthCard.UpgradeCard.transform.localPosition = new Vector3(0f, -basepos - distancetotarget, 0f);
 
         int eastID = UnityEngine.Random.Range(0, potentialupgrades.Count);
         currentEastUpgrade = potentialupgrades[eastID];
         potentialupgrades.RemoveAt(eastID);
+        maintainingEast = 0;
         InitializeUpgradeCard(EastCard, currentEastUpgrade);
         EastCard.UpgradeCard.transform.localPosition = new Vector3(basepos + distancetotarget, 0f, 0f);
 
         int westID = UnityEngine.Random.Range(0, potentialupgrades.Count);
         currentWestUpgrade = potentialupgrades[westID];
         potentialupgrades.RemoveAt(westID);
+        maintainingWest = 0;
         InitializeUpgradeCard(WestCard, currentWestUpgrade);
         WestCard.UpgradeCard.transform.localPosition = new Vector3(-basepos - distancetotarget, 0f, 0f);
 
         gettingbonus = true;
         CardHolder.SetActive(true);
+        soundmanager.PlaySFX(bonusappeared, 0.06f, ShootScript.transform);
     }
 
     private void InitializeUpgradeCard(UpgradeCardClass card, int upgradeID)

@@ -222,8 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4712cd2a7abbfd84ca941d73c71f0d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthScript
-  HP: 50
-  MaxHealth: 25
+  HP: 25
+  MaxHealth: 20
   currentarmor: 0
   maxarmor: 0
   invframes: 0

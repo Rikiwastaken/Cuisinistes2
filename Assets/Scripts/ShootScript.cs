@@ -253,6 +253,7 @@ public class ShootScript : MonoBehaviour
             {
                 if (enemy != null && enemy.activeSelf && Vector3.Distance(transform.position, enemy.transform.position) <= meleerange)
                 {
+                    Debug.Log(enemy.name + " took damage : " + meleedamage);
                     enemy.GetComponent<HealthScript>().TakeDamage(meleedamage);
                 }
             }

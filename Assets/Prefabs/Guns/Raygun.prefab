@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Damage: 0
+  Sound: {fileID: 9191899292892552149}
 --- !u!54 &6231866320904899740
 Rigidbody:
   m_ObjectHideFlags: 0

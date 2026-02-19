@@ -73,7 +73,7 @@ public class HealthScript : MonoBehaviour
         {
             if (Time.time > timetillregenstarts && HP < MaxHealth)
             {
-                HP += regenpersecond * Time.deltaTime;
+                HP += regenpersecond * MaxHealth * Time.deltaTime;
                 UpdateTexts();
                 ManageHurtPostProcessing();
             }

@@ -8,6 +8,31 @@ public class LaserScript : MonoBehaviour
 
     private List<GameObject> whowasdealtdamage;
 
+    private UpgradeScript UpgradeScript;
+    public AudioSource Sound;
+
+    private void Update()
+    {
+        if (UpgradeScript == null)
+        {
+            UpgradeScript = UpgradeScript.instance;
+        }
+
+        if (UpgradeScript.gettingbonus)
+        {
+            if (Sound.isPlaying)
+            {
+                Sound.Stop();
+            }
+        }
+        else
+        {
+            if (!Sound.isPlaying)
+            {
+                Sound.Play();
+            }
+        }
+    }
 
     private void OnCollisionStay(Collision other)
     {

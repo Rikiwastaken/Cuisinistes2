@@ -181,6 +181,7 @@ MonoBehaviour:
     ReloadAnim: {fileID: 0}
     ShootSFX: []
     ReloadSFX: []
+    EmptyClipSFX: []
     unlocked: 0
     ReserveAmmoTMP: {fileID: 0}
     CurrentClipTMP: {fileID: 0}
@@ -195,10 +196,17 @@ MonoBehaviour:
   AmmoBoxPrefab: {fileID: 8594776281252626752, guid: a328dada7dd3de44f9168da23e4ef451, type: 3}
   HealthKitPrefab: {fileID: 8594776281252626752, guid: b3692803d71aabd4d8fa9ac0d81873e8, type: 3}
   ArmorKitPrefab: {fileID: 8594776281252626752, guid: ed7f82ff0dc1f3c40828049ab0098768, type: 3}
-  AttackSound: []
+  AttackSound:
+  - {fileID: 8300000, guid: a9c1d508362093048bd7f631a13d8451, type: 3}
+  - {fileID: 8300000, guid: 13095baa0a603684c974079a01f1f05c, type: 3}
+  - {fileID: 8300000, guid: 022c2ac7a6e51d148b9871eb78b45fb6, type: 3}
   Idlesound: []
-  DamageSound: []
-  DeathSound: []
+  DamageSound:
+  - {fileID: 8300000, guid: 75d33bc764c4d49498a19af9a868dff4, type: 3}
+  - {fileID: 8300000, guid: 8290f71cfbf94634990063247165fb1e, type: 3}
+  - {fileID: 8300000, guid: a80303ee52d004045b9e75a6232a2b7a, type: 3}
+  DeathSound:
+  - {fileID: 8300000, guid: 588a0f0bb109fe248bc1a1c81a6761f7, type: 3}
   timebetweenidlesound: 0
 --- !u!114 &3247550930479452848
 MonoBehaviour:
@@ -212,8 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4712cd2a7abbfd84ca941d73c71f0d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthScript
-  HP: 50
-  MaxHealth: 25
+  HP: 35
+  MaxHealth: 30
   currentarmor: 0
   maxarmor: 0
   invframes: 0
@@ -353,7 +361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.89}
+  m_AnchoredPosition: {x: 0, y: 2.75}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2020973866206605659

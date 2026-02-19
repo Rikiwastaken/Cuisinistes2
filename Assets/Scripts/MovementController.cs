@@ -23,6 +23,7 @@ public class MovementController : MonoBehaviour
     public Vector3 StartPos;
     private int delaybetweenfootstepscnt;
     public float delaybetweenfootsteps;
+    public Vector3 basepos;
 
     [Header("Jump")]
     private InputAction JumpAction;
@@ -47,7 +48,13 @@ public class MovementController : MonoBehaviour
 
     private bool previoustouchingground;
 
+    private bool textshown;
+
     private UpgradeScript UpgradeScript;
+
+    [Header("MapSelection")]
+
+    public List<GameObject> Maps;
 
     private void OnTriggerStay(Collider other)
     {
@@ -74,6 +81,9 @@ public class MovementController : MonoBehaviour
     {
         instance = this;
         Cursor.lockState = CursorLockMode.Locked;
+
+        Maps[UnityEngine.Random.Range(0, Maps.Count)].SetActive(true);
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -84,6 +94,7 @@ public class MovementController : MonoBehaviour
         JumpAction = InputSystem.actions.FindAction("Jump");
         UpgradeScript = GetComponent<UpgradeScript>();
         StartPos = transform.position;
+        basepos = transform.position;
     }
 
 
@@ -95,6 +106,16 @@ public class MovementController : MonoBehaviour
             return;
         }
 
+        if (!textshown)
+        {
+            textshown = true;
+            GetComponent<TitleText>().StartTitleText();
+        }
+
+        if (Mathf.Abs(transform.position.y - basepos.y) >= 30)
+        {
+            transform.position = basepos;
+        }
 
         // movement;
 

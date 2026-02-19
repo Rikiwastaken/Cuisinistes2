@@ -104,7 +104,7 @@ MonoBehaviour:
     m_Value: 1
   tintColor:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 1, g: 0.9821787, b: 0.6509433, a: 1}
   bloomMip:
     m_OverrideState: 1
     m_Value: 1
@@ -170,19 +170,19 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   threshold:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.9
   intensity:
-    m_OverrideState: 1
-    m_Value: 0.5
+    m_OverrideState: 0
+    m_Value: 0.1
   scatter:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.7
   clamp:
     m_OverrideState: 0
     m_Value: 65472
   tint:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
