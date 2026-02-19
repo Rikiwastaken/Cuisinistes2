@@ -24,6 +24,8 @@ public class CameraController : MonoBehaviour
     public float crossHairWidth;
     public float crossHairHeight;
 
+    private HealthScript healthScript;
+    private UpgradeScript upgradeScript;
 
     private void OnGUI()
     {
@@ -37,11 +39,18 @@ public class CameraController : MonoBehaviour
     {
         LookAction = InputSystem.actions.FindAction("Look");
         transform.rotation = Quaternion.identity;
+        upgradeScript = GetComponent<UpgradeScript>();
+        healthScript = GetComponent<HealthScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (upgradeScript.gettingbonus || healthScript.HP <= 0)
+        {
+            return;
+        }
+
         Vector2 mouseDelta = LookAction.ReadValue<Vector2>();
 
         float mouseX = mouseDelta.x * sensitivityX * Time.deltaTime * DataScript.instance.Options.sensibility;

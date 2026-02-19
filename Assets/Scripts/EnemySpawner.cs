@@ -82,6 +82,7 @@ public class EnemySpawner : MonoBehaviour
         currentwave = 0;
         totalenemyonthemap = waves[currentwave].numberofenemies;
         player.GetComponent<MovementController>().WaveTMP.text = "Wave " + (currentwave + 1) + "\nRemaining: " + totalenemyonthemap;
+        lastwave = waves[0];
     }
     // Update is called once per frame
     void Update()
@@ -183,7 +184,7 @@ public class EnemySpawner : MonoBehaviour
                     agent.enabled = false;
                     BossInstance.transform.position = spawnPos;
                     agent.enabled = true;
-                    agent.Warp(Arena.transform.position);
+                    agent.Warp(spawnPos);
                     player.GetComponent<MovementController>().WaveTMP.text = "Last Wave\n Purify it.";
                 }
             }

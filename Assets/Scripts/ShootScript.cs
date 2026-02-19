@@ -70,6 +70,7 @@ public class ShootScript : MonoBehaviour
 
     private bool awaitfirstweapon = true;
 
+    private HealthScript healthScript;
     private void Awake()
     {
         instance = this;
@@ -84,6 +85,7 @@ public class ShootScript : MonoBehaviour
         WeaponChangeAction = InputSystem.actions.FindAction("ChangeWeapon");
         ReloadAction = InputSystem.actions.FindAction("Reload");
         MeleeAction = InputSystem.actions.FindAction("Melee");
+        healthScript = GetComponent<HealthScript>();
         InitializeAmmoText();
     }
 
@@ -93,7 +95,7 @@ public class ShootScript : MonoBehaviour
     void Update()
     {
         //bonus
-        if (upgradeScript.gettingbonus)
+        if (upgradeScript.gettingbonus || healthScript.HP <= 0)
         {
             return;
         }

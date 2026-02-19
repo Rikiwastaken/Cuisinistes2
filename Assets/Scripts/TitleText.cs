@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TitleText : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class TitleText : MonoBehaviour
 
     private SoundManager soundManager;
 
+    private bool playinggameover;
     private void Awake()
     {
         instance = this;
@@ -81,5 +83,35 @@ public class TitleText : MonoBehaviour
         EnemySpawner.instance.InitializeNewEndlessWave();
     }
 
+    public void StartGameOverText()
+    {
+        if (playinggameover)
+        {
+            return;
+        }
+        StartCoroutine(GameOverText());
+    }
+
+    IEnumerator GameOverText()
+    {
+        playinggameover = true;
+        textMeshPro.gameObject.SetActive(true);
+        textMeshPro.text = "YoU";
+        soundManager.PlaySFX(FirstTextClip, 0.05f, transform);
+        yield return new WaitForSeconds(timeforeachtext);
+        textMeshPro.text = "Died";
+        soundManager.PlaySFX(SecondTextClip, 0.05f, transform);
+        yield return new WaitForSeconds(timeforeachtext);
+        textMeshPro.text = "IN";
+        soundManager.PlaySFX(SecondTextClip, 0.05f, transform);
+        yield return new WaitForSeconds(timeforeachtext);
+        textMeshPro.text = "ThE";
+        soundManager.PlaySFX(MainTextClip, 0.05f, transform);
+        yield return new WaitForSeconds(timeforeachtext);
+        textMeshPro.text = "BackdoomS";
+        soundManager.PlaySFX(MainTextClip, 0.05f, transform);
+        yield return new WaitForSeconds(timeforfinaltext * 2);
+        SceneManager.LoadScene("MainMenu");
+    }
 
 }

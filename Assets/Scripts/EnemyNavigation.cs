@@ -26,6 +26,7 @@ public class EnemyNavigation : MonoBehaviour
     public AnimationClip Run;
     public AnimationClip Attack;
     public AnimationClip Die;
+    public AnimationClip BossMeleeAnim;
 
     private Vector3 lastlegaldestination;
 
@@ -129,19 +130,23 @@ public class EnemyNavigation : MonoBehaviour
                 agent.enabled = false;
             }
             Vector3 directionToPlayer = (player.transform.position - transform.position - new Vector3(0f, agent.height / 2f, 0f)).normalized;
-
-            float newratio = enemymat[0].GetFloat("_DissolvePercent") - Time.deltaTime / 3f;
-
-            foreach (Material mat in enemymat)
+            if (BossMeleeAnim == null)
             {
-                mat.SetFloat("_DissolvePercent", newratio);
+                float newratio = enemymat[0].GetFloat("_DissolvePercent") - Time.deltaTime / 3f;
+                foreach (Material mat in enemymat)
+                {
+                    mat.SetFloat("_DissolvePercent", newratio);
+                }
+
+
+                if (newratio <= 0)
+                {
+                    RecycleEnemy();
+                }
             }
 
 
-            if (newratio <= 0)
-            {
-                RecycleEnemy();
-            }
+
 
             return;
         }
@@ -198,15 +203,25 @@ public class EnemyNavigation : MonoBehaviour
 
             }
 
-
-            if (!Shoots && sqrDistToPlayer <= minrangeformelee * minrangeformelee && HasLineOfSight() && !isinmelee)
+            //melee
+            if ((!Shoots || BossMeleeAnim != null) && sqrDistToPlayer <= minrangeformelee * minrangeformelee && HasLineOfSight() && !isinmelee)
             {
                 isinmelee = true;
-                Animation.clip = Attack;
+
+                if (BossMeleeAnim != null)
+                {
+                    Animation.clip = BossMeleeAnim;
+                }
+                else
+                {
+                    Animation.clip = Attack;
+
+                }
                 Animation.Play();
+
             }
 
-            if (isinmelee && (!Animation.isPlaying || Animation.clip != Attack))
+            if (isinmelee && (!Animation.isPlaying || (Animation.clip != Attack || (BossMeleeAnim != null && Animation.clip != BossMeleeAnim))))
             {
                 isinmelee = false;
                 if (sqrDistToPlayer <= minrangeformelee * minrangeformelee)

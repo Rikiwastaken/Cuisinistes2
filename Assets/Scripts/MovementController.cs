@@ -56,6 +56,8 @@ public class MovementController : MonoBehaviour
 
     public List<GameObject> Maps;
 
+    private HealthScript healthScript;
+
     private void OnTriggerStay(Collider other)
     {
         if (LayerMask.NameToLayer("Ground") == other.gameObject.layer && justjumpedcounter <= 0)
@@ -95,13 +97,14 @@ public class MovementController : MonoBehaviour
         UpgradeScript = GetComponent<UpgradeScript>();
         StartPos = transform.position;
         basepos = transform.position;
+        healthScript = GetComponent<HealthScript>();
     }
 
 
     void Update()
     {
         //bonus
-        if (UpgradeScript.gettingbonus)
+        if (UpgradeScript.gettingbonus || healthScript.HP <= 0)
         {
             return;
         }
