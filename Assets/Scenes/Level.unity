@@ -474,6 +474,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GaragePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 211728251549776866, guid: 8b8ab3dbe9723b348a851268fb02fce4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2818514293851467102, guid: 8b8ab3dbe9723b348a851268fb02fce4, type: 3}
       propertyPath: lootholder
       value: 
@@ -538,6 +542,10 @@ PrefabInstance:
     - target: {fileID: 211728251549776866, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
       propertyPath: m_Name
       value: MapPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 211728251549776866, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2818514293851467102, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
       propertyPath: lootholder
