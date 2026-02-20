@@ -203,6 +203,11 @@ MonoBehaviour:
   Boss: {fileID: 2686418178066650683, guid: 1a68b21ec9567304b92f3450a920e3dd, type: 3}
   won: 0
   endless: 0
+  lastwave:
+    numberofenemies: 0
+    damagemultiplier: 0
+    healthmultiplier: 0
+    bonusperwave: 0
 --- !u!1 &1795512181470878127
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,14 +945,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7213001436763401507, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dcff059a0a6073dcaaa0787ae94b1317, type: 2}
     - target: {fileID: -6987277878108326991, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -4146482085668406901, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ff1cfc3a5fc01e1fba8e260082140de, type: 2}
     - target: {fileID: -3587149500929475241, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -2759117807159665838, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dcff059a0a6073dcaaa0787ae94b1317, type: 2}
     - target: {fileID: -2600919178998749080, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -956,6 +973,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -1172874848333561659, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dcff059a0a6073dcaaa0787ae94b1317, type: 2}
+    - target: {fileID: -412787797683550406, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dcff059a0a6073dcaaa0787ae94b1317, type: 2}
     - target: {fileID: 919132149155446097, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
       propertyPath: m_Name
       value: garage fixed
@@ -968,10 +993,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6304783792548824048, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: db701c3a924d8c83ba60b496a46e50fd, type: 2}
     - target: {fileID: 6864465244546368363, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7080706556502796825, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dcff059a0a6073dcaaa0787ae94b1317, type: 2}
     - target: {fileID: 7321144004571033514, guid: e53635232080f8149a1c6b8c6778f59a, type: 3}
       propertyPath: m_Layer
       value: 6
