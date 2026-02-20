@@ -335,7 +335,7 @@ public class ShootScript : MonoBehaviour
                 Vector3 ScreenCentreCoordinates = new Vector3(0.5f, 0.5f, 0f);
                 Ray ray = MainCamera.GetComponent<Camera>().ViewportPointToRay(ScreenCentreCoordinates);
 
-                RaycastHit[] hits = Physics.RaycastAll(ray, 50f);
+                RaycastHit[] hits = Physics.RaycastAll(ray, 15f);
 
                 foreach (RaycastHit hit in hits)
                 {
