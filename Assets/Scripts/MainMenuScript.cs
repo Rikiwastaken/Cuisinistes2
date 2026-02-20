@@ -19,6 +19,10 @@ public class MainMenuScript : MonoBehaviour
     public Toggle FullScreenTOggle;
     public bool allowchange;
 
+    public Animation animation;
+    public AnimationClip Idleclip;
+    public AnimationClip Restclip;
+    public AnimationClip Lookclip;
 
     public AudioClip ButtonSound;
 
@@ -71,6 +75,27 @@ public class MainMenuScript : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (!animation.isPlaying)
+        {
+            int random = UnityEngine.Random.Range(0, 10);
+            if (random == 0)
+            {
+                animation.clip = Lookclip;
+
+            }
+            else if (random == 1)
+            {
+                animation.clip = Restclip;
+            }
+            else
+            {
+                animation.clip = Idleclip;
+            }
+            animation.Play();
+        }
+    }
     public void InitializeSliders()
     {
         allowchange = false;
