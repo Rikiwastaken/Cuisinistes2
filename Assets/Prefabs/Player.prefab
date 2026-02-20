@@ -2055,6 +2055,9 @@ MonoBehaviour:
   meleedamage: 10
   meleerange: 5
   meleeSFX: {fileID: 8300000, guid: 365240d69ba49494085b21cd79fe2d7d, type: 3}
+  deathstaredelay: 1
+  clipratio: 0.1
+  AutoAmmodelay: 1
 --- !u!114 &484629754530822652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2146,9 +2149,15 @@ MonoBehaviour:
   - upgradeID: 18
     upgradeName: Drops Power
     UpgradeSprite: {fileID: 21300000, guid: 2fbcb856194d6db4b8261a0b079cc1ef, type: 3}
-  - upgradeID: 18
+  - upgradeID: 19
     upgradeName: Difficulty
     UpgradeSprite: {fileID: 21300000, guid: 296cab7034b465d48bdcb7e1aed9c3af, type: 3}
+  - upgradeID: 20
+    upgradeName: Death Stare
+    UpgradeSprite: {fileID: 0}
+  - upgradeID: 21
+    upgradeName: Auto Ammo
+    UpgradeSprite: {fileID: 0}
   HandGunUpgradeLevel: 0
   ARUpgradeLevel: 0
   ShotgunUpgradeLevel: 0
@@ -2169,6 +2178,8 @@ MonoBehaviour:
   MeleeDamageLevel: 0
   DropPowerLevel: 0
   DifficultyLevel: 0
+  DeathStareLevel: 0
+  AutoAmmoLevel: 0
   GunIncreasePerLevel: 0.15
   DamageReductionPerLevel: 0.2
   GlobalDamagePerLevel: 0.1
@@ -2186,6 +2197,8 @@ MonoBehaviour:
   MeleeDamagePerLevel: 0.25
   DropPowerPerLevel: 0.1
   DifficultyPerLevel: 0.2
+  DeathStarePerLevel: 0.1
+  AutoAmmoPerLevel: 0.1
   basecritchance: 0.05
   basecritmultiplier: 2
   NorthCard:

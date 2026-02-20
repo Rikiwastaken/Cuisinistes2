@@ -73,6 +73,17 @@ public class ShootScript : MonoBehaviour
     private bool awaitfirstweapon = true;
 
     private HealthScript healthScript;
+
+    [Header("DeathStare")]
+
+    private float nexttimeforDeathStare;
+    public float deathstaredelay;
+
+    [Header("AutoAmmo")]
+    private float nexttimeforautoammo;
+    public float clipratio;
+    public float AutoAmmodelay;
+
     private void Awake()
     {
         instance = this;
@@ -264,7 +275,46 @@ public class ShootScript : MonoBehaviour
                 }
             }
         }
+
+
+        //deathStare
+
+        if (upgradeScript.DeathStareLevel > 0)
+        {
+            if (nexttimeforDeathStare == 0f || Time.time >= nexttimeforDeathStare)
+            {
+                nexttimeforDeathStare = Time.time + deathstaredelay;
+
+                Vector3 ScreenCentreCoordinates = new Vector3(0.5f, 0.5f, 0f);
+                Ray ray = MainCamera.GetComponent<Camera>().ViewportPointToRay(ScreenCentreCoordinates);
+
+                RaycastHit[] hits = Physics.RaycastAll(ray, 50f);
+
+                foreach (RaycastHit hit in hits)
+                {
+                    if (hit.collider.GetComponent<EnemyNavigation>())
+                    {
+                        float damage = meleedamage * Mathf.Pow(1f + upgradeScript.DeathStarePerLevel, upgradeScript.DeathStareLevel);
+                        hit.collider.GetComponent<HealthScript>().TakeDamage(damage);
+                    }
+                }
+
+            }
+        }
+
+        // AutoAmmo
+        if (upgradeScript.AutoAmmoLevel > 0)
+        {
+            if (nexttimeforautoammo == 0f || Time.time >= nexttimeforautoammo)
+            {
+                nexttimeforautoammo = Time.time + AutoAmmodelay;
+
+                GunList[currentgun].reserveammo += (int)(GunList[currentgun].clipsize * clipratio * Mathf.Pow(1f + upgradeScript.AutoAmmoPerLevel, upgradeScript.AutoAmmoLevel));
+            }
+        }
+
         previousmeleevalue = meleevalue;
+
     }
 
 

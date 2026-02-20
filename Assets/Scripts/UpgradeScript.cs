@@ -55,6 +55,8 @@ public class UpgradeScript : MonoBehaviour
     public int MeleeDamageLevel;
     public int DropPowerLevel;
     public int DifficultyLevel;
+    public int DeathStareLevel;
+    public int AutoAmmoLevel;
 
     [Header("UpgradeDetails")]
     public float GunIncreasePerLevel;
@@ -74,6 +76,8 @@ public class UpgradeScript : MonoBehaviour
     public float MeleeDamagePerLevel;
     public float DropPowerPerLevel;
     public float DifficultyPerLevel;
+    public float DeathStarePerLevel;
+    public float AutoAmmoPerLevel;
 
     public float basecritchance;
     public float basecritmultiplier;
@@ -351,6 +355,12 @@ public class UpgradeScript : MonoBehaviour
             case 19: //difficulty
                 DifficultyLevel++;
                 break;
+            case 20: //DeathStare
+                DifficultyLevel++;
+                break;
+            case 21: //autoammo
+                AutoAmmoLevel++;
+                break;
 
         }
     }
@@ -428,7 +438,7 @@ public class UpgradeScript : MonoBehaviour
                 description = "Max HP Bonus : " + (int)(Mathf.Pow(1f + MaxHPPerLevel, MaxHPLevel) * 100 - 100) + "% > " + (int)(Mathf.Pow(1f + MaxHPPerLevel, MaxHPLevel + 1) * 100 - 100) + "%";
                 break;
             case 11: //regen
-                description = "HP Regen per second : " + (int)((1f + GetComponent<HealthScript>().regenpersecond) * 100 - 100) + "% > " + (int)((1f + GetComponent<HealthScript>().regenpersecond) * 100f * RegenPerLevel - 100f) + "%";
+                description = "HP Regen per second : " + ((1f + GetComponent<HealthScript>().regenpersecond) * 1000 - 1000) / 10f + "% > " + ((1f + GetComponent<HealthScript>().regenpersecond) * (1f + RegenPerLevel) * 1000 - 1000) / 10f + "%";
                 break;
             case 12: //life steal
                 description = "Life Steal : " + LifeStealPerLevel * LifeStealLevel * 100 + "% > " + LifeStealPerLevel * (LifeStealLevel + 1) * 100 + "%";
@@ -453,6 +463,12 @@ public class UpgradeScript : MonoBehaviour
                 break;
             case 19: //difficulty
                 description = "Difficulty Increase : " + (int)((Mathf.Pow(1f + DifficultyPerLevel, DifficultyLevel) - 1f) * 100) + "% > " + (int)((Mathf.Pow(1f + DifficultyPerLevel, DifficultyLevel + 1) - 1f) * 100);
+                break;
+            case 20: //Death Stare
+                description = "Melee Damage when looking at enemies : " + (int)((Mathf.Pow(1f + DeathStarePerLevel, DeathStareLevel) - 1f) * 100) + "% > " + (int)((Mathf.Pow(1f + DeathStarePerLevel, DeathStareLevel + 1) - 1f) * 100);
+                break;
+            case 21: //Auto Ammo
+                description = "Automatically fills ammos : " + (int)((Mathf.Pow(1f + AutoAmmoPerLevel, AutoAmmoLevel) - 1f) * 100) + "% > " + (int)((Mathf.Pow(1f + AutoAmmoPerLevel, AutoAmmoLevel + 1) - 1f) * 100);
                 break;
 
         }
@@ -563,6 +579,8 @@ public class UpgradeScript : MonoBehaviour
             case 17: return MeleeDamageLevel;
             case 18: return DropPowerLevel;
             case 19: return DifficultyLevel;
+            case 20: return DeathStareLevel;
+            case 21: return AutoAmmoLevel;
             default:
                 Debug.Log("Invalid upgrade ID");
                 return -1; // Return -1 for invalid upgrade ID
