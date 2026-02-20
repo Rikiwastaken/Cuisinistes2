@@ -57,6 +57,7 @@ public class UpgradeScript : MonoBehaviour
     public int DifficultyLevel;
     public int DeathStareLevel;
     public int AutoAmmoLevel;
+    public int ImprovedGrenadeLevel;
 
     [Header("UpgradeDetails")]
     public float GunIncreasePerLevel;
@@ -78,6 +79,7 @@ public class UpgradeScript : MonoBehaviour
     public float DifficultyPerLevel;
     public float DeathStarePerLevel;
     public float AutoAmmoPerLevel;
+    public float ImprovedGrenadePerLevel;
 
     public float basecritchance;
     public float basecritmultiplier;
@@ -360,6 +362,11 @@ public class UpgradeScript : MonoBehaviour
                 break;
             case 21: //autoammo
                 AutoAmmoLevel++;
+                break; //imrpoved grenades
+            case 22:
+                ImprovedGrenadeLevel++;
+                ShootScript.GrenadeDamage *= (1f + ImprovedGrenadePerLevel);
+                ShootScript.GrenadeCD /= (1f + ImprovedGrenadePerLevel);
                 break;
 
         }
@@ -470,7 +477,10 @@ public class UpgradeScript : MonoBehaviour
             case 21: //Auto Ammo
                 description = "Automatically fills ammos : " + (int)((Mathf.Pow(1f + AutoAmmoPerLevel, AutoAmmoLevel) - 1f) * 100) + "% > " + (int)((Mathf.Pow(1f + AutoAmmoPerLevel, AutoAmmoLevel + 1) - 1f) * 100);
                 break;
-
+            case 22: //Improved Grenades
+                description = "Grenade Damage : " + (int)(ShootScript.GrenadeDamage) + " > " + (int)(ShootScript.GrenadeDamage * (1f + ImprovedGrenadePerLevel));
+                description += "\n Grenade Cooldown : " + (int)(ShootScript.GrenadeCD * 100f) / 100f + "s > " + (int)(ShootScript.GrenadeCD / (1f + ImprovedGrenadePerLevel) * 100f) / 100f + "s";
+                break;
         }
         return description;
     }
@@ -581,6 +591,7 @@ public class UpgradeScript : MonoBehaviour
             case 19: return DifficultyLevel;
             case 20: return DeathStareLevel;
             case 21: return AutoAmmoLevel;
+            case 22: return ImprovedGrenadeLevel;
             default:
                 Debug.Log("Invalid upgrade ID");
                 return -1; // Return -1 for invalid upgrade ID

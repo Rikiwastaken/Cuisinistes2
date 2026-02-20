@@ -2244,21 +2244,9 @@ MonoBehaviour:
   AutoAmmodelay: 1
   GrenadePrefab: {fileID: 15429697017664910, guid: 3b4090405b452d04982b60a63e50608d, type: 3}
   GrenadeCD: 10
-  whengrenadeisavailable: 0
-  grenadeavailable: 0
   GrenadeDamage: 25
-  GrenadeAction:
-    m_Name: Grenade
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6425bc4f-466a-4573-a8d0-bb0a7082423b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   grenadethrowforce: 15
   GrenadeImage: {fileID: 4853481728187882740}
-  timewhenstarted: 0
 --- !u!114 &484629754530822652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2359,6 +2347,9 @@ MonoBehaviour:
   - upgradeID: 21
     upgradeName: Auto Ammo
     UpgradeSprite: {fileID: 21300000, guid: 2fc9a98a1d8398044b0d6182523ea981, type: 3}
+  - upgradeID: 22
+    upgradeName: Improved Grenades
+    UpgradeSprite: {fileID: 21300000, guid: 2fc9a98a1d8398044b0d6182523ea981, type: 3}
   HandGunUpgradeLevel: 0
   ARUpgradeLevel: 0
   ShotgunUpgradeLevel: 0
@@ -2381,6 +2372,7 @@ MonoBehaviour:
   DifficultyLevel: 0
   DeathStareLevel: 0
   AutoAmmoLevel: 0
+  ImprovedGrenadeLevel: 0
   GunIncreasePerLevel: 0.15
   DamageReductionPerLevel: 0.2
   GlobalDamagePerLevel: 0.1
@@ -2400,6 +2392,7 @@ MonoBehaviour:
   DifficultyPerLevel: 0.2
   DeathStarePerLevel: 0.1
   AutoAmmoPerLevel: 0.1
+  ImprovedGrenadePerLevel: 0.15
   basecritchance: 0.05
   basecritmultiplier: 2
   NorthCard:
