@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
     public bool won;
     private bool showedvictory;
     public bool endless;
-    private WaveClass lastwave;
+    public WaveClass lastwave;
 
     private void Awake()
     {
@@ -131,9 +131,10 @@ public class EnemySpawner : MonoBehaviour
         WaveClass newwave = new WaveClass();
         newwave.bonusperwave = 1;
         newwave.numberofenemies = (int)((lastwave.numberofenemies + waveenemyadding) * waveenemymultiplier);
-        newwave.damagemultiplier = lastwave.damagemultiplier * difficultyincreaseperround / 1.5f * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel / 1.5f, upgradeScript.DifficultyLevel);
-        newwave.healthmultiplier = lastwave.healthmultiplier * difficultyincreaseperround * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
+        newwave.damagemultiplier = lastwave.damagemultiplier * (1f + difficultyincreaseperround) / 1.5f * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel / 1.5f, upgradeScript.DifficultyLevel);
+        newwave.healthmultiplier = lastwave.healthmultiplier * (1f + difficultyincreaseperround) * (float)Math.Pow(1f + upgradeScript.DifficultyPerLevel, upgradeScript.DifficultyLevel);
         lastwave = newwave;
+        totalenemyonthemap = lastwave.numberofenemies;
         won = false;
         BossInstance = null;
     }

@@ -71,14 +71,15 @@ public class TitleText : MonoBehaviour
         yield return new WaitForSeconds(timeforeachtext);
         textMeshPro.text = "BackdoomS";
         soundManager.PlaySFX(MainTextClip, 0.05f, transform);
-        yield return new WaitForSeconds(timeforfinaltext * 2);
+        yield return new WaitForSeconds(timeforfinaltext * 1.5f);
         textMeshPro.text = "ThankS FoR PlayinG";
         soundManager.PlaySFX(MainTextClip, 0.05f, transform);
-        yield return new WaitForSeconds(timeforfinaltext * 4);
+        yield return new WaitForSeconds(timeforfinaltext * 2);
         textMeshPro.text = "BuT it NeveR EndS";
         soundManager.PlaySFX(MainTextClip, 0.05f, transform);
-        yield return new WaitForSeconds(timeforfinaltext * 4);
+        yield return new WaitForSeconds(timeforfinaltext * 2);
         transform.position = MovementController.instance.basepos;
+        textMeshPro.gameObject.SetActive(false);
         EnemySpawner.instance.endless = true;
         EnemySpawner.instance.InitializeNewEndlessWave();
     }
