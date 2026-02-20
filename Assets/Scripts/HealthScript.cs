@@ -64,7 +64,6 @@ public class HealthScript : MonoBehaviour
             movementController = MovementController.instance;
             enemyNavigation = GetComponent<EnemyNavigation>();
         }
-
     }
 
     private void Update()
@@ -94,9 +93,15 @@ public class HealthScript : MonoBehaviour
     public void UpdateTexts()
     {
         movementController.HPTMP.text = "HP : " + (int)HP;
+        movementController.HPBar.fillAmount = HP / MaxHealth;
+        movementController.ArmorBar.fillAmount = currentarmor / maxarmor;
         if (currentarmor > 0)
         {
             movementController.HPTMP.text += "\nArmor : " + (int)(currentarmor);
+            movementController.ArmorBG.fillAmount = 1;
+        } else
+        {
+            movementController.ArmorBG.fillAmount = 0;
         }
     }
 

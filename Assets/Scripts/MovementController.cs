@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MovementController : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class MovementController : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI HPTMP;
+    public Image HPBar;
+    public Image ArmorBar;
+    public Image ArmorBG;
     public TextMeshProUGUI WaveTMP;
 
     [Header("Movement")]
