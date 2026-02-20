@@ -84,6 +84,18 @@ public class ShootScript : MonoBehaviour
     public float clipratio;
     public float AutoAmmodelay;
 
+
+    [Header("Grenade")]
+    public GameObject GrenadePrefab;
+    public float GrenadeCD;
+    private float whengrenadeisavailable;
+    private bool grenadeavailable;
+    public float GrenadeDamage;
+    private InputAction GrenadeAction;
+    public float grenadethrowforce;
+    public Image GrenadeImage;
+    private float timewhenstarted;
+
     private void Awake()
     {
         instance = this;
@@ -98,6 +110,7 @@ public class ShootScript : MonoBehaviour
         WeaponChangeAction = InputSystem.actions.FindAction("ChangeWeapon");
         ReloadAction = InputSystem.actions.FindAction("Reload");
         MeleeAction = InputSystem.actions.FindAction("Melee");
+        GrenadeAction = InputSystem.actions.FindAction("Grenade");
         healthScript = GetComponent<HealthScript>();
         InitializeAmmoText();
     }
@@ -274,6 +287,40 @@ public class ShootScript : MonoBehaviour
                     enemy.GetComponent<HealthScript>().TakeDamage(meleedamage);
                 }
             }
+        }
+
+
+        if (whengrenadeisavailable == 0)
+        {
+            grenadeavailable = true;
+        }
+        if (Time.time > whengrenadeisavailable)
+        {
+            grenadeavailable = true;
+        }
+        if (grenadeavailable)
+        {
+            if (GrenadeImage.fillAmount != 1)
+            {
+                GrenadeImage.fillAmount = 1;
+            }
+            if (GrenadeAction.ReadValue<float>() != 0)
+            {
+                timewhenstarted = Time.time;
+                whengrenadeisavailable = Time.time + GrenadeCD;
+                grenadeavailable = false;
+                GameObject newgrenade = Instantiate(GrenadePrefab, transform.position + transform.forward, Quaternion.identity);
+                newgrenade.GetComponent<grenadeScript>().Damage = GrenadeDamage;
+                newgrenade.GetComponent<Rigidbody>().AddForce(transform.forward * grenadethrowforce, ForceMode.VelocityChange);
+            }
+        }
+        else
+        {
+            float fillamount = (Time.time + GrenadeCD - timewhenstarted) / GrenadeCD - 1f;
+            Color color = Color.white;
+            color.a = fillamount;
+            GrenadeImage.color = color;
+            GrenadeImage.fillAmount = fillamount;
         }
 
 
