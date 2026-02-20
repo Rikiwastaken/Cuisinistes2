@@ -155,7 +155,7 @@ MonoBehaviour:
   Idle: {fileID: -254374194881571317, guid: a3f5f52c798a8384f88e414931e16f92, type: 3}
   Run: {fileID: 2582141624751311616, guid: a3f5f52c798a8384f88e414931e16f92, type: 3}
   Attack: {fileID: -6524227520089463762, guid: a3f5f52c798a8384f88e414931e16f92, type: 3}
-  Die: {fileID: -8552002475577850440, guid: af56d02a7f9616f3680a2ef7cda3b717, type: 3}
+  Die: {fileID: 5536114108386525781, guid: a3f5f52c798a8384f88e414931e16f92, type: 3}
   BossMeleeAnim: {fileID: -4326694525180403469, guid: a3f5f52c798a8384f88e414931e16f92, type: 3}
   Canvas: {fileID: 7183150399480153850}
   Lifebar: {fileID: 2492216953354984197}
@@ -208,6 +208,8 @@ MonoBehaviour:
   DeathSound:
   - {fileID: 8300000, guid: 588a0f0bb109fe248bc1a1c81a6761f7, type: 3}
   timebetweenidlesound: 0
+  scaledgundamage: 0
+  scaledmeleedamage: 0
 --- !u!114 &3247550930479452848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +230,7 @@ MonoBehaviour:
   timebeforeregen: 0
   regenpersecond: 0
   HurtPostProcessing: {fileID: 0}
+  scaledMaxHealth: 0
 --- !u!65 &2550037940614220385
 BoxCollider:
   m_ObjectHideFlags: 0
