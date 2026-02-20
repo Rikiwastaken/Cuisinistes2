@@ -51,6 +51,8 @@ MonoBehaviour:
     MusicVol: 0
     SFXVol: 0
     sensibility: 0
+    resolution: 0
+    fullscreen: 0
 --- !u!114 &2769397545348539372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +80,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -1977362850166421828, guid: 0ec88ffbdafc77e4995d08e605f01b94, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: c105cf1b6fda00d44899e39e61fb3a35, type: 3}
+  m_Resource: {fileID: 8300000, guid: b199a0a77772e8242895a4a16a8e01c6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
