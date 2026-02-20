@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5886878782515911745, guid: 9d7fe3523e080e84fbdb3190941b2585, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: bdfc6f21560d5a44c97c7e9f2e82a11b, type: 2}
     - target: {fileID: 8993208008032642761, guid: 9d7fe3523e080e84fbdb3190941b2585, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -560,6 +564,10 @@ PrefabInstance:
       propertyPath: EnemyHolder
       value: 
       objectReference: {fileID: 1172993733}
+    - target: {fileID: 5886878782515911745, guid: 8b8ab3dbe9723b348a851268fb02fce4, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 68e419ddb3f31e9438edfb6eff5817df, type: 2}
     - target: {fileID: 8993208008032642761, guid: 8b8ab3dbe9723b348a851268fb02fce4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -621,6 +629,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 478866117552176111, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2818514293851467102, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
       propertyPath: lootholder
       value: 
@@ -629,6 +641,10 @@ PrefabInstance:
       propertyPath: EnemyHolder
       value: 
       objectReference: {fileID: 1172993733}
+    - target: {fileID: 5886878782515911745, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: b707d0d1344c13543bcbf8f1b1e55c55, type: 2}
     - target: {fileID: 8993208008032642761, guid: d64b6d39afd690a459f9183400cbe555, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
