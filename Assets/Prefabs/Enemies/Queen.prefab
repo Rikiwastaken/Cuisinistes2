@@ -203,9 +203,9 @@ MonoBehaviour:
   Idlesound:
   - {fileID: 8300000, guid: 5d6775532908ba44daeae252b120f0ec, type: 3}
   DamageSound:
-  - {fileID: 8300000, guid: 75d33bc764c4d49498a19af9a868dff4, type: 3}
-  - {fileID: 8300000, guid: 8290f71cfbf94634990063247165fb1e, type: 3}
-  - {fileID: 8300000, guid: a80303ee52d004045b9e75a6232a2b7a, type: 3}
+  - {fileID: 8300000, guid: d7403028d748d2b4499a596bc6068d89, type: 3}
+  - {fileID: 8300000, guid: 1735a4f850e4c0a4ca7a06aac7c9f5eb, type: 3}
+  - {fileID: 8300000, guid: b89dd6d87e74fd848babf7cc163167d7, type: 3}
   DeathSound:
   - {fileID: 8300000, guid: b27968d95d0e9764083b49eae9d6069f, type: 3}
   timebetweenidlesound: 3.232
