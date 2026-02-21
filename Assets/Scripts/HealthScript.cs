@@ -193,7 +193,7 @@ public class HealthScript : MonoBehaviour
                 {
                     if (enemyNavigation.DeathSound.Count > 0)
                     {
-                        soundManager.PlaySFXFromList(enemyNavigation.DeathSound, 0.5f, enemyNavigation.transform);
+                        soundManager.PlaySFXFromList(enemyNavigation.DeathSound, 0.5f, enemyNavigation.transform, enemyNavigation.DeathVolume);
                     }
                     enemyNavigation.PlayDeathAnim();
                     enemyNavigation.TriggerDrop();
@@ -203,7 +203,7 @@ public class HealthScript : MonoBehaviour
                 {
                     if (enemyNavigation.DamageSound.Count > 0)
                     {
-                        soundManager.PlaySFXFromList(enemyNavigation.DamageSound, 0.5f, enemyNavigation.transform);
+                        soundManager.PlaySFXFromList(enemyNavigation.DamageSound, 0.5f, enemyNavigation.transform, enemyNavigation.DamageVolume);
                     }
                     if (!enemyNavigation.Canvas.gameObject.activeSelf)
                     {

@@ -86,6 +86,14 @@ public class EnemyNavigation : MonoBehaviour
 
     public List<AudioClip> DeathSound;
 
+
+    [Header("SoundVolume")]
+
+    public float AttackVolume = 1f;
+    public float IdleVolume = 1f;
+    public float DamageVolume = 1f;
+    public float DeathVolume = 1f;
+
     private float nextIdleSoundUpdateTime;
     public float timebetweenidlesound;
 
@@ -240,7 +248,7 @@ public class EnemyNavigation : MonoBehaviour
         {
             nextDestinationUpdateTime = Time.time + timebetweenidlesound;
 
-            SoundManager.instance.PlaySFXFromList(Idlesound, 0.05f, transform);
+            SoundManager.instance.PlaySFXFromList(Idlesound, 0.05f, transform, IdleVolume);
         }
 
 
@@ -354,7 +362,7 @@ public class EnemyNavigation : MonoBehaviour
 
         if (AttackSound.Count > 0)
         {
-            SoundManager.instance.PlaySFXFromList(AttackSound, 0.05f, transform);
+            SoundManager.instance.PlaySFXFromList(AttackSound, 0.05f, transform, AttackVolume);
         }
     }
 

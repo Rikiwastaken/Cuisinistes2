@@ -35,6 +35,9 @@ public class ShootScript : MonoBehaviour
         public List<AudioClip> ShootSFX;
         public List<AudioClip> ReloadSFX;
         public List<AudioClip> EmptyClipSFX;
+        public float ShootVolume = 1f;
+        public float ReloadVolume = 1f;
+        public float EmptyClipVolume = 1f;
         public bool unlocked;
         public TextMeshProUGUI ReserveAmmoTMP;
         public TextMeshProUGUI CurrentClipTMP;
@@ -172,7 +175,7 @@ public class ShootScript : MonoBehaviour
                     if (GunList[currentgun].EmptyClipSFX.Count > 0)
                     {
 
-                        SoundManager.instance.PlaySFXFromList(GunList[currentgun].EmptyClipSFX, 0.05f, transform);
+                        SoundManager.instance.PlaySFXFromList(GunList[currentgun].EmptyClipSFX, 0.05f, transform, GunList[currentgun].EmptyClipVolume);
                     }
                 }
                 if (GunList[currentgun].reserveammo == 0 && GunList[currentgun].currentclip == 0)
@@ -470,7 +473,7 @@ public class ShootScript : MonoBehaviour
         GunList[currentgun].ReserveAmmoTMP.text = GunList[currentgun].reserveammo + "";
         if (GunList[currentgun].ReloadSFX.Count > 0)
         {
-            SoundManager.instance.PlaySFXFromList(GunList[currentgun].ReloadSFX, 0.05f, transform);
+            SoundManager.instance.PlaySFXFromList(GunList[currentgun].ReloadSFX, 0.05f, transform, GunList[currentgun].ReloadVolume);
         }
     }
 
@@ -518,7 +521,7 @@ public class ShootScript : MonoBehaviour
 
         if (GunList[currentgun].ShootSFX.Count > 0)
         {
-            SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
+            SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform, GunList[currentgun].ShootVolume);
         }
 
 
@@ -597,7 +600,7 @@ public class ShootScript : MonoBehaviour
         // Play shooting sound
         if (GunList[currentgun].ShootSFX.Count > 0)
         {
-            SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform);
+            SoundManager.instance.PlaySFXFromList(GunList[currentgun].ShootSFX, 0.05f, transform, GunList[currentgun].ShootVolume);
         }
     }
 
