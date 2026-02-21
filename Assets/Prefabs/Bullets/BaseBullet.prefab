@@ -172,7 +172,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &5365917775354453560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,8 +185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eda7f1ffd654f44c99cdd0e582c70bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  Emiter: {fileID: 0}
+  EmiterType: 0
   Direction: {x: 0, y: 0, z: 0}
   Speed: 0
   Damage: 0
   Recoil: 0
+  ishandgun: 0
+  hitbyhandgun: []

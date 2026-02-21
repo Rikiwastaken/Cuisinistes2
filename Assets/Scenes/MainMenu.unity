@@ -4842,7 +4842,7 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 121377961}
   FullScreenTOggle: {fileID: 5618794}
   allowchange: 0
-  protaganimation: {fileID: 0}
+  protaganimation: {fileID: 1705762477}
   Idleclip: {fileID: 4409813246249324745, guid: 9ccbddab4664d3e4e878e1b0c0482a90, type: 3}
   Restclip: {fileID: 2316931514179787725, guid: 9ccbddab4664d3e4e878e1b0c0482a90, type: 3}
   Lookclip: {fileID: 546048628150524936, guid: 9ccbddab4664d3e4e878e1b0c0482a90, type: 3}
@@ -6500,6 +6500,11 @@ PrefabInstance:
       addedObject: {fileID: 1747740561}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ccbddab4664d3e4e878e1b0c0482a90, type: 3}
+--- !u!111 &1705762477 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 2223639932434330405, guid: 9ccbddab4664d3e4e878e1b0c0482a90, type: 3}
+  m_PrefabInstance: {fileID: 1705762476}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &1713793389
 MeshCollider:
   m_ObjectHideFlags: 0
