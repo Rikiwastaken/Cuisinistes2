@@ -2368,6 +2368,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 942e349fb322e714680f7ec1f6c54e99, type: 3}
     - {fileID: 8300000, guid: daed41aee47af994684bb393be2175eb, type: 3}
     - {fileID: 8300000, guid: f33d83386a328cc4fb182c5143e00f5e, type: 3}
+    ShootVolume: 1
+    ReloadVolume: 1
+    EmptyClipVolume: 1
     unlocked: 0
     ReserveAmmoTMP: {fileID: 1372136017296284525}
     CurrentClipTMP: {fileID: 883676527848524228}
@@ -2399,6 +2402,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 942e349fb322e714680f7ec1f6c54e99, type: 3}
     - {fileID: 8300000, guid: daed41aee47af994684bb393be2175eb, type: 3}
     - {fileID: 8300000, guid: f33d83386a328cc4fb182c5143e00f5e, type: 3}
+    ShootVolume: 1
+    ReloadVolume: 1
+    EmptyClipVolume: 1
     unlocked: 0
     ReserveAmmoTMP: {fileID: 4393277931692648783}
     CurrentClipTMP: {fileID: 6072489959606445292}
@@ -2427,6 +2433,9 @@ MonoBehaviour:
     EmptyClipSFX:
     - {fileID: 8300000, guid: 702a411d8348e6344875d6161867f145, type: 3}
     - {fileID: 8300000, guid: b28710117dab55c44a4091fa06fde3ab, type: 3}
+    ShootVolume: 1
+    ReloadVolume: 1
+    EmptyClipVolume: 1
     unlocked: 0
     ReserveAmmoTMP: {fileID: 8704634350139425386}
     CurrentClipTMP: {fileID: 3541501672061897883}
@@ -2452,6 +2461,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 1319ac9c6e3d6174c84fc42bca25d546, type: 3}
     EmptyClipSFX:
     - {fileID: 8300000, guid: 19e146b0e7bbe694e9f5c0e951883b7f, type: 3}
+    ShootVolume: 1
+    ReloadVolume: 1
+    EmptyClipVolume: 1
     unlocked: 0
     ReserveAmmoTMP: {fileID: 5430971095608841784}
     CurrentClipTMP: {fileID: 5252066288197166554}
