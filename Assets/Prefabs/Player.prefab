@@ -2433,7 +2433,7 @@ MonoBehaviour:
     EmptyClipSFX:
     - {fileID: 8300000, guid: 702a411d8348e6344875d6161867f145, type: 3}
     - {fileID: 8300000, guid: b28710117dab55c44a4091fa06fde3ab, type: 3}
-    ShootVolume: 0.4
+    ShootVolume: 0.55
     ReloadVolume: 0.4
     EmptyClipVolume: 0.5
     unlocked: 0
