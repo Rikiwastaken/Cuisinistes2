@@ -303,6 +303,7 @@ public class UpgradeScript : MonoBehaviour
                     gun.damage *= (1f + GlobalDamagePerLevel);
                 }
                 ShootScript.meleedamage *= (1f + GlobalDamagePerLevel);
+                ShootScript.GrenadeDamage *= (1f + GlobalDamagePerLevel);
                 break;
             case 6://speed
                 RunSpeedLevel++;

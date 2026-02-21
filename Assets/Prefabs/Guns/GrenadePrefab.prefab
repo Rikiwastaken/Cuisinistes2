@@ -122,7 +122,9 @@ MonoBehaviour:
   timebeforeExplosion: 2
   timebeforedestruction: 0.1
   explosionSFX:
-  - {fileID: 8300000, guid: d3712131c97902a4d93f83e5ef87cd20, type: 3}
+  - {fileID: 8300000, guid: 337e380ef666603479c6c93ce0666887, type: 3}
+  - {fileID: 8300000, guid: aec1b60c9b2338e4896adefeda612a78, type: 3}
+  - {fileID: 8300000, guid: 3c962a27dfa3bd246917bbb303bfaf91, type: 3}
   ExplosionSphere: {fileID: 1510221653681230826}
 --- !u!1 &1510221653681230826
 GameObject:

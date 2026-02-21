@@ -2479,6 +2479,7 @@ MonoBehaviour:
   GrenadeDamage: 25
   grenadethrowforce: 15
   GrenadeImage: {fileID: 4853481728187882740}
+  grenadeThrow: {fileID: 8300000, guid: 579429361f9ea3048a7d2df6eeb66910, type: 3}
 --- !u!114 &484629754530822652
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -95,6 +95,7 @@ public class ShootScript : MonoBehaviour
     public float grenadethrowforce;
     public Image GrenadeImage;
     private float timewhenstarted;
+    public AudioClip grenadeThrow;
 
     private void Awake()
     {
@@ -312,6 +313,7 @@ public class ShootScript : MonoBehaviour
                 GameObject newgrenade = Instantiate(GrenadePrefab, transform.position + transform.forward, Quaternion.identity);
                 newgrenade.GetComponent<grenadeScript>().Damage = GrenadeDamage;
                 newgrenade.GetComponent<Rigidbody>().AddForce(transform.forward * grenadethrowforce, ForceMode.VelocityChange);
+                SoundManager.instance.PlaySFX(grenadeThrow, 0.05f, transform);
             }
         }
         else
