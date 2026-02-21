@@ -99,7 +99,8 @@ public class HealthScript : MonoBehaviour
         {
             movementController.HPTMP.text += "\nArmor : " + (int)(currentarmor);
             movementController.ArmorBG.fillAmount = 1;
-        } else
+        }
+        else
         {
             movementController.ArmorBG.fillAmount = 0;
         }
@@ -136,6 +137,7 @@ public class HealthScript : MonoBehaviour
 
             if (randomvalue < 100f * (UpgradeScript.basecritchance + UpgradeScript.CritChancePerLevel * UpgradeScript.CritChanceLevel))
             {
+                soundManager.PlayCritSFX(transform);
                 damage *= UpgradeScript.basecritmultiplier * Mathf.Pow(1f + UpgradeScript.CritDamagePerLevel, UpgradeScript.CritDamageLevel);
             }
 

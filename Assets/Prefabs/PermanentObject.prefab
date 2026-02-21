@@ -69,6 +69,7 @@ MonoBehaviour:
   SFXVol: 1
   maxdistancetonullify: 15
   Levelmusic: {fileID: 4665513486636692954}
+  CritSFX: {fileID: 8300000, guid: 4fa510b1744b266498fca338e7c904e9, type: 3}
 --- !u!82 &4665513486636692954
 AudioSource:
   m_ObjectHideFlags: 0

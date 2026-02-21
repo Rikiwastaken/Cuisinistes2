@@ -197,9 +197,9 @@ MonoBehaviour:
   HealthKitPrefab: {fileID: 8594776281252626752, guid: b3692803d71aabd4d8fa9ac0d81873e8, type: 3}
   ArmorKitPrefab: {fileID: 8594776281252626752, guid: ed7f82ff0dc1f3c40828049ab0098768, type: 3}
   AttackSound:
-  - {fileID: 8300000, guid: a9c1d508362093048bd7f631a13d8451, type: 3}
-  - {fileID: 8300000, guid: 13095baa0a603684c974079a01f1f05c, type: 3}
-  - {fileID: 8300000, guid: 022c2ac7a6e51d148b9871eb78b45fb6, type: 3}
+  - {fileID: 8300000, guid: daaa6bc0b090ea749bb8f341d827b969, type: 3}
+  - {fileID: 8300000, guid: 7450040f1bebc724e8016208c3fb2878, type: 3}
+  - {fileID: 8300000, guid: e06a5f6b608173849843e40d30e94020, type: 3}
   Idlesound:
   - {fileID: 8300000, guid: 5d6775532908ba44daeae252b120f0ec, type: 3}
   DamageSound:

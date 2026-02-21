@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
     public float maxdistancetonullify;
 
     public AudioSource Levelmusic;
+    public AudioClip CritSFX;
 
     private void Awake()
     {
@@ -36,6 +37,10 @@ public class SoundManager : MonoBehaviour
         AudioMixer.SetFloat("MasterVolume", Mathf.Log10(DataScript.instance.Options.Mastervol) * 20f);
     }
 
+    public void PlayCritSFX(Transform target)
+    {
+        PlaySFX(CritSFX, 0.05f, target);
+    }
     public void PlaySFXFromList(List<AudioClip> cliplist, float pitchrandomness, Transform Emiter, float volume = -1)
     {
         int randomSFXID = Random.Range(0, cliplist.Count);
