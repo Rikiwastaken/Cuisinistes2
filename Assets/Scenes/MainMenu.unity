@@ -511,7 +511,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56374498}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!64 &61359352
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5562,7 +5562,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312338987}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!1 &1322147166
 GameObject:
   m_ObjectHideFlags: 0
@@ -5627,6 +5627,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1312338988}
   - {fileID: 1290042137}
   - {fileID: 1908201378}
   - {fileID: 1784781816}
@@ -5634,7 +5635,6 @@ RectTransform:
   - {fileID: 90879685}
   - {fileID: 1704398390}
   - {fileID: 173310324}
-  - {fileID: 1312338988}
   m_Father: {fileID: 1176718096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

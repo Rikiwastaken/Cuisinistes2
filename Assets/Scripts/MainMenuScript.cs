@@ -77,23 +77,23 @@ public class MainMenuScript : MonoBehaviour
 
     private void Update()
     {
-        if (!GetComponent<Animation>().isPlaying)
+        if (!protaganimation.isPlaying)
         {
             int random = UnityEngine.Random.Range(0, 10);
             if (random == 0)
             {
-                GetComponent<Animation>().clip = Lookclip;
+                protaganimation.clip = Lookclip;
 
             }
             else if (random == 1)
             {
-                GetComponent<Animation>().clip = Restclip;
+                protaganimation.clip = Restclip;
             }
             else
             {
-                GetComponent<Animation>().clip = Idleclip;
+                protaganimation.clip = Idleclip;
             }
-            GetComponent<Animation>().Play();
+            protaganimation.Play();
         }
     }
     public void InitializeSliders()
