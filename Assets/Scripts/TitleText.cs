@@ -17,6 +17,7 @@ public class TitleText : MonoBehaviour
     public AudioClip FirstTextClip;
     public AudioClip SecondTextClip;
     public AudioClip MainTextClip;
+    public AudioClip DeathClip;
 
     private SoundManager soundManager;
 
@@ -98,7 +99,7 @@ public class TitleText : MonoBehaviour
         playinggameover = true;
         textMeshPro.gameObject.SetActive(true);
         textMeshPro.text = "YoU";
-        soundManager.PlaySFX(FirstTextClip, 0.05f, transform);
+        soundManager.PlaySFX(DeathClip, 0.05f, transform);
         yield return new WaitForSeconds(timeforeachtext);
         textMeshPro.text = "Died";
         soundManager.PlaySFX(SecondTextClip, 0.05f, transform);

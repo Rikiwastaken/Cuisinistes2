@@ -2680,6 +2680,7 @@ MonoBehaviour:
   FirstTextClip: {fileID: 8300000, guid: 8a1c691531d66d04cb71b1b189ccbb1a, type: 3}
   SecondTextClip: {fileID: 8300000, guid: 8a1c691531d66d04cb71b1b189ccbb1a, type: 3}
   MainTextClip: {fileID: 8300000, guid: d3712131c97902a4d93f83e5ef87cd20, type: 3}
+  DeathClip: {fileID: 8300000, guid: fbde88ef270aa9f4e95e0a6fed118686, type: 3}
 --- !u!1 &5711423724976651647
 GameObject:
   m_ObjectHideFlags: 0

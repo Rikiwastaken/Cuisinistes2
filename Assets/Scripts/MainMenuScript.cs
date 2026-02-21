@@ -19,7 +19,7 @@ public class MainMenuScript : MonoBehaviour
     public Toggle FullScreenTOggle;
     public bool allowchange;
 
-    public Animation animation;
+    public Animation protaganimation;
     public AnimationClip Idleclip;
     public AnimationClip Restclip;
     public AnimationClip Lookclip;
@@ -77,23 +77,23 @@ public class MainMenuScript : MonoBehaviour
 
     private void Update()
     {
-        if (!animation.isPlaying)
+        if (!GetComponent<Animation>().isPlaying)
         {
             int random = UnityEngine.Random.Range(0, 10);
             if (random == 0)
             {
-                animation.clip = Lookclip;
+                GetComponent<Animation>().clip = Lookclip;
 
             }
             else if (random == 1)
             {
-                animation.clip = Restclip;
+                GetComponent<Animation>().clip = Restclip;
             }
             else
             {
-                animation.clip = Idleclip;
+                GetComponent<Animation>().clip = Idleclip;
             }
-            animation.Play();
+            GetComponent<Animation>().Play();
         }
     }
     public void InitializeSliders()

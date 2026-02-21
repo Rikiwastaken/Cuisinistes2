@@ -4841,7 +4841,7 @@ MonoBehaviour:
   resolutionDropdown: {fileID: 121377961}
   FullScreenTOggle: {fileID: 5618794}
   allowchange: 0
-  animation: {fileID: 1348108258}
+  protaganimation: {fileID: 1348108258}
   Idleclip: {fileID: 4409813246249324745, guid: 9ccbddab4664d3e4e878e1b0c0482a90, type: 3}
   Restclip: {fileID: 2316931514179787725, guid: 9ccbddab4664d3e4e878e1b0c0482a90, type: 3}
   Lookclip: {fileID: 546048628150524936, guid: 9ccbddab4664d3e4e878e1b0c0482a90, type: 3}
