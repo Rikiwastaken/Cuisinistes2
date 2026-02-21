@@ -157,6 +157,7 @@ MonoBehaviour:
   Run: {fileID: -8574973380572807371, guid: 86503e0ccbb8a104ea71b96cacf5d564, type: 3}
   Attack: {fileID: 3744664388455915266, guid: 86503e0ccbb8a104ea71b96cacf5d564, type: 3}
   Die: {fileID: 7923332378178504589, guid: 86503e0ccbb8a104ea71b96cacf5d564, type: 3}
+  BossMeleeAnim: {fileID: 0}
   Canvas: {fileID: 7183150399480153850}
   Lifebar: {fileID: 2492216953354984197}
   ded: 0
@@ -182,6 +183,9 @@ MonoBehaviour:
     ShootSFX: []
     ReloadSFX: []
     EmptyClipSFX: []
+    ShootVolume: 1
+    ReloadVolume: 1
+    EmptyClipVolume: 1
     unlocked: 0
     ReserveAmmoTMP: {fileID: 0}
     CurrentClipTMP: {fileID: 0}
@@ -208,7 +212,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b5856ce6d30875c40b3f9f40c0fb0394, type: 3}
   - {fileID: 8300000, guid: f005099acd6e8b34ca435ab25427fafe, type: 3}
   - {fileID: 8300000, guid: fdcf892790f7e944da5f71312b85d7b7, type: 3}
+  AttackVolume: 0.6
+  IdleVolume: 0.6
+  DamageVolume: 0.6
+  DeathVolume: 0.6
   timebetweenidlesound: 0
+  scaledgundamage: 0
+  scaledmeleedamage: 0
 --- !u!114 &3247550930479452848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +239,7 @@ MonoBehaviour:
   timebeforeregen: 0
   regenpersecond: 0
   HurtPostProcessing: {fileID: 0}
+  scaledMaxHealth: 0
 --- !u!65 &2550037940614220385
 BoxCollider:
   m_ObjectHideFlags: 0

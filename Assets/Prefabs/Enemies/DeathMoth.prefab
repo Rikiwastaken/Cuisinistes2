@@ -183,6 +183,9 @@ MonoBehaviour:
     ShootSFX: []
     ReloadSFX: []
     EmptyClipSFX: []
+    ShootVolume: 1
+    ReloadVolume: 1
+    EmptyClipVolume: 1
     unlocked: 0
     ReserveAmmoTMP: {fileID: 0}
     CurrentClipTMP: {fileID: 0}
@@ -210,6 +213,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1e60089e8c494444d851707373d9dc73, type: 3}
   - {fileID: 8300000, guid: ba7a9aabb710da043b4901bdeb26ffd3, type: 3}
   - {fileID: 8300000, guid: a7affa9387b41fc458abf4f3d7a11022, type: 3}
+  AttackVolume: 0.6
+  IdleVolume: 0.6
+  DamageVolume: 0.6
+  DeathVolume: 0.6
   timebetweenidlesound: 10
   scaledgundamage: 0
   scaledmeleedamage: 0

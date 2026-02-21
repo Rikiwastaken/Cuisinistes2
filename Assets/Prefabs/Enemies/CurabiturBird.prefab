@@ -213,10 +213,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6288c63591ae3ca44bfc8ce4f0aff49b, type: 3}
   - {fileID: 8300000, guid: 150e13c652bf24a4e8701660a639415f, type: 3}
   - {fileID: 8300000, guid: 053fcb06753cfc349930a84ef63228c5, type: 3}
-  AttackVolume: 1
-  IdleVolume: 1
-  DamageVolume: 1
-  DeathVolume: 1
+  AttackVolume: 0.6
+  IdleVolume: 0.6
+  DamageVolume: 0.6
+  DeathVolume: 0.6
   timebetweenidlesound: 10
   scaledgundamage: 0
   scaledmeleedamage: 0
